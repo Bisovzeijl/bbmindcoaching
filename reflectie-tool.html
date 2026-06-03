@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gratis Reflectietool | B&B Mind Coaching</title>
+<meta name="description" content="Vier vragen die je helpen ontdekken wat je echt wilt en wie je moet worden om daar te komen."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E;
+  --teal:#4c9db0;
+  --teal-dark:#3a7f91;
+  --teal-light:#e8f4f7;
+  --yellow:#ffebaf;
+  --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4;
+  --muted:#5a7a86;
+  --white:#ffffff;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 12px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--yellow);letter-spacing:.04em;text-decoration:none}
+.nav-tagline{font-size:.75rem;color:rgba(255,255,255,0.45);font-weight:300}
+
+/* PROGRESS */
+.progress-wrap{background:var(--navy);padding:0 40px;position:sticky;top:57px;z-index:90;border-top:1px solid rgba(255,255,255,0.06)}
+.progress-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 0}
+.progress-track{flex:1;height:3px;background:rgba(255,255,255,0.12);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.progress-step{font-size:.72rem;color:var(--teal);font-weight:600;white-space:nowrap}
+
+/* SCREENS */
+.screen{display:none;animation:fadeUp .4s ease both}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.start-hero{background:var(--navy);padding:80px 40px 72px;text-align:center;position:relative;overflow:hidden}
+.start-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(76,157,176,.12) 0%,transparent 70%)}
+.start-hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,235,175,.07) 0%,transparent 70%)}
+.tool-badge{display:inline-block;background:rgba(76,157,176,.15);border:1px solid rgba(76,157,176,.35);color:var(--teal);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:28px}
+.start-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:300;color:var(--white);line-height:1.1;margin-bottom:20px}
+.start-hero h1 em{color:var(--yellow-dark);font-style:italic}
+.start-hero .sub{font-size:1rem;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 48px;line-height:1.8;font-weight:300}
+
+/* START CARDS */
+.start-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:720px;margin:0 auto 48px}
+.start-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:24px 20px;text-align:left}
+.start-card-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--teal);line-height:1;margin-bottom:10px}
+.start-card h3{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:6px}
+.start-card p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;font-weight:300}
+
+/* PRIVACY NOTE ONDERAAN START */
+.privacy-footer{text-align:center;margin-top:24px}
+.privacy-footer p{font-size:.75rem;color:rgba(255,255,255,.3);font-weight:300;font-style:italic}
+
+/* VRAAG SCHERM */
+.question-screen{max-width:640px;margin:0 auto;padding:72px 40px}
+.q-number{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.q-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--navy);line-height:1.25;margin-bottom:12px}
+.q-title em{font-style:italic;color:var(--teal)}
+.q-hint{font-size:.875rem;color:var(--muted);line-height:1.7;margin-bottom:32px;font-weight:300;padding-left:16px;border-left:2px solid rgba(76,157,176,.3)}
+.q-textarea{width:100%;min-height:160px;padding:18px 20px;border:1.5px solid rgba(27,47,78,.15);border-radius:10px;font-family:var(--sans);font-size:.95rem;color:var(--navy);background:var(--white);outline:none;resize:vertical;line-height:1.7;transition:border-color .2s}
+.q-textarea:focus{border-color:var(--teal)}
+.q-textarea::placeholder{color:rgba(90,122,134,.45);font-weight:300}
+.q-char{font-size:.75rem;color:var(--muted);margin-top:8px;text-align:right}
+.q-nav{display:flex;align-items:center;justify-content:space-between;margin-top:32px}
+.btn-back{background:transparent;border:1.5px solid rgba(27,47,78,.2);color:var(--muted);padding:12px 24px;border-radius:6px;font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:var(--navy);color:var(--navy)}
+
+/* BUTTONS */
+.btn-primary{background:var(--teal);color:var(--white);border:none;padding:14px 36px;border-radius:6px;font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:var(--yellow);border:none;padding:14px 36px;border-radius:6px;font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.btn-navy:hover{background:#243d63;transform:translateY(-1px)}
+
+/* LOADING */
+.loading-screen{max-width:560px;margin:0 auto;padding:100px 40px;text-align:center}
+.loading-icon{width:64px;height:64px;border:3px solid rgba(76,157,176,.2);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-screen h2{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--navy);margin-bottom:12px}
+.loading-screen p{font-size:.9rem;color:var(--muted);line-height:1.7;font-weight:300}
+.loading-dots{display:inline-flex;gap:6px;margin-top:24px}
+.loading-dots span{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pulse 1.4s ease-in-out infinite}
+.loading-dots span:nth-child(2){animation-delay:.2s}
+.loading-dots span:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+
+/* RESULTS */
+.results-hero{background:var(--navy);padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.results-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(76,157,176,.12) 0%,transparent 60%)}
+.results-tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;position:relative}
+.results-hero h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:16px;position:relative}
+.results-hero h2 em{color:var(--yellow-dark);font-style:italic}
+.results-hero .results-sub{font-size:.9rem;color:rgba(255,255,255,.5);position:relative;font-weight:300}
+.results-body{max-width:720px;margin:0 auto;padding:64px 40px}
+
+/* REFLECTION CARD */
+.reflection-card{background:var(--white);border-radius:var(--radius);border:1px solid rgba(27,47,78,.08);box-shadow:var(--shadow-lg);overflow:hidden;margin-bottom:40px}
+.reflection-card-header{background:var(--navy);padding:28px 36px;display:flex;align-items:center;gap:16px}
+.reflection-card-header svg{stroke:var(--teal);flex-shrink:0}
+.rch-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
+.rch-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--ivory)}
+.reflection-body{padding:36px}
+.reflection-text{font-size:.95rem;color:var(--navy);line-height:1.9;font-weight:300}
+.reflection-text p{margin-bottom:16px}
+.reflection-text p:last-child{margin-bottom:0}
+
+/* ANTWOORDEN */
+.answers-block{margin-bottom:40px}
+.answers-title{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.answer-item{background:var(--white);border-radius:10px;border:1px solid rgba(27,47,78,.07);padding:24px 28px;margin-bottom:12px}
+.answer-item-q{font-size:.75rem;font-weight:600;color:var(--teal);margin-bottom:8px;letter-spacing:.04em}
+.answer-item-a{font-size:.9rem;color:var(--navy);line-height:1.7;font-weight:300}
+
+/* NEXT STEP */
+.next-step-card{background:linear-gradient(135deg,var(--navy) 0%,#243d63 100%);border-radius:var(--radius);padding:40px 36px;text-align:center;position:relative;overflow:hidden;margin-bottom:40px}
+.next-step-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(76,157,176,.1)}
+.nsc-tag{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;position:relative}
+.next-step-card h3{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--ivory);margin-bottom:12px;position:relative}
+.next-step-card h3 em{color:var(--yellow-dark);font-style:italic}
+.next-step-card p{font-size:.9rem;color:rgba(250,248,244,.6);line-height:1.75;max-width:480px;margin:0 auto 28px;font-weight:300;position:relative}
+.btn-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* ERROR */
+.error-msg{background:#fff0f0;border:1px solid #ffcccc;border-radius:8px;padding:14px 18px;margin-top:16px;font-size:.85rem;color:#c0392b;display:none}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  nav{padding:16px 20px}
+  .progress-wrap{padding:0 20px}
+  .start-hero{padding:60px 20px 56px}
+  .start-cards{grid-template-columns:1fr;gap:12px;max-width:100%}
+  .question-screen,.loading-screen,.results-body{padding:48px 20px}
+  .results-hero{padding:48px 20px}
+  .reflection-body{padding:24px 20px}
+  .reflection-card-header{padding:20px}
+  .next-step-card{padding:28px 20px}
+  .btn-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://bbmindcoaching.nl" class="nav-brand">B&amp;B Mind Coaching</a>
+  <span class="nav-tagline">Gratis Reflectietool</span>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <span class="progress-step" id="progressStep">Vraag 1 van 4</span>
+  </div>
+</div>
+
+<!-- SCREEN: START -->
+<div class="screen active" id="screen-start">
+  <div class="start-hero">
+    <div class="tool-badge">Gratis tool</div>
+    <h1>Ontdek wat je<br><em>echt wilt bereiken</em></h1>
+    <p class="sub">Vier vragen die verder gaan dan het voor de hand liggende antwoord. Geen tips, geen motivatie. Alleen helderheid.</p>
+    <div class="start-cards">
+      <div class="start-card">
+        <div class="start-card-num">01</div>
+        <h3>Richting</h3>
+        <p>Wat wil je bereiken en waarom is dat voor jou belangrijk?</p>
+      </div>
+      <div class="start-card">
+        <div class="start-card-num">02</div>
+        <h3>Aanpak</h3>
+        <p>Hoe denk jij dat je daar gaat komen?</p>
+      </div>
+      <div class="start-card">
+        <div class="start-card-num">03</div>
+        <h3>Identiteit</h3>
+        <p>Wie moet je worden om dat doel te bereiken?</p>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="goTo('screen-q1')">
+      Begin
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <div class="privacy-footer">
+      <p>Jouw antwoorden worden nergens opgeslagen, zijn alleen voor jou zichtbaar en worden niet gekoppeld aan jouw naam.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN: VRAAG 1 -->
+<div class="screen" id="screen-q1">
+  <div class="question-screen">
+    <div class="q-number">Vraag 1 van 4</div>
+    <h2 class="q-title">Wat denk je dat je<br><em>wilt bereiken?</em></h2>
+    <p class="q-hint">De reflectie is zo goed als jij eerlijk bent. Er is niemand die meekijkt.</p>
+    <textarea class="q-textarea" id="antwoord1" placeholder="Schrijf hier jouw antwoord..." oninput="updateChar(1)"></textarea>
+    <div class="q-char" id="char1">0 tekens</div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="goTo('screen-start')">Terug</button>
+      <button class="btn-primary" onclick="nextVraag(1)">
+        Volgende vraag
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="error-msg" id="err1">Schrijf eerst een antwoord voordat je verdergaat.</div>
+  </div>
+</div>
+
+<!-- SCREEN: VRAAG 2 -->
+<div class="screen" id="screen-q2">
+  <div class="question-screen">
+    <div class="q-number">Vraag 2 van 4</div>
+    <h2 class="q-title">Waarom wil je<br><em>dit bereiken?</em></h2>
+    <p class="q-hint">Niet het antwoord dat je aan anderen geeft. Wat maakt dit voor jou persoonlijk belangrijk? Ga een laag dieper dan je eerste gedachte.</p>
+    <textarea class="q-textarea" id="antwoord2" placeholder="Schrijf hier jouw antwoord..." oninput="updateChar(2)"></textarea>
+    <div class="q-char" id="char2">0 tekens</div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="goTo('screen-q1')">Terug</button>
+      <button class="btn-primary" onclick="nextVraag(2)">
+        Volgende vraag
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="error-msg" id="err2">Schrijf eerst een antwoord voordat je verdergaat.</div>
+  </div>
+</div>
+
+<!-- SCREEN: VRAAG 3 -->
+<div class="screen" id="screen-q3">
+  <div class="question-screen">
+    <div class="q-number">Vraag 3 van 4</div>
+    <h2 class="q-title">Hoe denk je dat je<br><em>daar gaat komen?</em></h2>
+    <p class="q-hint">Wat is jouw plan of aanpak? Wat heb je al geprobeerd? Wat lijkt je de juiste weg?</p>
+    <textarea class="q-textarea" id="antwoord3" placeholder="Schrijf hier jouw antwoord..." oninput="updateChar(3)"></textarea>
+    <div class="q-char" id="char3">0 tekens</div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="goTo('screen-q2')">Terug</button>
+      <button class="btn-primary" onclick="nextVraag(3)">
+        Laatste vraag
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="error-msg" id="err3">Schrijf eerst een antwoord voordat je verdergaat.</div>
+  </div>
+</div>
+
+<!-- SCREEN: VRAAG 4 -->
+<div class="screen" id="screen-q4">
+  <div class="question-screen">
+    <div class="q-number">Vraag 4 van 4</div>
+    <h2 class="q-title">Stel dat je over een jaar<br><em>alles hebt bereikt.</em></h2>
+    <p class="q-hint">Hoe ziet die persoon eruit? Wat doet hij of zij dagelijks? Wat vindt hij belangrijk? Waar staat hij voor? Beschrijf zo concreet mogelijk.</p>
+    <textarea class="q-textarea" id="antwoord4" placeholder="Schrijf hier jouw antwoord..." oninput="updateChar(4)" style="min-height:200px"></textarea>
+    <div class="q-char" id="char4">0 tekens</div>
+    <div class="q-nav">
+      <button class="btn-back" onclick="goTo('screen-q3')">Terug</button>
+      <button class="btn-primary" onclick="genereerReflectie()">
+        Genereer mijn reflectie
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="error-msg" id="err4">Schrijf eerst een antwoord voordat je verdergaat.</div>
+  </div>
+</div>
+
+<!-- SCREEN: LOADING -->
+<div class="screen" id="screen-loading">
+  <div class="loading-screen">
+    <div class="loading-icon"></div>
+    <h2>Jouw reflectie wordt gegenereerd</h2>
+    <p>Op basis van jouw vier antwoorden wordt een persoonlijke reflectie samengesteld. Dit duurt ongeveer 15 seconden.</p>
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<!-- SCREEN: RESULTATEN -->
+<div class="screen" id="screen-results">
+  <div class="results-hero">
+    <div class="results-tag">Jouw persoonlijke reflectie</div>
+    <h2>Dit zeggen jouw antwoorden<br><em>over jou</em></h2>
+    <p class="results-sub">Gegenereerd op basis van wat jij hebt ingevuld</p>
+  </div>
+
+  <div class="results-body">
+
+    <p style="font-size:.82rem;color:var(--muted);text-align:center;margin-bottom:24px;font-weight:300;font-style:italic">Dit is wat jij erin hebt gestopt. Hoe eerlijker de antwoorden, hoe scherper de spiegel.</p>
+
+    <div class="reflection-card">
+      <div class="reflection-card-header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>
+          <div class="rch-label">Persoonlijke analyse</div>
+          <div class="rch-title">Wat jouw antwoorden laten zien</div>
+        </div>
+      </div>
+      <div class="reflection-body">
+        <div class="reflection-text" id="reflectieText"></div>
+      </div>
+    </div>
+
+    <div class="answers-block">
+      <div class="answers-title">Jouw antwoorden</div>
+      <div id="antwoordenSamenvatting"></div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px">
+      <button class="btn-primary" onclick="downloadPDF()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download als PDF
+      </button>
+    </div>
+
+    <div class="next-step-card">
+      <div class="nsc-tag">Volgende stap</div>
+      <h3>Wil je hier verder<br><em>mee aan de slag?</em></h3>
+      <p id="overbruggingsTekst">Een gratis kennismakingsgesprek van 30 minuten. Geen pitch, geen druk. Gewoon een eerlijk gesprek over wat jouw situatie vraagt.</p>
+      <div class="btn-actions">
+        <a href="https://bbmindcoaching.nl#kennismaking" class="btn-navy">
+          Plan een gratis gesprek
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <p style="font-size:.72rem;color:var(--muted);text-align:center;font-style:italic;margin-top:24px">Jouw antwoorden worden nergens opgeslagen, zijn alleen voor jou zichtbaar en worden niet gekoppeld aan jouw naam.</p>
+
+  </div>
+</div>
+
+<script>
+let antwoorden = { 1: '', 2: '', 3: '', 4: '' };
+let reflectieTekst = '';
+
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const progressScreens = ['screen-q1','screen-q2','screen-q3','screen-q4'];
+  const wrap = document.getElementById('progressWrap');
+  const idx = progressScreens.indexOf(screenId);
+  if (idx >= 0) {
+    wrap.style.display = 'block';
+    document.getElementById('progressFill').style.width = (idx / 4 * 100) + '%';
+    document.getElementById('progressStep').textContent = 'Vraag ' + (idx + 1) + ' van 4';
+  } else {
+    wrap.style.display = 'none';
+  }
+  document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+}
+
+function updateChar(num) {
+  const val = document.getElementById('antwoord' + num).value;
+  document.getElementById('char' + num).textContent = val.length + ' tekens';
+}
+
+function nextVraag(num) {
+  const val = document.getElementById('antwoord' + num).value.trim();
+  if (val.length < 10) { document.getElementById('err' + num).style.display = 'block'; return; }
+  document.getElementById('err' + num).style.display = 'none';
+  antwoorden[num] = val;
+  document.getElementById('progressFill').style.width = (num / 4 * 100) + '%';
+  goTo('screen-q' + (num + 1));
+}
+
+async function genereerReflectie() {
+  const val = document.getElementById('antwoord4').value.trim();
+  if (val.length < 10) { document.getElementById('err4').style.display = 'block'; return; }
+  document.getElementById('err4').style.display = 'none';
+  antwoorden[4] = val;
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressStep').textContent = 'Klaar';
+  goTo('screen-loading');
+
+  try {
+    const prompt = `Je bent Thabiso van Zeijl, mentaal coach bij B&B Mind Coaching. Je schrijft een persoonlijke reflectie op basis van vier antwoorden die iemand heeft ingevuld.
+
+Jouw karakter als coach:
+- Eerlijk: je zegt wat je ziet, ook als dat ongemakkelijk is. Geen valse geruststelling.
+- Warm: je oordeelt niet. Je benoemt, je vraagt, je laat de ander zelf tot inzicht komen.
+- Gedisciplineerd: je trekt geen conclusies die je niet kunt onderbouwen vanuit de antwoorden zelf.
+
+Hoe jij een reflectie opbouwt:
+1. Je kijkt naar het geheel van de vier antwoorden, niet naar elk antwoord apart.
+2. Je zoekt waar iets oppervlakkig blijft, waar antwoorden niet volledig in lijn zijn, of waar iemand iets zegt zonder het te beseffen.
+3. Als er iets oprechts te benoemen valt, doe je dat warm en zonder oordeel. Geen standaard compliment, alleen als het echt past.
+4. Je benoemt wat opvalt zonder er een conclusie aan te hangen. Je laat de ruimte open.
+5. Je sluit de reflectie af met één vraag. Die vraag moet: in gewone dagelijkse taal zijn (geen coaching jargon), direct aansluiten op iets wat de persoon zelf heeft gezegd, en makkelijk te begrijpen zijn zonder nadenken.
+
+Strikte regels voor de reflectie:
+- Geen lege aanmoediging of motivatietekst
+- Geen opsommingen of bullets, alleen lopende tekst
+- Geen em dashes
+- Spreek de persoon direct aan met je en jij
+- Trek geen conclusies die niet direct uit de antwoorden komen
+- Maximaal 3 alinea's
+- Schrijf alleen de reflectietekst, geen aanhef, geen afsluiting, geen titel
+
+Na de reflectie schrijf je een overbruggingszin. Die zin:
+- Begint altijd met: "Tijdens een kennismakingsgesprek zouden we dieper ingaan op"
+- Benoemt dan specifiek het thema of de spanning die uit de antwoorden naar voren komt
+- Eindigt met een korte uitleg waarom dat de moeite waard is, in één bijzin
+- Is maximaal 2 zinnen
+- Geen em dashes, geen jargon
+
+Geef je antwoord in dit exacte formaat, inclusief de scheidingsmarkers:
+---REFLECTIE---
+[de reflectietekst hier]
+---OVERBRUGGING---
+[de overbruggingszin hier]
+
+De vier antwoorden:
+
+Vraag 1 - Wat denk je dat je wilt bereiken?
+"${antwoorden[1]}"
+
+Vraag 2 - Waarom wil je dit bereiken?
+"${antwoorden[2]}"
+
+Vraag 3 - Hoe denk je dat je daar gaat komen?
+"${antwoorden[3]}"
+
+Vraag 4 - Stel dat je over een jaar alles hebt bereikt, hoe ziet die persoon eruit?
+"${antwoorden[4]}"
+`;
+
+    const response = await fetch('/.netlify/functions/reflectie', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await response.json();
+    const tekst = data.content?.[0]?.text || '';
+    if (!tekst) throw new Error('Geen reflectie ontvangen');
+
+    // Parse de twee onderdelen uit de response
+    const reflectieMatch = tekst.match(/---REFLECTIE---\s*([\s\S]*?)\s*---OVERBRUGGING---/);
+    const overbruggingMatch = tekst.match(/---OVERBRUGGING---\s*([\s\S]*?)$/);
+
+    reflectieTekst = reflectieMatch ? reflectieMatch[1].trim() : tekst.trim();
+    const overbruggingsTekst = overbruggingMatch ? overbruggingMatch[1].trim() : '';
+
+    toonResultaten(reflectieTekst, overbruggingsTekst);
+
+  } catch (err) {
+    console.error(err);
+    toonResultaten('Er is iets misgegaan bij het genereren van jouw reflectie. Probeer het opnieuw.');
+  }
+}
+
+function toonResultaten(tekst, overbrugging) {
+  const alineas = tekst.split('\n').filter(p => p.trim().length > 0);
+  document.getElementById('reflectieText').innerHTML = alineas.map(p => `<p>${p}</p>`).join('');
+
+  if (overbrugging) {
+    document.getElementById('overbruggingsTekst').textContent = overbrugging;
+  }
+
+  const labels = [
+    'Wat denk je dat je wilt bereiken?',
+    'Waarom wil je dit bereiken?',
+    'Hoe denk je dat je daar gaat komen?',
+    'Hoe ziet de persoon eruit die je wilt worden?'
+  ];
+  document.getElementById('antwoordenSamenvatting').innerHTML = [1,2,3,4].map(i => `
+    <div class="answer-item">
+      <div class="answer-item-q">${labels[i-1]}</div>
+      <div class="answer-item-a">${antwoorden[i]}</div>
+    </div>`).join('');
+
+  goTo('screen-results');
+}
+
+function downloadPDF() {
+  const datum = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+  const labels = [
+    'Wat denk je dat je wilt bereiken?',
+    'Waarom wil je dit bereiken?',
+    'Hoe denk je dat je daar gaat komen?',
+    'Hoe ziet de persoon eruit die je wilt worden?'
+  ];
+  const win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html>
+<html lang="nl"><head><meta charset="UTF-8"/>
+<title>Mijn Reflectie | B&B Mind Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;color:#1B2F4E;background:#FAF8F4;padding:60px;max-width:720px;margin:0 auto}
+.header{border-bottom:2px solid #4c9db0;padding-bottom:24px;margin-bottom:40px}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:#4c9db0;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+h1{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#1B2F4E;line-height:1.2;margin-bottom:6px}
+.datum{font-size:.8rem;color:#5a7a86;font-weight:300}
+.section{margin-bottom:40px}
+.section-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4c9db0;margin-bottom:20px}
+.reflectie{font-size:.95rem;line-height:1.9;font-weight:300;color:#1B2F4E}
+.reflectie p{margin-bottom:14px}
+.antwoord{background:#fff;border-radius:8px;border:1px solid rgba(27,47,78,.08);padding:20px 24px;margin-bottom:12px}
+.antwoord-q{font-size:.72rem;font-weight:600;color:#4c9db0;margin-bottom:6px;letter-spacing:.04em}
+.antwoord-a{font-size:.88rem;color:#1B2F4E;line-height:1.7;font-weight:300}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid rgba(27,47,78,.1);font-size:.75rem;color:#5a7a86;font-weight:300}
+.privacy{margin-top:12px;font-size:.7rem;color:#5a7a86;font-style:italic}
+@media print{body{padding:40px}}
+</style></head><body>
+<div class="header">
+  <div class="brand">B&amp;B Mind Coaching</div>
+  <h1>Persoonlijke Reflectie</h1>
+  <div class="datum">${datum}</div>
+</div>
+<div class="section">
+  <div class="section-label">Jouw reflectie</div>
+  <div class="reflectie">${reflectieTekst.split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')}</div>
+</div>
+<div class="section">
+  <div class="section-label">Jouw antwoorden</div>
+  ${[1,2,3,4].map(i=>`<div class="antwoord"><div class="antwoord-q">${labels[i-1]}</div><div class="antwoord-a">${antwoorden[i]}</div></div>`).join('')}
+</div>
+<div class="footer">
+  B&amp;B Mind Coaching &middot; bbmindcoaching.nl &middot; hello@bbmindcoaching.com<br>
+  Wil je verder? Plan een gratis kennismakingsgesprek via bbmindcoaching.nl
+  <div class="privacy">Jouw antwoorden worden nergens opgeslagen, zijn alleen voor jou zichtbaar en worden niet gekoppeld aan jouw naam.</div>
+</div>
+<script>setTimeout(()=>window.print(),500)<\/script>
+</body></html>`);
+  win.document.close();
+}
+</script>
+</body>
+</html>
