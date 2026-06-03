@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>De Maslow Blueprint | B&B Mind Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #4c9db0;
+    --teal-dark: #3a7f91;
+    --teal-light: #e8f4f7;
+    --yellow: #ffebaf;
+    --yellow-dark: #f5d87a;
+    --navy: #1B2F4E;
+    --ivory: #FAF8F4;
+    --muted: #5a7a86;
+    --white: #ffffff;
+
+    --level1: #e07b54;
+    --level2: #d4a847;
+    --level3: #4c9db0;
+    --level4: #6b8e6b;
+    --level5: #8b6fa8;
+
+    --level1-light: #fdf0eb;
+    --level2-light: #fdf8ed;
+    --level3-light: #e8f4f7;
+    --level4-light: #eef4ee;
+    --level5-light: #f3eff8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    background: var(--navy);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--yellow);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-tagline {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* HERO / START HERE */
+  .start-hero {
+    background: var(--navy);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .start-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(76,157,176,0.15) 0%, transparent 70%);
+  }
+  .start-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,235,175,0.08) 0%, transparent 70%);
+  }
+  .tool-label {
+    display: inline-block;
+    background: rgba(76,157,176,0.2);
+    border: 1px solid rgba(76,157,176,0.4);
+    color: var(--teal);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .start-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .start-hero h1 em {
+    color: var(--yellow);
+    font-style: italic;
+  }
+  .start-hero .subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* CONTENT BLOCKS */
+  .content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+  .content-container.wide {
+    max-width: 1000px;
+  }
+
+  /* START HERE BLOCKS */
+  .framework-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 40px 0;
+  }
+  .framework-card {
+    background: var(--white);
+    border: 1px solid rgba(76,157,176,0.15);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .framework-card .fc-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .framework-card h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .framework-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .steps-list {
+    list-style: none;
+    margin: 32px 0;
+  }
+  .steps-list li {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .steps-list li:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--navy);
+    color: var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-text strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .step-text span {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .honest-note {
+    background: var(--teal-light);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+  .honest-note p {
+    font-size: 0.9rem;
+    color: var(--navy);
+    line-height: 1.7;
+  }
+  .honest-note strong { color: var(--teal-dark); }
+
+  /* LEVELS PREVIEW */
+  .levels-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 32px 0;
+  }
+  .level-bar-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+  }
+  .level-bar-preview .lbp-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .level-bar-preview .lbp-name {
+    font-weight: 600;
+    width: 140px;
+    flex-shrink: 0;
+  }
+  .level-bar-preview .lbp-desc {
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--teal);
+    border: 2px solid var(--teal);
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--teal-light); }
+
+  .btn-navy {
+    background: var(--navy);
+    color: var(--yellow);
+    border: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-navy:hover { background: #243d63; transform: translateY(-1px); }
+
+  .btn-center { text-align: center; margin: 40px 0 20px; }
+
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    background: var(--navy);
+    padding: 0 40px;
+    position: sticky;
+    top: 57px;
+    z-index: 90;
+  }
+  .progress-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+  }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .progress-percent {
+    font-size: 0.8rem;
+    color: var(--teal);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ASSESSMENT */
+  .level-section {
+    margin-bottom: 48px;
+  }
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 0;
+  }
+  .level-header .lh-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    opacity: 0.7;
+    line-height: 1;
+  }
+  .level-header .lh-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .level-header .lh-info span {
+    font-size: 0.78rem;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+
+  .question-block {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-top: none;
+    padding: 20px 24px;
+  }
+  .question-block:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+  .question-block + .question-block {
+    border-top: none;
+  }
+  .question-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .q-text {
+    flex: 1;
+  }
+  .q-text .q-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .q-text .q-main {
+    font-size: 0.95rem;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .q-slider-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 180px;
+  }
+  .q-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: #ddd;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--teal);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(76,157,176,0.4);
+    transition: transform 0.1s;
+  }
+  input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+  }
+  .q-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  /* SECTION DIVIDER */
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  /* PROFILE */
+  .profile-hero {
+    background: var(--navy);
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .profile-hero .type-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .profile-hero .type-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--yellow);
+    margin-bottom: 20px;
+  }
+  .profile-hero .type-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .total-score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(76,157,176,0.15);
+    border: 1px solid rgba(76,157,176,0.3);
+    border-radius: 40px;
+    padding: 10px 24px;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .total-score-badge strong {
+    color: var(--teal);
+    font-size: 1.1rem;
+  }
+
+  /* LEVEL SCORES */
+  .level-score-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .lsc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+  }
+  .lsc-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .lsc-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .lsc-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .lsc-dim {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .lsc-score {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--navy);
+  }
+  .lsc-score span {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .lsc-bar-track {
+    height: 6px;
+    background: #eee;
+    margin: 0 24px 18px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .lsc-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .lsc-insight {
+    padding: 14px 24px 18px;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.65;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* ALERT */
+  .alert-card {
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .alert-card.warning {
+    background: #fff8e6;
+    border: 1px solid #f5c842;
+  }
+  .alert-card.info {
+    background: var(--teal-light);
+    border: 1px solid rgba(76,157,176,0.3);
+  }
+  .alert-card .alert-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .alert-card.warning .alert-title { color: #b8860b; }
+  .alert-card.info .alert-title { color: var(--teal-dark); }
+  .alert-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--navy);
+  }
+
+  /* ACTION PLAN */
+  .action-level-block {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .alb-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+  }
+  .alb-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .alb-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .alb-name { font-weight: 600; font-size: 0.95rem; }
+  .priority-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+  .priority-now { background: #fde8e8; color: #c0392b; }
+  .priority-worth { background: #fff3cd; color: #856404; }
+  .priority-maintain { background: #e8f5e9; color: #2e7d32; }
+
+  .actions-list {
+    padding: 0 24px 20px;
+    list-style: none;
+  }
+  .actions-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.875rem;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+  .actions-list li:last-child { border-bottom: none; }
+  .action-icon {
+    width: 22px; height: 22px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 0.65rem;
+    color: var(--teal-dark);
+    font-weight: 700;
+  }
+
+  /* FRAMEWORK */
+  .framework-level-block {
+    margin-bottom: 48px;
+  }
+  .flb-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid currentColor;
+  }
+  .flb-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.3;
+  }
+  .flb-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+  .flb-body p {
+    font-size: 0.925rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .flb-body strong { color: var(--navy); }
+  .flb-unmet {
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .flb-unmet .flb-unmet-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .flb-unmet p {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .dnb-box {
+    background: var(--navy);
+    color: white;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+  .dnb-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--yellow);
+    margin-bottom: 16px;
+  }
+  .dnb-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .dnb-col h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .dnb-col p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* TAB NAV */
+  .tab-nav {
+    background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    padding: 18px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .tab-btn:hover { color: var(--navy); }
+  .tab-btn.active {
+    color: var(--teal);
+    border-bottom-color: var(--teal);
+    font-weight: 600;
+  }
+
+  /* SUBSECTION TABS */
+  .sub-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .sub-tab {
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.1);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sub-tab:hover { border-color: var(--teal); color: var(--teal); }
+  .sub-tab.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  .tool-footer {
+    background: var(--navy);
+    padding: 32px 40px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .tool-footer p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .tool-footer strong {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* UTILITIES */
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  p { line-height: 1.7; }
+
+  .divider {
+    height: 1px;
+    background: rgba(0,0,0,0.07);
+    margin: 40px 0;
+  }
+
+  .source-credit {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .framework-grid { grid-template-columns: 1fr; }
+    .dnb-grid { grid-template-columns: 1fr; }
+    .content-container { padding: 40px 20px; }
+    .question-row { flex-direction: column; }
+    .q-slider-wrap { min-width: 100%; }
+    .tab-nav { padding: 0 16px; }
+    .nav { padding: 14px 20px; }
+    .start-hero { padding: 50px 20px 40px; }
+  }
+
+  /* RADAR CHART CANVAS */
+  #radarCanvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .animate-in {
+    animation: fadeUp 0.5s ease forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="https://bbmindcoaching.nl" class="nav-brand">B&B Mind Coaching</a>
+  <span class="nav-tagline">De Maslow Blueprint</span>
+</nav>
+
+<!-- SECTION: START HERE -->
+<div class="section active" id="section-start">
+  <div class="start-hero">
+    <div class="tool-label">Tool 04 / De Maslow Blueprint</div>
+    <h1>Ontdek precies wat er ontbreekt<br><em>aan jouw fundament</em></h1>
+    <p class="subtitle">De meeste mensen denken dat hun problemen te maken hebben met motivatie, discipline of mindset. Dat is zelden zo. Ze zijn structureel. Deze tool laat je zien waar.</p>
+    <button class="btn-primary" onclick="showSection('assessment')">Start de Assessment</button>
+  </div>
+
+  <div class="content-container">
+    <div style="margin-bottom: 20px;">
+      <h2>Wat deze tool is</h2>
+      <p style="color: var(--muted); font-size: 0.95rem; margin-top: 8px;">30 vragen gebaseerd op de behoeftepiramide van Abraham Maslow. Geen quiz. Geen persoonlijkheidstest. Een structurele analyse van welke niveaus van jouw psychologische fundament solide zijn, welke kwetsbaar zijn, en welke stilletjes alles erboven ondermijnen.</p>
+    </div>
+
+    <div class="framework-grid">
+      <div class="framework-card">
+        <div class="fc-number">30</div>
+        <h3>Vragen</h3>
+        <p>6 per niveau, elk gekoppeld aan een specifieke dimensie zodat je precies weet welk aspect van elk niveau het probleem is.</p>
+      </div>
+      <div class="framework-card">
+        <div class="fc-number">6</div>
+        <h3>Blueprint Types</h3>
+        <p>Jouw scorepatroon plaatst je in een van de 6 types. Elk type heeft een persoonlijke uitleg van een alinea lang.</p>
+      </div>
+      <div class="framework-card">
+        <div class="fc-number">5</div>
+        <h3>Niveaus in Kaart</h3>
+        <p>Fysiologisch, Veiligheid, Verbondenheid, Zelfwaardering en Zelfontplooiing. Elk gescoord tot 30 en individueel geïnterpreteerd.</p>
+      </div>
+      <div class="framework-card">
+        <div class="fc-number">1</div>
+        <h3>Patroonwaarschuwing</h3>
+        <p>The tool detects the "false peak" pattern: upper levels appearing strong while lower levels are quietly failing. No other tool surfaces this.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Hoe het werkt</h2>
+    <ul class="steps-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Doe de assessment</strong>
+          <span>30 schuifvragen. Elke vraag duurt ongeveer 10 seconden. Totale tijd: 8 tot 12 minuten. Beantwoord eerlijk. De tool kan je niet helpen als je antwoordt zoals je wilt dat dingen zijn.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Ontvang jouw Blueprint Profiel</strong>
+          <span>Jouw scores op alle 5 niveaus, jouw Blueprint Type met een persoonlijke uitleg, inzichten per niveau en de Structuurpatroonwaarschuwing als die op jou van toepassing is.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Bekijk jouw Actieplan</strong>
+          <span>Elk niveau krijgt een prioriteitslabel en drie specifieke acties die zijn afgestemd op jouw exacte scoreband. Geen generiek advies. Acties afgestemd op waar je nu werkelijk staat.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Lees het Volledige Raamwerk</strong>
+          <span>Een diepgaande verkenning van de theorie achter elk niveau, inclusief hoe onvervulde behoeften eruitzien in het dagelijks leven, en een eerlijke noot over wat het model niet goed heeft. Het raamwerk begrijpen zorgt ervoor dat de acties anders landen.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="honest-note">
+      <p><strong>Een eerlijke noot voordat je begint.</strong> De piramide van Maslow is een model, geen wet. Het is een kaart, en zoals alle kaarten is het een vereenvoudiging van de werkelijkheid. Deze tool geeft je nuttige informatie. Het geeft je niet het volledige beeld van wie je bent. Gebruik het als startpunt voor eerlijke reflectie, niet als eindoordeel.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>De vijf niveaus</h2>
+    <div class="levels-preview">
+      <div class="level-bar-preview" style="background: var(--level1-light);">
+        <div class="lbp-dot" style="background: var(--level1);"></div>
+        <span class="lbp-name" style="color: var(--level1);">Fysiologisch</span>
+        <span class="lbp-desc">Slaap, energie, lichamelijke gezondheid, voeding en rust. De basis waarop alles rust.</span>
+      </div>
+      <div class="level-bar-preview" style="background: var(--level2-light);">
+        <div class="lbp-dot" style="background: var(--level2);"></div>
+        <span class="lbp-name" style="color: var(--level2);">Veiligheid</span>
+        <span class="lbp-desc">Financiële stabiliteit, voorspelbaarheid, structuur en vrijheid van chronische dreiging.</span>
+      </div>
+      <div class="level-bar-preview" style="background: var(--level3-light);">
+        <div class="lbp-dot" style="background: var(--level3);"></div>
+        <span class="lbp-name" style="color: var(--level3);">Verbondenheid</span>
+        <span class="lbp-desc">Diepe verbinding, gezien worden, gemeenschap en het gevoel ertoe te doen voor anderen.</span>
+      </div>
+      <div class="level-bar-preview" style="background: var(--level4-light);">
+        <div class="lbp-dot" style="background: var(--level4);"></div>
+        <span class="lbp-name" style="color: var(--level4);">Zelfwaardering</span>
+        <span class="lbp-desc">Zelfrespect, competentie, erkenning en het innerlijke gevoel bekwaam te zijn.</span>
+      </div>
+      <div class="level-bar-preview" style="background: var(--level5-light);">
+        <div class="lbp-dot" style="background: var(--level5);"></div>
+        <span class="lbp-name" style="color: var(--level5);">Zelfontplooiing</span>
+        <span class="lbp-desc">Doel, groei, creatieve expressie en worden wie je kunt zijn.</span>
+      </div>
+    </div>
+
+    <div class="btn-center">
+      <button class="btn-navy" onclick="showSection('assessment')">Begin de Assessment</button>
+      <p class="source-credit" style="margin-top: 16px;">Gebaseerd op het werk van Abraham Maslow, "A Theory of Human Motivation" (1943)</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: ASSESSMENT -->
+<div class="section" id="section-assessment">
+  <div class="progress-bar-wrap">
+    <div class="progress-inner">
+      <span class="progress-label">Voortgang assessment</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+      <span class="progress-percent" id="progressPercent">0%</span>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <h2 class="section-title">De Assessment</h2>
+    <p class="section-subtitle">Beoordeel elke uitspraak van 1 (zelden of nooit waar) tot 5 (consistent en volledig waar). Beantwoord op basis van hoe dingen werkelijk zijn, niet zoals je wilt dat ze zijn.</p>
+
+    <!-- LEVEL 1: PHYSIOLOGICAL -->
+    <div class="level-section">
+      <div class="level-header" style="background: var(--level1-light); color: var(--level1);">
+        <span class="lh-num">01</span>
+        <div class="lh-info">
+          <h3>Fysiologische Behoeften</h3>
+          <span>Sleep & Rest / Physical Energy / Body Care</span>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Sleep & Rest</div>
+            <div class="q-main">Ik slaap consequent genoeg en word uitgerust wakker, niet uitgeput.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="1" data-q="1" oninput="updateSlider(this)" style="accent-color: var(--level1)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-1-1">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Sleep & Rest</div>
+            <div class="q-main">Ik heb genoeg rustmomenten in mijn week die niet om schermen, werk of verplichtingen draaien.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="1" data-q="2" oninput="updateSlider(this)" style="accent-color: var(--level1)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-1-2">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Lichamelijke Energie</div>
+            <div class="q-main">Mijn energieniveaus zijn stabiel gedurende de dag. Ik ben niet afhankelijk van stimulanten om te functioneren.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="1" data-q="3" oninput="updateSlider(this)" style="accent-color: var(--level1)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-1-3">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Lichamelijke Energie</div>
+            <div class="q-main">Ik beweeg mijn lichaam op een manier die duurzaam en intentioneel aanvoelt, niet als straf.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="1" data-q="4" oninput="updateSlider(this)" style="accent-color: var(--level1)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-1-4">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Lichaamsverzorging</div>
+            <div class="q-main">Ik eet op een manier die mij energie geeft en aanvoelt als zorg voor mezelf, niet als compensatie of verwaarlozing.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="1" data-q="5" oninput="updateSlider(this)" style="accent-color: var(--level1)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-1-5">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Lichaamsverzorging</div>
+            <div class="q-main">Mijn lichamelijke gezondheid is iets waar ik actief aandacht aan besteed in plaats van het te negeren totdat het om aandacht vraagt.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="1" data-q="6" oninput="updateSlider(this)" style="accent-color: var(--level1)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-1-6">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 2: SAFETY -->
+    <div class="level-section">
+      <div class="level-header" style="background: var(--level2-light); color: var(--level2);">
+        <span class="lh-num">02</span>
+        <div class="lh-info">
+          <h3>Veiligheidsbehoeften</h3>
+          <span>Financiële Stabiliteit / Voorspelbaarheid / Structuur</span>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Financiële Stabiliteit</div>
+            <div class="q-main">Mijn financiële situatie veroorzaakt mij geen chronische achtergrondangst of dagelijkse stress.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="2" data-q="1" oninput="updateSlider(this)" style="accent-color: var(--level2)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-2-1">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Financiële Stabiliteit</div>
+            <div class="q-main">Ik heb genoeg financiële buffer zodat een onverwachte uitgave mijn leven niet zou destabiliseren.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="2" data-q="2" oninput="updateSlider(this)" style="accent-color: var(--level2)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-2-2">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Voorspelbaarheid</div>
+            <div class="q-main">Mijn dagelijkse omgeving is stabiel genoeg zodat ik niet voortdurend bezig ben met het reageren op noodsituaties.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="2" data-q="3" oninput="updateSlider(this)" style="accent-color: var(--level2)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-2-3">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Voorspelbaarheid</div>
+            <div class="q-main">Ik voel mij veilig in mijn thuisomgeving, zowel fysiek als emotioneel.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="2" data-q="4" oninput="updateSlider(this)" style="accent-color: var(--level2)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-2-4">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Structuur</div>
+            <div class="q-main">Ik heb genoeg structuur en routine in mijn leven zodat ik niet constant beslissingen neem onder druk.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="2" data-q="5" oninput="updateSlider(this)" style="accent-color: var(--level2)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-2-5">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Structuur</div>
+            <div class="q-main">Ik heb een beeld van waar mijn leven naartoe gaat de komende 12 maanden, dat niet aanvoelt als wensdenken.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="2" data-q="6" oninput="updateSlider(this)" style="accent-color: var(--level2)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-2-6">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 3: BELONGING -->
+    <div class="level-section">
+      <div class="level-header" style="background: var(--level3-light); color: var(--level3);">
+        <span class="lh-num">03</span>
+        <div class="lh-info">
+          <h3>Verbondenheidsbehoeften</h3>
+          <span>Diepe Verbinding / Gezien Worden / Gemeenschap</span>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Diepe Verbinding</div>
+            <div class="q-main">Er zijn mensen in mijn leven die mij kennen zoals ik werkelijk ben, niet alleen de versie die ik presenteer.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="3" data-q="1" oninput="updateSlider(this)" style="accent-color: var(--level3)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-3-1">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Diepe Verbinding</div>
+            <div class="q-main">Ik heb minimaal één relatie waarin ik mij echt begrepen voel in plaats van alleen oppervlakkig geaccepteerd.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="3" data-q="2" oninput="updateSlider(this)" style="accent-color: var(--level3)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-3-2">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Gezien Worden</div>
+            <div class="q-main">Ik voel mij op mijn gemak om kwetsbaarheid of onzekerheid te tonen aan mensen die dichtbij mij staan, zonder angst voor oordeel.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="3" data-q="3" oninput="updateSlider(this)" style="accent-color: var(--level3)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-3-3">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Gezien Worden</div>
+            <div class="q-main">Ik voel mij niet fundamenteel alleen met mijn problemen, ook niet als het moeilijk gaat.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="3" data-q="4" oninput="updateSlider(this)" style="accent-color: var(--level3)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-3-4">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Gemeenschap</div>
+            <div class="q-main">Ik maak deel uit van minimaal één groep, gemeenschap of team waarin ik het gevoel heb echt thuis te horen.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="3" data-q="5" oninput="updateSlider(this)" style="accent-color: var(--level3)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-3-5">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Gemeenschap</div>
+            <div class="q-main">Ik heb het gevoel dat ik ertoe doe voor anderen in mijn leven en dat mijn afwezigheid echt opgemerkt zou worden.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="3" data-q="6" oninput="updateSlider(this)" style="accent-color: var(--level3)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-3-6">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 4: ESTEEM -->
+    <div class="level-section">
+      <div class="level-header" style="background: var(--level4-light); color: var(--level4);">
+        <span class="lh-num">04</span>
+        <div class="lh-info">
+          <h3>Zelfwaarderingsbehoeften</h3>
+          <span>Zelfrespect / Competentie / Erkenning</span>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Zelfrespect</div>
+            <div class="q-main">Ik heb een oprecht gevoel van zelfrespect dat niet afhankelijk is van externe validatie om intact te blijven.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="4" data-q="1" oninput="updateSlider(this)" style="accent-color: var(--level4)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-4-1">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Zelfrespect</div>
+            <div class="q-main">Als ik een fout maak kan ik die erkennen, corrigeren en verder gaan zonder langdurige zelfkritiek.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="4" data-q="2" oninput="updateSlider(this)" style="accent-color: var(--level4)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-4-2">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Competentie</div>
+            <div class="q-main">Ik voel mij echt bekwaam op de gebieden die het meest voor mij tellen, niet alleen door bekwaamheid te spelen voor anderen.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="4" data-q="3" oninput="updateSlider(this)" style="accent-color: var(--level4)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-4-3">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Competentie</div>
+            <div class="q-main">Ik neem uitdagingen op me die mij uitrekken, in plaats van te blijven bij de comfort van wat ik al weet dat ik kan.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="4" data-q="4" oninput="updateSlider(this)" style="accent-color: var(--level4)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-4-4">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Erkenning</div>
+            <div class="q-main">Ik ontvang genoeg erkenning voor mijn bijdragen zodat ik mij niet onzichtbaar of vanzelfsprekend voel.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="4" data-q="5" oninput="updateSlider(this)" style="accent-color: var(--level4)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-4-5">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Erkenning</div>
+            <div class="q-main">Ik kan mijn eigen prestaties erkennen zonder ze onmiddellijk te bagatelliseren of toe te schrijven aan geluk.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="4" data-q="6" oninput="updateSlider(this)" style="accent-color: var(--level4)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-4-6">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 5: SELF-ACTUALISATION -->
+    <div class="level-section">
+      <div class="level-header" style="background: var(--level5-light); color: var(--level5);">
+        <span class="lh-num">05</span>
+        <div class="lh-info">
+          <h3>Zelfontplooiing</h3>
+          <span>Doel / Groei / Creatieve Expressie</span>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Doel</div>
+            <div class="q-main">Ik heb een helder genoeg gevoel van wat voor mij belangrijk is zodat mijn dagelijkse keuzes verbonden aanvoelen met iets zinvols.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="5" data-q="1" oninput="updateSlider(this)" style="accent-color: var(--level5)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-5-1">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Doel</div>
+            <div class="q-main">Ik heb niet het gevoel dat ik de bewegingen doorga van een leven dat iemand anders voor mij heeft ontworpen.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="5" data-q="2" oninput="updateSlider(this)" style="accent-color: var(--level5)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-5-2">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Groei</div>
+            <div class="q-main">Ik werk actief aan het beter worden in iets wat mij echt bezighoudt, niet alleen aan het handhaven.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="5" data-q="3" oninput="updateSlider(this)" style="accent-color: var(--level5)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-5-3">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Groei</div>
+            <div class="q-main">Ik heb het gevoel dat ik vooruitga in mijn leven in plaats van te stagneren of oude patronen te herhalen.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="5" data-q="4" oninput="updateSlider(this)" style="accent-color: var(--level5)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-5-4">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Creatieve Expressie</div>
+            <div class="q-main">Ik heb uitlaatkleppen in mijn leven voor creatieve expressie, zelfstandig denken of originele bijdrage.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="5" data-q="5" oninput="updateSlider(this)" style="accent-color: var(--level5)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-5-5">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-row">
+          <div class="q-text">
+            <div class="q-label">Creatieve Expressie</div>
+            <div class="q-main">Ik heb het gevoel dat ik mezelf steeds meer word, in plaats van een kleinere of meer terughoudende versie.</div>
+          </div>
+          <div class="q-slider-wrap">
+            <input type="range" min="1" max="5" value="3" class="q-slider" data-level="5" data-q="6" oninput="updateSlider(this)" style="accent-color: var(--level5)">
+            <div class="q-slider-labels"><span>Zelden</span><span>Altijd</span></div>
+            <div class="q-value" id="val-5-6">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-center">
+      <button class="btn-navy" onclick="generateResults()" style="font-size: 1rem; padding: 18px 48px;">Genereer Mijn Blueprint Profiel</button>
+      <p style="font-size: 0.8rem; color: var(--muted); margin-top: 12px;">Jouw antwoorden worden lokaal verwerkt. Niets wordt opgeslagen of gedeeld.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: RESULTS -->
+<div class="section" id="section-results">
+
+  <!-- TAB NAV -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('profile')">Blueprint Profiel</button>
+    <button class="tab-btn" onclick="showTab('action')">Actieplan</button>
+    <button class="tab-btn" onclick="showTab('framework')">Volledig Raamwerk</button>
+  </div>
+
+  <!-- TAB: PROFILE -->
+  <div id="tab-profile">
+    <div class="profile-hero">
+      <div class="type-label">Jouw Blueprint Type</div>
+      <div class="type-name" id="profileTypeName">The Achiever in Doubt</div>
+      <p class="type-desc" id="profileTypeDesc">Jouw profiel wordt geladen...</p>
+      <div class="total-score-badge">
+        Totaalscore: <strong id="totalScoreDisplay">75</strong> / 150
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2 style="margin-bottom: 24px;">Jouw Vijf Niveaus</h2>
+
+      <div id="levelScoreCards"></div>
+
+      <canvas id="radarCanvas" width="400" height="300" style="margin: 32px auto; display: block;"></canvas>
+
+      <div id="patternAlert"></div>
+
+      <div class="divider"></div>
+
+      <div class="btn-center" style="margin-top: 0;">
+        <button class="btn-primary" onclick="showTab('action')">See My Actieplan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: ACTION PLAN -->
+  <div id="tab-action" style="display:none;">
+    <div class="content-container">
+      <h2 class="section-title">Your Actieplan</h2>
+      <p class="section-subtitle">Elk niveau krijgt een prioriteitslabel op basis van jouw score. De acties hieronder zijn afgestemd op jouw exacte scoreband. Begin met de niveaus met Prioriteit Nu. Sla niet over naar de interessantere niveaus.</p>
+      <div id="actionPlanCards"></div>
+      <div class="divider"></div>
+      <div class="btn-center" style="margin-top: 0;">
+        <button class="btn-primary" onclick="showTab('framework')">Read the Volledig Raamwerk</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: FULL FRAMEWORK -->
+  <div id="tab-framework" style="display:none;">
+    <div class="content-container wide">
+      <h2 class="section-title">The Volledig Raamwerk</h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">De theorie achter de tool begrijpen zorgt ervoor dat de acties anders landen. Dit is geen achtergrondinformatie. Het is onderdeel van de tool.</p>
+
+      <!-- LEVEL 1 -->
+      <div class="framework-level-block" style="color: var(--level1);">
+        <div class="flb-header" style="border-color: var(--level1);">
+          <span class="flb-number">01</span>
+          <span class="flb-title">Fysiologische Behoeften</span>
+        </div>
+        <div class="flb-body">
+          <p>Maslow plaatste fysiologische behoeften aan de basis van de hiërarchie omdat ze de letterlijke voorwaarden zijn voor al het andere. Wanneer de kernbehoeften van het lichaam niet zijn vervuld, blijft het dreigingsdetectiesysteem van de hersenen geactiveerd, waardoor aanhoudende concentratie, emotionele regulatie en complexe besluitvorming werkelijk moeilijker toegankelijk worden. Dit is geen metafoor. Het is neurowetenschappen.</p>
+          <p>De moderne versie van fysiologische deprivatie is zelden dramatisch. Het ziet eruit als chronisch slaaptekort. Een schema dat geen ruimte laat voor fysiek herstel. Energie die draait op cafeïne en wilskracht in plaats van echte herstel. Mensen in dit patroon presteren vaak jarenlang op hoog niveau voordat het fundament barst.</p>
+          <div class="flb-unmet">
+            <div class="flb-unmet-title">Hoe onvervulde fysiologische behoeften eruitzien in het dagelijks leven</div>
+            <p style="color: var(--muted);">Elke ochtend moe wakker worden en dat accepteren als normaal. Sporten als straf gebruiken in plaats van verzorging. Maaltijden als iets om doorheen te komen in plaats van iets om bij aanwezig te zijn. Een basisniveau van lichamelijke spanning die er al zo lang is dat het niet meer als ongewoon registreert.</p>
+          </div>
+          <p><strong>The key insight:</strong> physiological needs are not the "easy" level. They are the level most systematically ignored by high-achieving people who have learned to override physical signals in service of productivity. The body keeps score. The question is when you choose to read it.</p>
+        </div>
+      </div>
+
+      <!-- LEVEL 2 -->
+      <div class="framework-level-block" style="color: var(--level2);">
+        <div class="flb-header" style="border-color: var(--level2);">
+          <span class="flb-number">02</span>
+          <span class="flb-title">Veiligheidsbehoeften</span>
+        </div>
+        <div class="flb-body">
+          <p>Veiligheidsbehoeften gaan over voorspelbaarheid, niet over de afwezigheid van risico. Het brein zoekt geen leven zonder uitdagingen. Het zoekt een leven waar de regels stabiel genoeg zijn om binnen te plannen. Chronische onvoorspelbaarheid, of die nu financieel, relationeel of omgevingsgericht is, houdt het zenuwstelsel in een laaggradige waakzaamheidsstaat die voortdurend cognitieve middelen verbruikt.</p>
+          <p>Financial insecurity is the most common safety need failure in the adults this tool is designed for. Not poverty, but the specific anxiety of insufficient margin: the background hum of "what if" that makes it hard to think beyond the next crisis. Structural instability in relationships or living situations creates a similar effect through different mechanisms.</p>
+          <div class="flb-unmet">
+            <div class="flb-unmet-title">Hoe onvervulde veiligheidsbehoeften eruitzien in het dagelijks leven</div>
+            <p style="color: var(--muted);">Moeite met langetermijndenken omdat de korte termijn onzeker aanvoelt. Overwerken als reactie op financiële angst in plaats van echte ambitie. Moeite met ontspannen ook wanneer de omstandigheden het toelaten. Een aanhoudend laag gevoel dat er op elk moment iets mis kan gaan.</p>
+          </div>
+          <p><strong>Het kernpunt:</strong> veiligheidsbehoeften gaan niet over rijkdom. Ze gaan over marge. Iemand met een bescheiden inkomen en sterke financiële buffers heeft meer veiligheidsbehoeftevervulling dan een hoge verdiener die alles uitgeeft en chronische schuldangst draagt. Structuur creëert veiligheid. Zekerheid wordt gebouwd, niet gevonden.</p>
+        </div>
+      </div>
+
+      <!-- LEVEL 3 -->
+      <div class="framework-level-block" style="color: var(--level3);">
+        <div class="flb-header" style="border-color: var(--level3);">
+          <span class="flb-number">03</span>
+          <span class="flb-title">Verbondenheidsbehoeften</span>
+        </div>
+        <div class="flb-body">
+          <p>Verbondenheid is het meest onderschatte niveau voor hoog presterende volwassenen. Het is gemakkelijk verkeerd te lezen. Een vol sociaal agenda is geen verbondenheid. Een groot netwerk is geen verbondenheid. Aardig gevonden worden is geen verbondenheid. Verbondenheid is specifiek de ervaring van gekend worden, van mensen in je leven te hebben die je duidelijk zien en toch aanwezig blijven.</p>
+          <p>Het onderscheid dat hier telt is tussen oppervlakkige verbinding en diepe verbinding. Veel ambitieuze professionals hebben uitgebreide ondiepe netwerken en bijna geen diepe. Ze zijn omringd door mensen en functioneel geïsoleerd. Dit gat produceert een specifiek soort eenzaamheid die moeilijk te benoemen is, precies omdat het de externe bewijzen tegenspreekt.</p>
+          <div class="flb-unmet">
+            <div class="flb-unmet-title">Hoe onvervulde verbondenheidsbehoeften eruitzien in het dagelijks leven</div>
+            <p style="color: var(--muted);">Een versie van jezelf opvoeren op het werk en je er vaag door uitgeput voelen. Moeite hebben om hulp te vragen omdat je niet zeker weet hoe het ontvangen zou worden. Dingen bereiken en merken dat de voldoening kortstondig is omdat er niemand is om volledig eerlijk mee te zijn over de kosten. Het gevoel dat je een ander persoon zou moeten worden om werkelijk begrepen te worden.</p>
+          </div>
+          <p><strong>Het kernpunt:</strong> verbondenheid kan niet worden gecreëerd door meer tijd bij mensen door te brengen. Het wordt opgebouwd door specifieke daden van eerlijke openbaarmaking en wederzijdse kwetsbaarheid. Het gevoel gekend te worden is een product van de keuze om gezien te worden, wat een heel andere actie is dan aanwezig zijn.</p>
+        </div>
+      </div>
+
+      <!-- LEVEL 4 -->
+      <div class="framework-level-block" style="color: var(--level4);">
+        <div class="flb-header" style="border-color: var(--level4);">
+          <span class="flb-number">04</span>
+          <span class="flb-title">Zelfwaarderingsbehoeften</span>
+        </div>
+        <div class="flb-body">
+          <p>Maslow verdeelde zelfwaardering in twee categorieën: de waardering die we ontlenen aan anderen (erkenning, status, reputatie) en de waardering die we onafhankelijk van anderen vasthouden (zelfrespect, competentie, integriteit). Het tweede type is structureel stabieler dan het eerste. Externe zelfwaardering is onderworpen aan omstandigheden buiten jouw controle. Interne zelfwaardering niet.</p>
+          <p>De faalvorm die specifiek is voor hoog presteerders is het bouwen van een indrukwekkende structuur van externe zelfwaardering terwijl het interne fundament zwak of hol is. Dit produceert het impostersyndroompatroon: zichtbaar succes dat samengaat met een private overtuiging dat het succes onverdiend, broos of frauduleus is. De externe bewijzen zijn overvloedig. Het interne register wordt niet bijgewerkt.</p>
+          <div class="flb-unmet">
+            <div class="flb-unmet-title">Hoe onvervulde zelfwaarderingsbehoeften eruitzien in het dagelijks leven</div>
+            <p style="color: var(--muted);">Herhaalde geruststelling nodig hebben dat je werk goed genoeg is. Succes toeschrijven aan geluk of omstandigheid en mislukking aan je eigen karakter. Situaties vermijden waarbij je mogelijk minder bekwaam blijkt dan je eruitziet. Een aanhoudend gat tussen het zelfvertrouwen dat je uitstraalt en het zelfvertrouwen dat je werkelijk hebt.</p>
+          </div>
+          <p><strong>Het kernpunt:</strong> zelfwaardering wordt niet gebouwd door prestaties te verzamelen. Het wordt gebouwd door een consistente, eerlijke relatie met je eigen competentie te ontwikkelen: duidelijk zien wat je kunt, waar je groeit en waar je werkelijk tekortschiet. De persoon die alle drie kan vasthouden zonder vertekening heeft solide zelfwaardering. Prestaties alleen brengen je er niet.</p>
+        </div>
+      </div>
+
+      <!-- LEVEL 5 -->
+      <div class="framework-level-block" style="color: var(--level5);">
+        <div class="flb-header" style="border-color: var(--level5);">
+          <span class="flb-number">05</span>
+          <span class="flb-title">Zelfontplooiing</span>
+        </div>
+        <div class="flb-body">
+          <p>Zelfontplooiing is Maslows meest betwiste concept en zijn meest interessante. Het beschrijft de drang om volledig te worden wat iemand in staat is te worden: niet een vaste bestemming, maar een richting. Het is de ervaring van leven in overeenstemming met je diepste waarden en capaciteiten, van groeien naar in plaats van weg van wie je werkelijk bent.</p>
+          <p>Het belangrijke structurele punt is dat zelfontplooiing werkelijk moeilijk toegankelijk is wanneer lagere niveaus aanzienlijk zijn uitgeput. Dit is geen excuus om het onbepaald uit te stellen. Het is een structurele observatie: proberen doel te bouwen terwijl veiligheidsbehoeften onvervuld zijn, is als proberen een muur te schilderen die nog nat is. Het werk houdt niet.</p>
+          <div class="flb-unmet">
+            <div class="flb-unmet-title">Hoe onvervulde zelfontplooiingsbehoeften eruitzien in het dagelijks leven</div>
+            <p style="color: var(--muted);">Een aanhoudend gevoel dat je leven niet helemaal van jou is. Werk doen dat goed betaalt of respect oplevert maar fundamenteel hol aanvoelt. De specifieke ontevredenheid van goed zijn in dingen die er voor jou eigenlijk niet toe doen. Een gat tussen wie je bent en wie je kunt zijn, zonder duidelijk pad ertussen.</p>
+          </div>
+          <p><strong>Het kernpunt:</strong> zelfontplooiing is geen beloning voor het voltooien van de lagere niveaus. Het is een richting die je op elk moment kunt beginnen te volgen. Wat de lagere niveaus bieden is stabiliteit: hoe solider het fundament, hoe vrijer je kunt groeien. Begin waar je bent. Bouw het fundament onderweg.</p>
+        </div>
+      </div>
+
+      <!-- D NEEDS vs B NEEDS -->
+      <div class="dnb-box">
+        <h3>D-Behoeften en B-Behoeften</h3>
+        <p style="color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 0;">Maslow onderscheidde twee fundamenteel verschillende soorten motivatie die binnen de hiërarchie werkzaam zijn.</p>
+        <div class="dnb-grid">
+          <div class="dnb-col">
+            <h4>Tekortbehoeften (D-Behoeften)</h4>
+            <p>Niveau 1 tot en met 4. Dit zijn behoeften die voortkomen uit een tekort en worden vervuld door dat tekort aan te vullen. Wanneer een D-behoefte is vervuld, neemt de motivatie om die na te streven af. Het zijn in wezen onderhoudbehoeften: het doel is adequaatheid, niet overvloed. Je hoeft ze niet te maximaliseren. Je hebt ze voldoende vervuld nodig om aandacht vrij te maken voor hogere niveaus.</p>
+          </div>
+          <div class="dnb-col">
+            <h4>Zijnsbehoeften (B-Behoeften)</h4>
+            <p>Niveau 5 en hoger. Dit zijn behoeften die sterker worden wanneer je ermee bezig bent, niet zwakker. Hoe meer je zelfontplooiing nastreeft, hoe meer je het wilt. Daarom beschrijven doelgerichte mensen vaak dat ze zich levendiger voelen, niet meer tevreden. B-behoeften zijn geen problemen die opgelost moeten worden. Het zijn richtingen die gevolgd moeten worden.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HONEST LIMITATIONS -->
+      <div class="alert-card info" style="margin-top: 0;">
+        <div class="alert-title">Een eerlijke noot over de beperkingen van het model</div>
+        <p>De hiërarchie van Maslow is, terecht, om meerdere dingen bekritiseerd. De strikte sequentiële volgorde (je moet niveau N vervullen voordat niveau N+1 relevant wordt) wordt niet ondersteund door het bewijs: mensen streven naar verbondenheid en doel zelfs onder omstandigheden van aanzienlijke fysiologische en veiligheidsontbering. De hiërarchie is beter te begrijpen als een kaart van relatieve invloed dan als een strikte volgorde. Bovendien ontwikkelde Maslow zijn theorie voornamelijk door de studie van uitzonderlijke individuen in een specifieke culturele context. De universele toepasbaarheid van het model is niet vastgesteld. Gebruik het als een lens die bepaalde dingen scherper maakt, niet als een volledige beschrijving van menselijke motivatie.</p>
+      </div>
+
+      <div class="btn-center" style="margin-top: 40px;">
+        <button class="btn-navy" onclick="window.print()">Printen of Opslaan als PDF</button>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 12px;">Gebruik de printfunctie van je browser en selecteer "Opslaan als PDF" om je resultaten te bewaren.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="tool-footer">
+  <p><strong>B&B Mind Coaching</strong> | De Blueprint geeft je de kaart. De Bloom is wat er gebeurt als je die volgt.</p>
+  <p style="margin-top: 6px;">Gebaseerd op Abraham Maslow, "A Theory of Human Motivation" (1943)</p>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const scores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+const levelNames = ['Fysiologisch', 'Veiligheid', 'Verbondenheid', 'Zelfwaardering', 'Zelfontplooiing'];
+const levelColors = ['#e07b54','#d4a847','#4c9db0','#6b8e6b','#8b6fa8'];
+const levelLightColors = ['#fdf0eb','#fdf8ed','#e8f4f7','#eef4ee','#f3eff8'];
+const levelDims = ['Slaap & Rust / Lichamelijke Energie','Financiële Stabiliteit / Voorspelbaarheid','Diepe Verbinding / Gezien Worden','Zelfrespect / Competentie','Doel / Groei / Expressie'];
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    const tabs = ['profile','action','framework'];
+    b.classList.toggle('active', tabs[i] === name);
+  });
+  ['profile','action','framework'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// SLIDER UPDATE + PROGRESS
+// ============================================================
+function updateSlider(el) {
+  const level = el.dataset.level;
+  const q = el.dataset.q;
+  document.getElementById('val-' + level + '-' + q).textContent = el.value;
+  updateProgress();
+}
+
+function updateProgress() {
+  const sliders = document.querySelectorAll('.q-slider');
+  const total = sliders.length;
+  // Count moved sliders (not at default)
+  const moved = Array.from(sliders).filter(s => parseInt(s.value) !== 3).length;
+  const pct = Math.round((moved / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPercent').textContent = pct + '%';
+}
+
+// ============================================================
+// COMPUTE SCORES
+// ============================================================
+function computeScores() {
+  for (let level = 1; level <= 5; level++) {
+    let total = 0;
+    for (let q = 1; q <= 6; q++) {
+      const el = document.querySelector('[data-level="'+level+'"][data-q="'+q+'"]');
+      if (el) total += parseInt(el.value);
+    }
+    scores[level] = total;
+  }
+}
+
+// ============================================================
+// BLUEPRINT TYPE
+// ============================================================
+function getBlueprintType(s) {
+  const total = s[1]+s[2]+s[3]+s[4]+s[5];
+  const avgLower = (s[1]+s[2]) / 2;
+  const avgUpper = (s[4]+s[5]) / 2;
+  const falsePeak = avgUpper >= 20 && avgLower <= 15;
+
+  if (total <= 60) {
+    return {
+      name: 'De Herbouwer',
+      desc: 'Jouw fundament staat op meerdere niveaus onder aanzienlijke druk. Dit is geen karakterfout. Het is informatie. Je staat op een punt waar herbouwen vanaf de basis niet alleen nuttig is, het is het enige wat werkelijk werkt. De Herbouwer die dit serieus neemt en onderaan begint, zal terugkijken op dit moment als het keerpunt. De vraag is niet of je een beter fundament kunt bouwen. Het is of je bereid bent het te behandelen als de prioriteit die het werkelijk is.'
+    };
+  }
+  if (s[1] <= 14 || s[2] <= 14) {
+    return {
+      name: 'The Foundation Builder',
+      desc: 'Jouw hogere niveaus tonen echte ontwikkeling, maar de basis van je hiërarchie draagt meer stress dan zou moeten. Je bouwt op grond die nog niet volledig is gestabiliseerd. Het werk dat er nu het meest toe doet is niet het spannende werk. Het is het onooglijke, structurele werk van het verstevigen van fysiologische en veiligheidsgronden. Dit is het type dat het vaakst rapporteert het gevoel te hebben hard te werken maar geen grip te krijgen. Het grip-probleem is structureel, niet motivationeel.'
+    };
+  }
+  if (s[3] <= 14) {
+    return {
+      name: 'De Verbinder',
+      desc: 'Jouw individuele fundamenten zijn redelijk solide, maar verbondenheid is het niveau dat om de meeste aandacht vraagt. Je bereikt mogelijk hoog niveau terwijl je een specifiek soort isolatie voelt die moeilijk te benoemen is, precies omdat de externe bewijzen het tegenspreken. Het Verbinder-type moet doorgaans investeren in minder, diepere relaties in plaats van bredere, meer talrijke. Het werk hier is niet sociaal. Het gaat over de kwaliteit van gekend worden in plaats van de kwantiteit van aardig gevonden worden.'
+    };
+  }
+  if (falsePeak) {
+    return {
+      name: 'De Twijfelende Presteerder',
+      desc: 'Your esteem and self-actualisation scores show real development, but your physiological and safety foundations are weaker than your upper levels suggest they should be. This is the false peak pattern: external indicators of success and internal functioning are not aligned. You are performing above your structural base. This is sustainable for a period, but it is not indefinitely sustainable. The most important work for you is not at the top of the hierarchy. It is reinforcing what is quietly failing below.'
+    };
+  }
+  if (s[4] <= 16 && s[5] >= 20) {
+    return {
+      name: 'The Purposeful Striver',
+      desc: 'You have a clear sense of direction and genuine growth orientation, but your esteem foundation is not fully matching your ambition. You can see clearly where you want to go and often feel unsure whether you are the person capable of getting there. The Purposeful Striver pattern is characterised by high aspiration and inconsistent self-trust. The work is not about finding more motivation. It is about building a more honest and stable relationship with your own competence.'
+    };
+  }
+  return {
+    name: 'De Integrator',
+    desc: 'Jouw scores op alle vijf niveaus tonen echte, relatief evenwichtige ontwikkeling. Dit betekent niet dat er geen werk te doen is. Het betekent dat het werk nu gaat over het verdiepen en handhaven van wat je hebt gebouwd in plaats van het repareren van structurele gaten. De Integrator is het type dat het meest profiteert van regelmatige herbeoordeling, omdat het risico op dit niveau niet instorting is maar stagnatie: solide fundamenten verwarren met een afgebouwd gebouw.'
+  };
+}
+
+// ============================================================
+// LEVEL INSIGHT
+// ============================================================
+function getLevelInsight(level, score) {
+  const insights = {
+    1: {
+      low: 'Your physiological foundation is significantly strained. This level scores your body\'s most basic needs, and a low score here explains more than it might seem. Chronic tiredness, energy crashes, and a sense of running on empty are not character flaws. They are structural signals.',
+      mid: 'Jouw fysiologische behoeften zijn gedeeltelijk maar inconsistent vervuld. Er zijn waarschijnlijk specifieke dimensies (slaapkwaliteit, fysiek herstel of voeding) waar de gaten groter zijn dan andere. Het actieplan identificeert welke.',
+      high: 'Your physiological foundation is well-maintained. This is not a small thing. Consistently attending to your body\'s baseline needs provides the energy base everything else runs on.'
+    },
+    2: {
+      low: 'Jouw veiligheidsbehoeften zijn aanzienlijk onvervuld. Chronische onzekerheid, financiële stress of omgevingsinstabiliteit verbruiken cognitieve middelen die beschikbaar zouden moeten zijn voor groei. Dit niveau is bijna altijd belangrijker dan het krediet dat het krijgt.',
+      mid: 'Jouw veiligheidsbehoeften zijn gedeeltelijk stabiel maar met significante gaten. De gebieden die lager scoren, creëren waarschijnlijk een achtergrondgebrom van angst dat focus en besluitvorming meer beïnvloedt dan je je misschien realiseert.',
+      high: 'Your safety foundation is solid. The sense of predictability and stability you have built creates the conditions for higher-level work. This level is often the most undervalued achievement in a person\'s life.'
+    },
+    3: {
+      low: 'Jouw verbondenheidsbehoeften zijn aanzienlijk onvervuld. Dit is een van de meest ingrijpende gaten die iemand kan dragen, deels omdat het gemakkelijk weg te verklaren is en deels omdat de externe bewijzen het vaak tegenspreken. Bij mensen zijn is niet hetzelfde als gekend worden.',
+      mid: 'Jouw verbondenheidsbehoeften zijn gedeeltelijk vervuld. Je hebt waarschijnlijk enkele relaties die diep gaan, maar het algehele niveau van echte verbinding in je leven is nog niet wat het zou kunnen zijn. De kwaliteit van begrepen worden is ongelijkmatig verdeeld.',
+      high: 'Your belonging needs are well met. The experience of being known and of knowing others at depth is one of the most protective things in a person\'s psychological life. This is a genuine strength.'
+    },
+    4: {
+      low: 'Jouw zelfwaarderingsfundament staat aanzienlijk onder druk. Dit manifesteert zich vaak als imposterssyndroom, moeite met het ontvangen van erkenning, of een private overtuiging dat je succes minder verdiend is dan het lijkt. Het gat tussen interne en externe zelfevaluatie is het kernprobleem van zelfwaardering.',
+      mid: 'Jouw zelfwaardering is gedeeltelijk ontwikkeld. Er zijn waarschijnlijk specifieke dimensies (zelfrespect, competentie of erkenning) waar de gaten meer uitgesproken zijn. Externe en interne zelfwaardering zijn vaak ongelijkmatig ontwikkeld.',
+      high: 'Jouw zelfwaarderingsfundament is solide. Het vermogen om een stabiele en eerlijke kijk op je eigen competentie te bewaren, los van externe validatie, is een significant psychologisch bezit. Dit is moeilijker te bouwen dan de meeste mensen beseffen.'
+    },
+    5: {
+      low: 'Jouw zelfontplooiingsbehoeften zijn aanzienlijk onvervuld. Het gevoel dat je leven niet helemaal van jou is, of dat je bewegingen doorloopt in plaats van bewust te leven, is reëel en de moeite waard om serieus te nemen. Dit niveau wordt toegankelijker naarmate lagere niveaus worden versterkt.',
+      mid: 'Jouw zelfontplooiing is gedeeltelijk actief. Je hebt enig gevoel van richting en groei, maar de verbinding tussen je dagelijks leven en je diepere waarden is inconsistent. Het gat tussen wie je bent en wie je wordt voelt breder dan je zou willen.',
+      high: 'Jouw zelfontplooiingsbehoeften zijn goed actief. Je leeft met een mate van bewustheid en doel die de meeste mensen niet bereiken. Het werk hier gaat over het handhaven en verdiepen van deze oriëntatie in plaats van het herstellen ervan.'
+    }
+  };
+
+  const band = score <= 16 ? 'low' : score <= 22 ? 'mid' : 'high';
+  return insights[level][band];
+}
+
+// ============================================================
+// ACTION PLAN
+// ============================================================
+function getActions(level, score) {
+  const priority = score <= 16 ? 'now' : score <= 22 ? 'worth' : 'maintain';
+  const label = score <= 16 ? 'Prioriteit Nu' : score <= 22 ? 'De Moeite Waard' : 'Handhaven en Verdiepen';
+  const labelClass = score <= 16 ? 'priority-now' : score <= 22 ? 'priority-worth' : 'priority-maintain';
+
+  const actions = {
+    1: {
+      now: [
+        'Set a non-negotiable sleep window. Not a target. A boundary. Decide when the day ends and do not negotiate with yourself about it for the next 14 days.',
+        'Identify the one daily habit that most depletes your physical energy (typically: late screens, skipped meals, or no movement). Address that one thing before adding anything else.',
+        'Schedule one complete rest period per week with no obligations, no screens, and no productivity pressure. This is recovery, not reward. It precedes performance, not follows it.'
+      ],
+      worth: [
+        'Audit your energy across the week. Note when you feel genuinely resourced and when you are running on reserves. Look for the structural pattern, not the individual bad day.',
+        'Add one form of intentional physical movement that you would choose without obligation. The goal is not fitness. It is a reliable energy signal.',
+        'Examine your nutrition for the most common deprivation pattern (skipped meals, reliance on stimulants, or late-night compensation eating) and address that specific pattern only.'
+      ],
+      maintain: [
+        'Document what is working at this level so you do not accidentally dismantle it when life gets busy. Awareness of what maintains the foundation is as important as building it.',
+        'Gradually raise the standard in one physiological dimension that you know could be stronger, without disrupting the rest.',
+        'Use this level as a resource for the levels below 22. The energy you have built here is an asset for doing harder work elsewhere.'
+      ]
+    },
+    2: {
+      now: [
+        'Identify the single most active source of safety threat in your life right now (financial, relational, or environmental). Name it specifically. Vague anxiety is harder to address than a named problem.',
+        'Create one small financial buffer if none exists. Even a modest emergency fund creates a measurable shift in background anxiety. Start with one month of essential expenses as the target.',
+        'Build one reliable daily structure anchor: a time you wake up, a time you begin work, and a time you end it. Predictability is manufactured, not found.'
+      ],
+      worth: [
+        'Review your financial situation honestly and identify the specific gap (income, debt, margin, or spending pattern) that creates the most anxiety. Address that one gap with a concrete plan.',
+        'Identify where in your environment the most unpredictability lives and add one structural element (a decision rule, a scheduled review, or a contingency plan) to that specific area.',
+        'Build a 90-day forward view of your life that accounts for what you know is coming. The goal is not certainty. It is reducing the number of things that can surprise you.'
+      ],
+      maintain: [
+        'Review your safety structures quarterly to ensure they are still fit for your current circumstances. Solid foundations erode gradually if not maintained.',
+        'Identify one area of safety that could be made more robust without significant effort and address it proactively rather than reactively.',
+        'Use the stability you have built to take one deliberate risk you have been avoiding. Solid safety foundations exist to enable risk, not prevent it.'
+      ]
+    },
+    3: {
+      now: [
+        'Identify one person in your life who could become a deeper connection and initiate one honest conversation with them. Not a catch-up. A conversation where you share something real about where you actually are.',
+        'Examine the gap between the version of yourself you present and the version you actually are. Notice the cost of that gap. Name it to yourself clearly.',
+        'Reduce one obligation that keeps you busy around people but does not actually produce connection. Replace the time with one interaction that could go deeper.'
+      ],
+      worth: [
+        'Tell one person something true about a current struggle that you would normally manage privately. Notice what happens. The willingness to be seen is the mechanism of connection.',
+        'Identify whether your current social life is wide and shallow or narrow and deep, and decide which direction you want to move in deliberately.',
+        'Join or create one context where genuine connection is structurally possible: a small group, a shared endeavour, or a regular one-to-one commitment.'
+      ],
+      maintain: [
+        'Actively invest in the relationships that already give you the experience of being known. Connection does not maintain itself. It requires regular, honest contact.',
+        'Increase the depth of one relationship that has the potential for more but has stayed at a comfortable surface level.',
+        'Notice if you are beginning to trade connection for productivity or convenience and correct that trade before it becomes a pattern.'
+      ]
+    },
+    4: {
+      now: [
+        'Write down three things you have genuinely done well in the last 30 days without attributing them to luck, circumstance, or other people. This is not affirmation. It is accurate accounting.',
+        'Identify the primary way you dismiss or minimise your own competence (imposter syndrome, comparison, or attribution to luck) and name that specific pattern so you can see it when it operates.',
+        'Doe deze week één ding dat je competentie uitrekt voorbij wat je comfortabel publiekelijk kunt demonstreren. Het gat tussen privébekwaamheid en publiek vertrouwen sluit zich door actie, niet door oefeningen voor het opbouwen van zelfvertrouwen.'
+      ],
+      worth: [
+        'Identificeer één gebied waar je je eigen bijdrage consequent naar beneden bijstelt en oefen met het nauwkeurig erkennen ervan, noch opblazen noch defleren van de realiteit.',
+        'Onderzoek of je zelfwaardering primair extern (afhankelijk van erkenning en validatie) of intern (gegrond in je eigen eerlijke beoordeling) is. Besluit in welke richting je wilt bewegen.',
+        'Zoek één stuk oprechte feedback van iemand wiens oordeel je respecteert en zit ermee zonder je er onmiddellijk tegen te verdedigen of er volledig in te bezwijken.'
+      ],
+      maintain: [
+        'Blijf bekwaamheid opbouwen op de gebieden die het meest voor jou tellen zonder in het patroon te vallen van het opvoeren van bekwaamheid voor externe doelgroepen.',
+        'Oefen met het gracieus ontvangen van erkenning, zonder het af te wijzen noch het te vereisen. De persoon met solide zelfwaardering kan het nemen of laten.',
+        'Gebruik de interne stabiliteit die je hebt opgebouwd om iemand eerder in hun ontwikkeling te begeleiden of te ondersteunen. Lesgeven consolideert bekwaamheid op manieren die alleen oefenen niet doet.'
+      ]
+    },
+    5: {
+      now: [
+        'Beantwoord deze vraag schriftelijk: wat zou je met je tijd doen als externe goedkeuring en financiële noodzaak beide werden verwijderd? Filter het antwoord niet. Het gat tussen dat antwoord en je huidige leven is de belangrijkste informatie die dit niveau bevat.',
+        'Identificeer één gebied van je leven waar je de waarden van iemand anders leeft in plaats van je eigen. Benoem het duidelijk. Je hoeft er niet onmiddellijk naar te handelen, maar je moet het zien.',
+        'Begin één creatief of groeigericht project, hoe klein ook, dat geen extern publiek heeft en geen externe maatstaf voor succes. De ervaring van iets doen puur omdat het voor jou van belang is, is het toegangspunt tot dit niveau.'
+      ],
+      worth: [
+        'Breng je waarden expliciet in kaart. Niet de waarden die je denkt te moeten hebben. De waarden die je keuzes werkelijk sturen wanneer je goed oplet. Merk de gaten op tussen verklaarde en operationele waarden.',
+        'Voeg één regelmatige reflectiepraktijk toe: geen productiviteitsreview maar de diepere vraag of de richting die je beweegt er een is die je daadwerkelijk hebt gekozen.',
+        'Identificeer één ding dat je hebt uitgesteld totdat de omstandigheden goed zijn en begin er nu een kleine versie van. Zelfontplooiing is geen bestemming waar je aankomt. Het is een richting waar je je naartoe keert.'
+      ],
+      maintain: [
+        'Bescherm de omstandigheden die je in staat stellen te blijven groeien. Onderzoek je verplichtingen op alles wat de groeioriëntatie die je hebt opgebouwd verdringt.',
+        'Herzie regelmatig je gevoel van doel en controleer of het evolueert zoals jij doet. Een doel dat drie jaar geleden bij je paste, is misschien niet de precieze uitdrukking van wie je nu bent.',
+        'Zoek manieren om je ontwikkeling bij te dragen aan anderen. De groeioriëntatie wordt het meest volledig uitgedrukt wanneer het iets produceert dat verder gaat dan persoonlijk voordeel.'
+      ]
+    }
+  };
+
+  return { priority, label, labelClass, actions: actions[level][priority] };
+}
+
+// ============================================================
+// GENERATE RESULTS
+// ============================================================
+function generateResults() {
+  computeScores();
+  const totalScore = Object.values(scores).reduce((a,b) => a+b, 0);
+  const type = getBlueprintType(scores);
+
+  // Update profile hero
+  document.getElementById('profileTypeName').textContent = type.name;
+  document.getElementById('profileTypeDesc').textContent = type.desc;
+  document.getElementById('totalScoreDisplay').textContent = totalScore;
+
+  // Level score cards
+  const cardsContainer = document.getElementById('levelScoreCards');
+  cardsContainer.innerHTML = '';
+  for (let i = 1; i <= 5; i++) {
+    const pct = Math.round((scores[i] / 30) * 100);
+    const insight = getLevelInsight(i, scores[i]);
+    cardsContainer.innerHTML += `
+      <div class="level-score-card animate-in" style="animation-delay: ${(i-1)*0.1}s">
+        <div class="lsc-header">
+          <div class="lsc-left">
+            <div class="lsc-dot" style="background: ${levelColors[i-1]}"></div>
+            <div>
+              <div class="lsc-name">${levelNames[i-1]}</div>
+              <div class="lsc-dim">${levelDims[i-1]}</div>
+            </div>
+          </div>
+          <div class="lsc-score">${scores[i]} <span>/ 30</span></div>
+        </div>
+        <div class="lsc-bar-track">
+          <div class="lsc-bar-fill" style="width: ${pct}%; background: ${levelColors[i-1]}"></div>
+        </div>
+        <div class="lsc-insight">${insight}</div>
+      </div>
+    `;
+  }
+
+  // Pattern alert
+  const alertContainer = document.getElementById('patternAlert');
+  const avgLower = (scores[1]+scores[2]) / 2;
+  const avgUpper = (scores[4]+scores[5]) / 2;
+  const falsePeak = avgUpper >= 20 && avgLower <= 15;
+  const achievementWithoutBelonging = scores[4] >= 20 && scores[5] >= 20 && scores[3] <= 14;
+
+  let alertHTML = '';
+  if (falsePeak) {
+    alertHTML += `
+      <div class="alert-card warning">
+        <div class="alert-title">Structuurpatroonwaarschuwing: De Valse Top</div>
+        <p>Jouw scores laten een patroon zien waarbij jouw hogere niveaus (Zelfwaardering en Zelfontplooiing) aanzienlijk meer ontwikkeld zijn dan jouw lagere fundamenten (Fysiologisch en Veiligheid). Dit is het valse-top-patroon. Je bouwt hoger dan jouw basis momenteel ondersteunt. Dit is een tijdlang houdbaar. Het is niet onbeperkt houdbaar. Het meest urgente werk in jouw actieplan ligt op niveau 1 en 2, niet op de niveaus waar je al sterkte toont.</p>
+      </div>`;
+  }
+  if (achievementWithoutBelonging) {
+    alertHTML += `
+      <div class="alert-card warning" style="margin-top: 16px;">
+        <div class="alert-title">Structuurpatroonwaarschuwing: Prestatie Zonder Verbondenheid</div>
+        <p>Jouw scores tonen sterke ontwikkeling in Zelfwaardering en Zelfontplooiing naast een significant lagere Verbondenheid. Deze specifieke combinatie produceert een bepaald soort eenzaamheid die moeilijk te benoemen is: zichtbaar succesvol zijn terwijl je je fundamenteel ongezien voelt. De prestatie is echt. De isolatie is ook echt. Deze twee dingen kunnen naast elkaar bestaan, en dat doen ze vaak langer dan zou moeten.</p>
+      </div>`;
+  }
+  alertContainer.innerHTML = alertHTML;
+
+  // Action plan cards
+  const actionContainer = document.getElementById('actionPlanCards');
+  actionContainer.innerHTML = '';
+
+  // Sort by priority (now first, then worth, then maintain)
+  const priorityOrder = { 'Prioriteit Nu': 0, 'De Moeite Waard': 1, 'Handhaven en Verdiepen': 2 };
+  const levelData = [];
+  for (let i = 1; i <= 5; i++) {
+    const data = getActions(i, scores[i]);
+    levelData.push({ level: i, ...data });
+  }
+  levelData.sort((a,b) => priorityOrder[a.label] - priorityOrder[b.label]);
+
+  levelData.forEach(d => {
+    const actionsHTML = d.actions.map((a, idx) => `
+      <li>
+        <div class="action-icon">${idx+1}</div>
+        <span>${a}</span>
+      </li>
+    `).join('');
+
+    actionContainer.innerHTML += `
+      <div class="action-level-block animate-in">
+        <div class="alb-header">
+          <div class="alb-left">
+            <div class="alb-dot" style="background: ${levelColors[d.level-1]}"></div>
+            <span class="alb-name">${levelNames[d.level-1]}</span>
+          </div>
+          <span class="priority-badge ${d.labelClass}">${d.label}</span>
+        </div>
+        <ul class="actions-list">${actionsHTML}</ul>
+      </div>
+    `;
+  });
+
+  // Draw radar
+  drawRadar();
+
+  showSection('results');
+  showTab('profile');
+}
+
+// ============================================================
+// RADAR CHART
+// ============================================================
+function drawRadar() {
+  const canvas = document.getElementById('radarCanvas');
+  const ctx = canvas.getContext('2d');
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const r = Math.min(cx, cy) - 40;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const labels = ['Fysiologisch', 'Veiligheid', 'Verbondenheid', 'Zelfwaardering', 'Zelfontplooiing'];
+  const vals = [scores[1], scores[2], scores[3], scores[4], scores[5]];
+  const n = 5;
+  const angleStep = (Math.PI * 2) / n;
+  const startAngle = -Math.PI / 2;
+
+  // Grid
+  for (let ring = 1; ring <= 5; ring++) {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const angle = startAngle + i * angleStep;
+      const rr = (ring / 5) * r;
+      const x = cx + rr * Math.cos(angle);
+      const y = cy + rr * Math.sin(angle);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(0,0,0,0.07)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Spokes
+  for (let i = 0; i < n; i++) {
+    const angle = startAngle + i * angleStep;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+    ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+    ctx.stroke();
+  }
+
+  // Data polygon
+  ctx.beginPath();
+  for (let i = 0; i < n; i++) {
+    const angle = startAngle + i * angleStep;
+    const rr = (vals[i] / 30) * r;
+    const x = cx + rr * Math.cos(angle);
+    const y = cy + rr * Math.sin(angle);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(76,157,176,0.15)';
+  ctx.fill();
+  ctx.strokeStyle = '#4c9db0';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Dots
+  for (let i = 0; i < n; i++) {
+    const angle = startAngle + i * angleStep;
+    const rr = (vals[i] / 30) * r;
+    const x = cx + rr * Math.cos(angle);
+    const y = cy + rr * Math.sin(angle);
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = levelColors[i];
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  // Labels
+  ctx.font = '600 11px DM Sans, sans-serif';
+  ctx.fillStyle = '#1B2F4E';
+  ctx.textAlign = 'center';
+  for (let i = 0; i < n; i++) {
+    const angle = startAngle + i * angleStep;
+    const x = cx + (r + 28) * Math.cos(angle);
+    const y = cy + (r + 28) * Math.sin(angle) + 4;
+    ctx.fillText(labels[i], x, y);
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+updateProgress();
+</script>
+</body>
+</html>
