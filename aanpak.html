@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>De Aanpak | B&B Mind Coaching</title>
+<meta name="description" content="Richting, identiteit, plan. De methode van B&B Mind Coaching. Hoe elke sessie werkt en welke frameworks worden toegepast."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E; --navy-mid:#2a4060;
+  --teal:#4c9db0; --teal-dark:#3a7f91; --teal-light:#e8f5f8;
+  --yellow:#ffebaf; --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4; --muted:#5a7a86; --white:#ffffff;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 8px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;background:rgba(27,47,78,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:#ffebaf;letter-spacing:.03em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+.nav-links a:hover{color:rgba(255,255,255,0.95)}
+.nav-links a.active{color:rgba(255,255,255,0.95)}
+.nav-cta{background:var(--teal) !important;color:#fff !important;padding:9px 22px;border-radius:6px;font-weight:600 !important;font-size:.8rem !important;letter-spacing:.04em;transition:background .2s !important}
+.nav-cta:hover{background:var(--teal-dark) !important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px}
+.nav-mobile-overlay{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(27,47,78,0.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:99}
+.nav-mobile-overlay.open{display:flex}
+.nav-mobile-overlay a{font-size:1.1rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:.04em}
+.nav-mobile-overlay .nav-cta{background:var(--teal);color:#fff !important;padding:12px 28px;border-radius:6px}
+
+/* PAGE HERO */
+.page-hero{margin-top:68px;background:var(--navy);padding:80px 4rem 72px;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;background:var(--teal);border-radius:50%;opacity:.06;pointer-events:none}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.page-hero-label{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:24px}
+.page-hero h1 em{font-style:italic;color:var(--yellow-dark)}
+.page-hero p{font-size:1.05rem;color:rgba(250,248,244,0.65);max-width:560px;line-height:1.85;font-weight:300}
+
+/* SECTION BASE */
+.section{padding:96px 4rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+
+/* STAPPEN */
+.stappen-section{background:var(--ivory)}
+.stappen{display:flex;flex-direction:column;gap:0;max-width:720px;position:relative}
+.stappen::before{content:'';position:absolute;left:27px;top:56px;bottom:56px;width:2px;background:linear-gradient(180deg,var(--teal) 0%,var(--yellow-dark) 50%,var(--navy) 100%);z-index:0}
+.stap{display:flex;gap:28px;align-items:flex-start;position:relative;z-index:1}
+.stap-num{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 0 6px var(--ivory)}
+.stap-num span{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:#fff}
+.stap.s1 .stap-num{background:var(--teal)}
+.stap.s2 .stap-num{background:var(--yellow-dark)}
+.stap.s2 .stap-num span{color:var(--navy)}
+.stap.s3 .stap-num{background:var(--navy)}
+.stap-content{background:var(--white);border-radius:var(--radius);padding:28px 32px;flex:1;border:1px solid rgba(27,47,78,0.07);box-shadow:var(--shadow)}
+.stap-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.stap.s1 .stap-label{color:var(--teal)}
+.stap.s2 .stap-label{color:#b8860b}
+.stap.s3 .stap-label{color:var(--navy)}
+.stap-title{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+.stap-desc{font-size:.9rem;color:var(--muted);line-height:1.75;font-weight:300}
+.stap-connector{display:flex;gap:28px;align-items:center;position:relative;z-index:1}
+.stap-connector-line{width:56px;flex-shrink:0}
+.stap-connector-text{padding:8px 16px;border-radius:99px;font-size:.78rem;font-style:italic;margin:8px 0}
+.stap-connector.c1 .stap-connector-text{background:rgba(76,157,176,0.08);color:var(--teal)}
+.stap-connector.c2 .stap-connector-text{background:rgba(245,216,122,0.12);color:#b8860b}
+
+/* PER SESSIE */
+.sessie-section{background:var(--white)}
+.sessie-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.sessie-card{background:var(--ivory);border-radius:var(--radius);padding:32px;border:1px solid rgba(27,47,78,0.07)}
+.sessie-num{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--teal);line-height:1;margin-bottom:12px}
+.sessie-title{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:10px;letter-spacing:.02em}
+.sessie-desc{font-size:.875rem;color:var(--muted);line-height:1.75;font-weight:300}
+
+/* WERKWIJZE */
+.werkwijze-section{background:var(--teal-light)}
+.werkwijze-note{background:var(--white);border-radius:var(--radius);padding:40px 48px;border:1px solid rgba(76,157,176,0.15);box-shadow:var(--shadow);max-width:720px}
+.werkwijze-note blockquote{font-family:var(--serif);font-size:1.5rem;font-weight:400;font-style:italic;color:var(--navy);line-height:1.5;margin-bottom:20px}
+.werkwijze-note p{font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* FRAMEWORKS */
+.frameworks-section{background:var(--navy)}
+.frameworks-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.framework-card{background:rgba(250,248,244,0.04);border:1px solid rgba(250,248,244,0.08);border-radius:var(--radius);padding:28px 32px}
+.framework-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.framework-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--ivory);margin-bottom:10px}
+.framework-desc{font-size:.85rem;color:rgba(250,248,244,0.5);line-height:1.75;font-weight:300}
+
+/* CTA */
+.cta-section{background:var(--yellow)}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.cta-inner p{font-size:1rem;color:rgba(27,47,78,0.65);line-height:1.8;margin-bottom:36px;font-weight:300}
+.btn-navy{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:var(--yellow);padding:16px 36px;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .2s}
+.btn-navy:hover{background:var(--navy-mid);transform:translateY(-1px)}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:48px 4rem;text-align:center}
+.footer-logo{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ivory);margin-bottom:12px}
+footer p{font-size:.8rem;color:rgba(250,248,244,0.35);line-height:1.7}
+footer a{color:var(--teal);text-decoration:none}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:rgba(250,248,244,0.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(250,248,244,0.8)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+.fade-up-1{animation-delay:.1s}.fade-up-2{animation-delay:.25s}.fade-up-3{animation-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .page-hero{padding:64px 1.5rem 56px}
+  .section{padding:64px 1.5rem}
+  .sessie-grid{grid-template-columns:1fr}
+  .frameworks-grid{grid-template-columns:1fr}
+  .stappen::before{display:none}
+  .stap{flex-direction:column;gap:16px}
+  .stap-num{width:44px;height:44px}
+  .stap-content{padding:20px 22px}
+  .stap-connector{padding-left:0}
+  .werkwijze-note{padding:28px 24px}
+  footer{padding:36px 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">B&amp;B Mind Coaching</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="aanpak.html" class="active">Aanpak</a></li>
+    <li><a href="trajecten.html">Trajecten</a></li>
+    <li><a href="over.html">Over</a></li>
+    <li><a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta">Gratis kennismakingsgesprek</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-overlay" id="navMobileOverlay">
+  <a href="tools.html" onclick="closeMobileNav()">Tools</a>
+  <a href="aanpak.html" onclick="closeMobileNav()">Aanpak</a>
+  <a href="trajecten.html" onclick="closeMobileNav()">Trajecten</a>
+  <a href="over.html" onclick="closeMobileNav()">Over</a>
+  <a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta" onclick="closeMobileNav()">Gratis kennismakingsgesprek</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-label fade-up fade-up-1">De aanpak</span>
+    <h1 class="fade-up fade-up-2">Richting. Identiteit. Plan.<br><em>In die volgorde, altijd.</em></h1>
+    <p class="fade-up fade-up-3">Elke sessie is anders, maar het traject volgt altijd dezelfde logica. Eerst begrijpen waar je naartoe wilt. Dan bouwen wie je daarvoor moet worden. Dan het plan dat je er brengt.</p>
+  </div>
+</section>
+
+<!-- DE DRIE STAPPEN -->
+<section class="stappen-section section">
+  <div class="section-inner">
+    <div class="section-tag">De methode</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:56px">Drie stappen.<br><em style="color:var(--teal);font-style:italic">Één helder resultaat.</em></h2>
+    <div class="stappen">
+
+      <div class="stap s1">
+        <div class="stap-num"><span>01</span></div>
+        <div class="stap-content">
+          <div class="stap-label">Richting</div>
+          <div class="stap-title">Waar wil je naartoe?</div>
+          <p class="stap-desc">We beginnen niet met wat er mis is, maar met wat je wilt bouwen. Wat is het doel, wat betekent succes voor jou, en welke versie van jezelf hoort daarbij? Zonder die helderheid is elke stap in de verkeerde richting mogelijk. Elke sessie start altijd hier, ongeacht wat je denkt dat je nodig hebt.</p>
+        </div>
+      </div>
+
+      <div class="stap-connector c1">
+        <div class="stap-connector-line"></div>
+        <div class="stap-connector-text">De richting is helder. Nu de persoon die er hoort &rarr;</div>
+      </div>
+
+      <div class="stap s2">
+        <div class="stap-num"><span>02</span></div>
+        <div class="stap-content">
+          <div class="stap-label">Identiteit</div>
+          <div class="stap-title">Wie moet je worden om daar te komen?</div>
+          <p class="stap-desc">Doelen bereiken vraagt niet alleen een plan, het vraagt een identiteit die bij dat doel past. We bouwen samen het beeld van die persoon: hoe die denkt, hoe die handelt, hoe die omgaat met tegenslag en verleiding. Dat beeld wordt jouw referentiepunt als het moeilijk wordt.</p>
+        </div>
+      </div>
+
+      <div class="stap-connector c2">
+        <div class="stap-connector-line"></div>
+        <div class="stap-connector-text">De identiteit staat. Nu het concrete plan van aanpak &rarr;</div>
+      </div>
+
+      <div class="stap s3">
+        <div class="stap-num"><span>03</span></div>
+        <div class="stap-content">
+          <div class="stap-label">Plan</div>
+          <div class="stap-title">Wat ga je concreet doen?</div>
+          <p class="stap-desc">Met de richting en identiteit als fundament bouwen we een meetbaar plan van aanpak. Geen vage intenties, maar concrete stappen, duidelijke mijlpalen, en een systeem dat blijft werken ook als de motivatie er even niet is. Het plan is van jou. De groei ook.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WAT JE KUNT VERWACHTEN -->
+<section class="sessie-section section">
+  <div class="section-inner">
+    <div class="section-tag">Wat je kunt verwachten</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px">Wat er gebeurt<br><em style="color:var(--teal);font-style:italic">in een traject.</em></h2>
+    <p style="font-size:1rem;color:var(--muted);line-height:1.8;max-width:580px;font-weight:300;margin-bottom:48px">De meeste mensen starten met een beeld van wat ze willen. Dat beeld klopt vaak gedeeltelijk. Het traject begint met het scherp krijgen van dat beeld, niet met het uitvoeren ervan.</p>
+    <div class="sessie-grid">
+      <div class="sessie-card">
+        <div class="sessie-num">01</div>
+        <div class="sessie-title">De richting die je denkt te willen</div>
+        <p class="sessie-desc">Je komt met een doel. Misschien vaag, misschien heel concreet. Wat het eerste gesprek doet is niet dat doel bevestigen, maar de vraag stellen: klopt dit? Is dit wat je werkelijk wilt, of is het wat je denkt te moeten willen? Dat verschil is groter dan het lijkt.</p>
+      </div>
+      <div class="sessie-card">
+        <div class="sessie-num">02</div>
+        <div class="sessie-title">De richting die er werkelijk achter zit</div>
+        <p class="sessie-desc">Vaak blijkt in de eerste gesprekken dat de richting die iemand noemt niet de richting is die hem drijft. Iemand zegt een bedrijf te willen starten, maar zoekt eigenlijk autonomie. Iemand wil promotie maken, maar wil eigenlijk erkenning. Die onderliggende richting is het vertrekpunt. Zonder dat klopt de rest niet.</p>
+      </div>
+      <div class="sessie-card">
+        <div class="sessie-num">03</div>
+        <div class="sessie-title">De identiteit die daarbij hoort</div>
+        <p class="sessie-desc">Als de richting helder is, bouwen we het beeld van de persoon die daar naartoe gaat. Niet wie je nu bent, maar wie je moet worden. Hoe die denkt, hoe die handelt, welke gewoontes en routines daarbij horen. Dat beeld wordt het referentiepunt voor alles wat volgt.</p>
+      </div>
+      <div class="sessie-card">
+        <div class="sessie-num">04</div>
+        <div class="sessie-title">Het plan dat je er brengt</div>
+        <p class="sessie-desc">Met de richting en identiteit als fundament bouw je een concreet plan. Geen vage intenties, maar stappen die passen bij wie jij aan het worden bent. En als het vastloopt, gaan we niet harder duwen maar kijken we wat er werkelijk speelt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WERKWIJZE QUOTE -->
+<section class="werkwijze-section section">
+  <div class="section-inner">
+    <div class="werkwijze-note">
+      <blockquote>"Eerst vragen stellen en de ander laten ontdekken. Als dat vastzit: tools aanbieden. Als dat ook vastzit: kaders stellen."</blockquote>
+      <p>Dit is hoe elke sessie werkt. Niet de coach die het antwoord geeft, maar de coach die de juiste vraag stelt. Jij hebt het antwoord al. Wat je nodig hebt is iemand die je helpt het te vinden.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section class="frameworks-section section">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--teal)">Waarop het is gebaseerd</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--ivory);line-height:1.2;margin-bottom:16px">Bewezen methodes.<br><em style="color:var(--yellow-dark);font-style:italic">Praktisch toegepast.</em></h2>
+    <p style="font-size:1rem;color:rgba(250,248,244,0.55);line-height:1.8;max-width:560px;font-weight:300;margin-bottom:0">De aanpak is niet bedacht maar gebouwd op frameworks die werken. Elke methode wordt ingezet op het moment dat het past, niet als vast programma.</p>
+    <div class="frameworks-grid">
+      <div class="framework-card">
+        <div class="framework-label">Gewoonte & gedrag</div>
+        <div class="framework-title">Atomic Habits</div>
+        <p class="framework-desc">Gedrag verandert niet door wilskracht maar door systemen. Identiteitsgebaseerde gewoonten, omgeving ontwerpen, 1% verbetering per dag.</p>
+      </div>
+      <div class="framework-card">
+        <div class="framework-label">Richting & motivatie</div>
+        <div class="framework-title">Start With Why</div>
+        <p class="framework-desc">Mensen worden gemotiveerd door waarom, niet door wat of hoe. Als de richting onduidelijk is, gaan we terug naar het waarom.</p>
+      </div>
+      <div class="framework-card">
+        <div class="framework-label">Oplossingsgerichte coaching</div>
+        <div class="framework-title">De Shazer & Kim Berg</div>
+        <p class="framework-desc">Focus op oplossing, niet op probleem. Wondervraag, uitzonderingen zoeken, kleine stappen. Gebruikt als iemand vastloopt in het probleem.</p>
+      </div>
+      <div class="framework-card">
+        <div class="framework-label">Verandermotivatie</div>
+        <div class="framework-title">Motiverende gespreksvoering</div>
+        <p class="framework-desc">Mensen veranderen als ze zichzelf horen zeggen waarom ze willen veranderen. Open vragen, reflectief luisteren, nooit argumenteren voor verandering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section">
+  <div class="section-inner">
+    <div class="cta-inner">
+      <h2>Herken je de aanpak?<br>Dan is het gesprek de volgende stap.</h2>
+      <p>Een gratis kennismakingsgesprek van 30 minuten. We kijken samen of deze aanpak bij jouw situatie past. Geen pitch, geen druk.</p>
+      <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-navy">
+        Plan een gratis gesprek
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">B&amp;B Mind Coaching</div>
+  <p>Persoonlijke coaching voor ambitieuze mensen die de volgende stap willen zetten.</p>
+  <p style="margin-top:8px"><a href="mailto:hello@bbmindcoaching.nl">hello@bbmindcoaching.nl</a></p>
+  <div class="footer-links">
+    <a href="tools.html">Tools</a>
+    <a href="aanpak.html">Aanpak</a>
+    <a href="trajecten.html">Trajecten</a>
+    <a href="over.html">Over</a>
+    <a href="privacyverklaring.html">Privacyverklaring</a>
+    <a href="algemene-voorwaarden.html">Algemene voorwaarden</a>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('navHamburger');
+const overlay = document.getElementById('navMobileOverlay');
+hamburger.addEventListener('click', () => overlay.classList.toggle('open'));
+function closeMobileNav() { overlay.classList.remove('open'); }
+</script>
+</body>
+</html>

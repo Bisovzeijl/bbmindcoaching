@@ -148,6 +148,19 @@ nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;jus
   .next-step-card{padding:28px 20px}
   .btn-actions{flex-direction:column;align-items:center}
 }
+
+.upsell-card{background:var(--white);border:1.5px solid rgba(76,157,176,.25);border-radius:var(--radius);padding:32px 36px;margin-bottom:28px;position:relative;overflow:hidden}
+.upsell-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(76,157,176,.06)}
+.upsell-tag{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.upsell-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);margin-bottom:10px;line-height:1.2}
+.upsell-card h3 em{font-style:italic;color:var(--teal)}
+.upsell-card p{font-size:.875rem;color:var(--muted);line-height:1.75;margin-bottom:20px;font-weight:300}
+.upsell-pricing{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.upsell-price-orig{font-size:.82rem;color:var(--muted);text-decoration:line-through;font-weight:300}
+.upsell-price-new{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--navy)}
+.upsell-price-label{font-size:.75rem;color:var(--teal);font-weight:600;background:rgba(76,157,176,.1);padding:4px 10px;border-radius:20px}
+.upsell-note{font-size:.72rem;color:var(--muted);font-style:italic;margin-top:10px;font-weight:300}
+
 </style>
 </head>
 <body>
@@ -322,9 +335,26 @@ nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;jus
       </button>
     </div>
 
+    <div class="upsell-card">
+      <div class="upsell-tag">Volgende stap</div>
+      <h3>Weet je wat je wilt.<br><em>Maar wat staat er in de weg?</em></h3>
+      <p>Twee vragen. Één analyse. De Reflectietool laat zien wat je wilt bereiken. De Maslow Blueprint analyseert je fundament op vijf niveaus en laat zien waar het vastloopt. Samen verbinden ze jouw doel met de blokkade die er het meest toe doet.</p>
+      <p style="font-size:.8rem;color:var(--muted);font-weight:300;font-style:italic;margin-bottom:16px;">We slaan geen data op. Doe de tools in één sessie voor de gecombineerde analyse.</p>
+      <div class="upsell-pricing">
+        <span class="upsell-price-orig">€19</span>
+        <span class="upsell-price-new">€14</span>
+        <span class="upsell-price-label">Samen met de Reflectietool</span>
+      </div>
+      <a id="maslowBtn" href="https://bbmindcoaching.nl/maslow-blueprint" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:0">
+        Ga naar de Maslow Blueprint
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="upsell-note">De gecombineerde analyse werkt alleen als je de Maslow Blueprint direct na deze tool doet, in dezelfde sessie.</p>
+    </div>
+
     <div class="next-step-card">
-      <div class="nsc-tag">Volgende stap</div>
-      <h3>Wil je hier verder<br><em>mee aan de slag?</em></h3>
+      <div class="nsc-tag">Of direct een gesprek</div>
+      <h3>Liever meteen<br><em>in gesprek?</em></h3>
       <p id="overbruggingsTekst">Een gratis kennismakingsgesprek van 30 minuten. Geen pitch, geen druk. Gewoon een eerlijk gesprek over wat jouw situatie vraagt.</p>
       <div class="btn-actions">
         <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-navy">
@@ -468,6 +498,15 @@ function toonResultaten(tekst, overbrugging) {
   if (overbrugging) {
     document.getElementById('overbruggingsTekst').textContent = overbrugging;
   }
+
+  // Bouw Maslow Blueprint URL met doelzin als parameter
+  const doelRuw = antwoorden[1] || '';
+  // Neem de eerste zin of eerste 200 tekens als doelzin
+  const eersteZin = doelRuw.split(/[.!?\n]/)[0].trim();
+  const doelzin = eersteZin.length > 20 ? eersteZin.slice(0, 200) : doelRuw.slice(0, 200);
+  const maslowUrl = 'https://bbmindcoaching.nl/maslow-blueprint?doel=' + encodeURIComponent(doelzin);
+  const maslowBtn = document.getElementById('maslowBtn');
+  if (maslowBtn) maslowBtn.href = maslowUrl;
 
   const labels = [
     'Wat denk je dat je wilt bereiken?',

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Over Thabiso van Zeijl | B&B Mind Coaching | Mentaal Coach Alphen aan den Rijn</title>
+<meta name="description" content="Thabiso van Zeijl is mentaal coach bij B&B Mind Coaching in Alphen aan den Rijn. Hij helpt ambitieuze mensen structuur bouwen zodat hun doelen werkelijkheid worden."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E; --navy-mid:#2a4060;
+  --teal:#4c9db0; --teal-dark:#3a7f91; --teal-light:#e8f5f8;
+  --yellow:#ffebaf; --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4; --muted:#5a7a86; --white:#ffffff;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 8px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;background:rgba(27,47,78,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:#ffebaf;letter-spacing:.03em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+.nav-links a:hover{color:rgba(255,255,255,0.95)}
+.nav-links a.active{color:rgba(255,255,255,0.95)}
+.nav-cta{background:var(--teal) !important;color:#fff !important;padding:9px 22px;border-radius:6px;font-weight:600 !important;font-size:.8rem !important;letter-spacing:.04em;transition:background .2s !important}
+.nav-cta:hover{background:var(--teal-dark) !important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px}
+.nav-mobile-overlay{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(27,47,78,0.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:99}
+.nav-mobile-overlay.open{display:flex}
+.nav-mobile-overlay a{font-size:1.1rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:.04em}
+.nav-mobile-overlay .nav-cta{background:var(--teal);color:#fff !important;padding:12px 28px;border-radius:6px}
+
+/* HERO */
+.over-hero{margin-top:68px;background:var(--navy);padding:96px 4rem 80px;position:relative;overflow:hidden}
+.over-hero::before{content:'';position:absolute;top:-100px;right:-80px;width:500px;height:500px;background:var(--teal);border-radius:50%;opacity:.05;pointer-events:none}
+.over-hero::after{content:'';position:absolute;bottom:-60px;left:10%;width:300px;height:300px;background:var(--yellow);border-radius:50%;opacity:.04;pointer-events:none}
+.over-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:80px;align-items:center}
+.over-hero-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.over-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4rem);font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:28px}
+.over-hero h1 em{font-style:italic;color:var(--yellow-dark)}
+.over-hero h1 strong{font-weight:600;display:block}
+.over-hero-sub{font-size:1rem;color:rgba(250,248,244,0.6);line-height:1.85;font-weight:300;max-width:520px}
+
+/* PHOTO PLACEHOLDER */
+.photo-block{position:relative;z-index:1}
+.photo-placeholder{background:linear-gradient(160deg,rgba(76,157,176,0.25) 0%,rgba(27,47,78,0.7) 100%);border-radius:var(--radius);aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:1px solid rgba(76,157,176,0.2);position:relative;overflow:hidden}
+.photo-placeholder::before{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,235,175,0.06)}
+.photo-icon{width:72px;height:72px;background:rgba(76,157,176,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(76,157,176,0.25)}
+.photo-icon svg{width:32px;height:32px;stroke:var(--teal);fill:none;stroke-width:1.5}
+.photo-placeholder p{font-size:.72rem;color:rgba(250,248,244,0.25);letter-spacing:.1em;text-transform:uppercase}
+
+/* KERNWOORDEN STRIP */
+.kernwoorden-strip{background:var(--yellow);padding:40px 4rem}
+.kernwoorden-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:64px}
+.kw-item{text-align:center}
+.kw-main{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--navy);margin-bottom:4px}
+.kw-sub{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(27,47,78,0.5)}
+.kw-divider{width:1px;height:48px;background:rgba(27,47,78,0.15)}
+
+/* VERHAAL SECTIE */
+.verhaal{background:var(--ivory);padding:96px 4rem}
+.verhaal-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start}
+.verhaal-sidebar{position:sticky;top:96px}
+.verhaal-sidebar-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.verhaal-sidebar h2{font-family:var(--serif);font-size:2.2rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:24px}
+.verhaal-sidebar h2 em{font-style:italic;color:var(--teal)}
+.verhaal-sidebar-meta{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.meta-item{display:flex;align-items:flex-start;gap:12px}
+.meta-icon{width:36px;height:36px;border-radius:8px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.meta-icon svg{width:16px;height:16px;stroke:var(--teal);fill:none;stroke-width:1.5}
+.meta-text{font-size:.85rem;color:var(--muted);line-height:1.6;font-weight:300}
+.meta-text strong{display:block;color:var(--navy);font-weight:500;font-size:.82rem;margin-bottom:1px}
+
+.verhaal-body{padding-top:8px}
+.verhaal-alinea{font-size:1rem;color:var(--navy);line-height:1.95;font-weight:300;margin-bottom:28px}
+.verhaal-alinea:last-of-type{margin-bottom:0}
+.verhaal-alinea strong{font-weight:500;color:var(--navy)}
+
+.verhaal-quote{background:var(--navy);border-radius:var(--radius);padding:36px 40px;margin:40px 0;position:relative;overflow:hidden}
+.verhaal-quote::before{content:'';position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(76,157,176,0.1)}
+.verhaal-quote blockquote{font-family:var(--serif);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--ivory);line-height:1.5;position:relative}
+.verhaal-quote blockquote em{color:var(--yellow-dark);font-style:normal}
+
+/* METHODE SECTIE */
+.methode{background:var(--white);padding:96px 4rem}
+.methode-inner{max-width:1100px;margin:0 auto}
+.methode-header{margin-bottom:56px}
+.methode-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.methode-header h2{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.methode-header h2 em{font-style:italic;color:var(--teal)}
+.methode-header p{font-size:1rem;color:var(--muted);line-height:1.8;max-width:560px;font-weight:300}
+.methode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.methode-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.methode-card-top{padding:32px 32px 24px;background:var(--navy)}
+.methode-card-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:rgba(76,157,176,0.3);line-height:1;margin-bottom:12px}
+.methode-card-top h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ivory);margin-bottom:8px}
+.methode-card-top p{font-size:.82rem;color:rgba(250,248,244,0.5);line-height:1.65;font-weight:300}
+.methode-card-body{background:var(--white);padding:24px 32px;border:1px solid rgba(27,47,78,0.07);border-top:none}
+.methode-card-body p{font-size:.875rem;color:var(--muted);line-height:1.75;font-weight:300}
+
+/* CTA SECTIE */
+.over-cta{background:var(--navy);padding:96px 4rem}
+.over-cta-inner{max-width:800px;margin:0 auto;text-align:center}
+.over-cta-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.over-cta h2{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:300;color:var(--ivory);line-height:1.2;margin-bottom:16px}
+.over-cta h2 em{font-style:italic;color:var(--yellow-dark)}
+.over-cta p{font-size:1rem;color:rgba(250,248,244,0.55);line-height:1.8;font-weight:300;max-width:520px;margin:0 auto 40px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-yellow{display:inline-block;background:var(--yellow);color:var(--navy);padding:14px 32px;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .2s}
+.btn-yellow:hover{background:var(--yellow-dark);transform:translateY(-1px)}
+.btn-ghost-light{display:inline-block;background:transparent;color:rgba(250,248,244,0.7);padding:13px 28px;border-radius:4px;font-size:.875rem;font-weight:500;letter-spacing:.04em;text-decoration:none;border:1.5px solid rgba(250,248,244,0.2);transition:all .2s}
+.btn-ghost-light:hover{border-color:rgba(250,248,244,0.5);color:var(--ivory)}
+
+/* TOOL SUGGESTIE */
+.tool-suggestie{background:var(--ivory);padding:56px 4rem}
+.tool-suggestie-inner{max-width:800px;margin:0 auto;background:var(--white);border-radius:var(--radius);padding:40px 48px;border:1px solid rgba(76,157,176,0.12);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:32px}
+.tool-suggestie-text{}
+.tool-suggestie-tag{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.tool-suggestie-text h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--navy);margin-bottom:8px}
+.tool-suggestie-text p{font-size:.875rem;color:var(--muted);line-height:1.7;font-weight:300;max-width:440px}
+.btn-teal{display:inline-block;background:var(--teal);color:#fff;padding:12px 28px;border-radius:4px;font-size:.875rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:all .2s;white-space:nowrap}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+
+/* QUOTE STRIP */
+.quote-strip{background:var(--yellow);padding:56px 4rem;text-align:center}
+.quote-strip blockquote{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.9rem);font-weight:400;font-style:italic;color:var(--navy);line-height:1.45;max-width:700px;margin:0 auto 16px}
+.quote-strip cite{font-size:.78rem;color:rgba(27,47,78,0.5);letter-spacing:.08em;text-transform:uppercase;font-style:normal}
+
+/* FOOTER */
+footer{background:var(--navy);padding:48px 4rem;text-align:center}
+.footer-logo{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ivory);margin-bottom:12px}
+footer p{font-size:.8rem;color:rgba(250,248,244,0.35);line-height:1.7}
+footer a{color:var(--teal);text-decoration:none}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:rgba(250,248,244,0.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(250,248,244,0.8)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+.fade-up-1{animation-delay:.1s}.fade-up-2{animation-delay:.25s}.fade-up-3{animation-delay:.4s}.fade-up-4{animation-delay:.55s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .over-hero{padding:72px 1.5rem 56px}
+  .over-hero-inner{grid-template-columns:1fr}
+  .photo-block{display:none}
+  .kernwoorden-strip{padding:32px 1.5rem}
+  .kernwoorden-inner{gap:32px}
+  .kw-divider{display:none}
+  .verhaal{padding:64px 1.5rem}
+  .verhaal-inner{grid-template-columns:1fr}
+  .verhaal-sidebar{position:static}
+  .methode{padding:64px 1.5rem}
+  .methode-grid{grid-template-columns:1fr}
+  .over-cta{padding:64px 1.5rem}
+  .tool-suggestie{padding:40px 1.5rem}
+  .tool-suggestie-inner{flex-direction:column;align-items:flex-start;padding:32px 28px}
+  .quote-strip{padding:48px 1.5rem}
+  footer{padding:36px 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">B&amp;B Mind Coaching</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="aanpak.html">Aanpak</a></li>
+    <li><a href="trajecten.html">Trajecten</a></li>
+    <li><a href="over.html" class="active">Over</a></li>
+    <li><a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta">Gratis kennismakingsgesprek</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-overlay" id="navMobileOverlay">
+  <a href="tools.html" onclick="closeMobileNav()">Tools</a>
+  <a href="aanpak.html" onclick="closeMobileNav()">Aanpak</a>
+  <a href="trajecten.html" onclick="closeMobileNav()">Trajecten</a>
+  <a href="over.html" onclick="closeMobileNav()">Over</a>
+  <a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta" onclick="closeMobileNav()">Gratis kennismakingsgesprek</a>
+</div>
+
+<!-- HERO -->
+<section class="over-hero">
+  <div class="over-hero-inner">
+    <div>
+      <div class="over-hero-label fade-up fade-up-1">Over de coach</div>
+      <h1 class="fade-up fade-up-2">Thabiso<br><em>van Zeijl.</em><br><strong>Mentaal coach.</strong></h1>
+      <p class="over-hero-sub fade-up fade-up-3">Ambitie genoeg. Energie genoeg. Wat ontbrak was de structuur om die energie op de juiste plek in te zetten. Dat inzicht is de basis van alles wat ik doe.</p>
+    </div>
+    <div class="photo-block fade-up fade-up-3">
+      <div class="photo-placeholder">
+        <div class="photo-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <p>Foto volgt binnenkort</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KERNWOORDEN STRIP -->
+<div class="kernwoorden-strip">
+  <div class="kernwoorden-inner">
+    <div class="kw-item">
+      <div class="kw-main">Eerlijk</div>
+      <div class="kw-sub">Je krijgt de waarheid</div>
+    </div>
+    <div class="kw-divider"></div>
+    <div class="kw-item">
+      <div class="kw-main">Warm</div>
+      <div class="kw-sub">Zonder de waarheid te verzachten</div>
+    </div>
+    <div class="kw-divider"></div>
+    <div class="kw-item">
+      <div class="kw-main">Gedisciplineerd</div>
+      <div class="kw-sub">Structuur is hoe groei echt wordt</div>
+    </div>
+  </div>
+</div>
+
+<!-- VERHAAL -->
+<section class="verhaal">
+  <div class="verhaal-inner">
+    <div class="verhaal-sidebar">
+      <div class="verhaal-sidebar-tag">Mijn verhaal</div>
+      <h2>Gebouwd door iemand die zelf de <em>richting miste.</em></h2>
+      <div class="verhaal-sidebar-meta">
+        <div class="meta-item">
+          <div class="meta-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="meta-text">
+            <strong>Locatie</strong>
+            Alphen aan den Rijn en omgeving
+          </div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="meta-text">
+            <strong>Achtergrond</strong>
+            Mentaal coach, voormalig commercieel en brand manager
+          </div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="meta-text">
+            <strong>Aanpak</strong>
+            Richting, Identiteit, Plan
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verhaal-body">
+      <p class="verhaal-alinea">Mijn naam is Thabiso van Zeijl. Een groot deel van mijn leven heeft in het teken gestaan van presteren. Ik heb op het hoogste amateurniveau gevoetbald, en dat heeft me veel geleerd over discipline, doorzettingsvermogen en wat er nodig is om resultaten te behalen. Niet alleen op het veld, maar ook daarbuiten.</p>
+
+      <p class="verhaal-alinea">Als jongeman begon mijn maatschappelijke carrière op de klantenservice. Daar leerde ik goed luisteren, snel schakelen en de vraag achter de vraag herkennen. Vervolgens groeide ik door naar projectleider, waar ik verantwoordelijk was voor complexe trajecten en het verbinden van verschillende belangen. Daarna maakte ik de overstap naar sales. Daar ontdekte ik hoe belangrijk het is om niet alleen te kijken naar wat iemand vraagt, maar vooral te herkennen waar iemand echt tegenaan loopt. Als commercieel en brand manager kwam alles samen: strategie, communicatie, positionering en het begeleiden van mensen en organisaties naar groei.</p>
+
+      <div class="verhaal-quote">
+        <blockquote>Hard werken is niet hetzelfde als <em>gericht werken.</em></blockquote>
+      </div>
+
+      <p class="verhaal-alinea">Steeds een volgende stap zetten voelde voor mij vanzelfsprekend. Maar ergens onderweg liep ik vast. Niet omdat ik te veel werkte, maar omdat ik niet scherp genoeg had waar ik het eigenlijk allemaal voor deed. Tijdens mijn opleiding tot mentaal coach kwam ik in aanraking met frameworks en methodes die mij hielpen om meer richting, helderheid en structuur aan te brengen in mijn leven en doelen.</p>
+
+      <p class="verhaal-alinea">Die inzichten hebben niet alleen mij geholpen, maar vormen vandaag ook de basis van mijn werk. Ik help mensen om helder te krijgen wat ze echt willen, welke patronen hen tegenhouden en hoe ze hun ambities kunnen vertalen naar concrete stappen. Vanuit die gedachte is B&amp;B Mind Coaching ontstaan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE -->
+<section class="methode">
+  <div class="methode-inner">
+    <div class="methode-header">
+      <div class="methode-tag">Hoe ik werk</div>
+      <h2>Richting. Identiteit. <em>Plan.</em></h2>
+      <p>Drie stappen die samen de structuur vormen die ambitie omzet in iets concreets en blijvends.</p>
+    </div>
+    <div class="methode-grid">
+      <div class="methode-card">
+        <div class="methode-card-top">
+          <div class="methode-card-num">01</div>
+          <h3>Richting</h3>
+          <p>Waar wil je naartoe?</p>
+        </div>
+        <div class="methode-card-body">
+          <p>Veel mensen weten wat ze willen bereiken maar hebben nooit de tijd genomen om dat echt scherp te krijgen. We beginnen altijd hier. Zonder heldere richting zijn alle stappen daarna giswerk.</p>
+        </div>
+      </div>
+      <div class="methode-card">
+        <div class="methode-card-top">
+          <div class="methode-card-num">02</div>
+          <h3>Identiteit</h3>
+          <p>Wie moet je worden om daar te komen?</p>
+        </div>
+        <div class="methode-card-body">
+          <p>Doelen behalen is niet alleen een kwestie van doen. Het vraagt ook om worden. We kijken wie jij moet zijn, welke gewoonten daarbij horen en wat dat vraagt van hoe je nu leeft.</p>
+        </div>
+      </div>
+      <div class="methode-card">
+        <div class="methode-card-top">
+          <div class="methode-card-num">03</div>
+          <h3>Plan</h3>
+          <p>Wat ga je concreet doen?</p>
+        </div>
+        <div class="methode-card-body">
+          <p>Inzichten zonder acties veranderen niets. Elk traject eindigt met een concreet plan: meetbare stappen, habits en routines die je dagelijks dichter bij je doel brengen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="over-cta">
+  <div class="over-cta-inner">
+    <div class="over-cta-tag">Klaar om te beginnen?</div>
+    <h2>30 minuten.<br><em>Geen verplichtingen.</em></h2>
+    <p>We verkennen samen waar je staat, wat je wilt bereiken en of een traject bij je past. Geen pitch, geen druk. Gewoon een eerlijk gesprek over wat jouw situatie vraagt.</p>
+    <div class="cta-buttons">
+      <a href="https://calendly.com/hello-bbmindcoaching/30min" target="_blank" class="btn-yellow">Plan een gratis kennismakingsgesprek</a>
+      <a href="index.html#trajecten" class="btn-ghost-light">Bekijk de trajecten</a>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL SUGGESTIE -->
+<div class="tool-suggestie">
+  <div class="tool-suggestie-inner">
+    <div class="tool-suggestie-text">
+      <div class="tool-suggestie-tag">Nog niet klaar voor een gesprek?</div>
+      <h3>Begin met de gratis reflectietool</h3>
+      <p>Vier vragen die je helpen ontdekken wat je echt wilt en wie je moet worden om daar te komen. Geen registratie, geen opslag, alleen voor jou.</p>
+    </div>
+    <a href="reflectie-tool.html" class="btn-teal">Doe de reflectietool</a>
+  </div>
+</div>
+
+<!-- QUOTE STRIP -->
+<div class="quote-strip">
+  <blockquote>"Ik help je de structuur bouwen. De groei is van jou."</blockquote>
+  <cite>Thabiso van Zeijl &middot; B&amp;B Mind Coaching</cite>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">B&amp;B Mind Coaching</div>
+  <p>Persoonlijke coaching in Alphen aan den Rijn en omgeving.</p>
+  <p style="margin-top:8px"><a href="mailto:hello@bbmindcoaching.nl">hello@bbmindcoaching.nl</a></p>
+  <div class="footer-links">
+    <a href="tools.html">Tools</a>
+    <a href="aanpak.html">Aanpak</a>
+    <a href="trajecten.html">Trajecten</a>
+    <a href="over.html">Over</a>
+    <a href="privacyverklaring.html">Privacyverklaring</a>
+    <a href="algemene-voorwaarden.html">Algemene voorwaarden</a>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('navHamburger');
+const overlay = document.getElementById('navMobileOverlay');
+hamburger.addEventListener('click', () => overlay.classList.toggle('open'));
+function closeMobileNav() { overlay.classList.remove('open'); }
+</script>
+</body>
+</html>

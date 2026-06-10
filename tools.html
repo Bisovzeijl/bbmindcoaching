@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tools | B&B Mind Coaching</title>
+<meta name="description" content="Twee vragen. Één analyse. De Blokkade Scan, Reflectietool en Maslow Blueprint van B&B Mind Coaching."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E; --navy-mid:#2a4060;
+  --teal:#4c9db0; --teal-dark:#3a7f91; --teal-light:#e8f5f8;
+  --yellow:#ffebaf; --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4; --muted:#5a7a86; --white:#ffffff;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 8px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;background:rgba(27,47,78,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:#ffebaf;letter-spacing:.03em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+.nav-links a:hover{color:rgba(255,255,255,0.95)}
+.nav-links a.active{color:rgba(255,255,255,0.95)}
+.nav-cta{background:var(--teal) !important;color:#fff !important;padding:9px 22px;border-radius:6px;font-weight:600 !important;font-size:.8rem !important;letter-spacing:.04em;transition:background .2s !important}
+.nav-cta:hover{background:var(--teal-dark) !important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px}
+.nav-mobile-overlay{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(27,47,78,0.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:99}
+.nav-mobile-overlay.open{display:flex}
+.nav-mobile-overlay a{font-size:1.1rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:.04em}
+.nav-mobile-overlay .nav-cta{background:var(--teal);color:#fff !important;padding:12px 28px;border-radius:6px}
+
+/* PAGE HERO */
+.page-hero{margin-top:68px;background:var(--navy);padding:80px 4rem 72px;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;background:var(--teal);border-radius:50%;opacity:.06;pointer-events:none}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.page-hero-label{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:24px}
+.page-hero h1 em{font-style:italic;color:var(--yellow-dark)}
+.page-hero p{font-size:1.05rem;color:rgba(250,248,244,0.65);max-width:580px;line-height:1.85;font-weight:300}
+
+/* SECTION */
+.section{padding:96px 4rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+
+/* PRIVACY NOTE STRIP */
+.privacy-strip{background:rgba(76,157,176,0.08);border-bottom:1px solid rgba(76,157,176,0.15);padding:16px 4rem}
+.privacy-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.privacy-strip svg{stroke:var(--teal);flex-shrink:0;width:16px;height:16px;fill:none;stroke-width:2}
+.privacy-strip p{font-size:.8rem;color:var(--muted);font-weight:300;line-height:1.5}
+.privacy-strip strong{color:var(--navy);font-weight:600}
+
+/* COMBINED TOOL CARD */
+.combined-section{background:var(--white)}
+.combined-card{background:var(--navy);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:64px}
+.combined-header{padding:48px 56px;position:relative;overflow:hidden}
+.combined-header::before{content:'';position:absolute;top:-40px;right:-40px;width:240px;height:240px;border-radius:50%;background:rgba(76,157,176,0.1)}
+.combined-tag{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;position:relative}
+.combined-header h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:var(--ivory);line-height:1.2;margin-bottom:16px;position:relative}
+.combined-header h2 em{font-style:italic;color:var(--yellow-dark)}
+.combined-header p{font-size:.975rem;color:rgba(250,248,244,0.6);line-height:1.85;max-width:560px;font-weight:300;position:relative}
+.combined-body{background:var(--ivory);padding:48px 56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.combined-tool{background:var(--white);border-radius:10px;padding:32px;border:1px solid rgba(27,47,78,0.07);box-shadow:var(--shadow)}
+.combined-tool-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--teal);line-height:1;margin-bottom:12px}
+.combined-tool-title{font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+.combined-tool-desc{font-size:.875rem;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:20px}
+.combined-tool-price{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.price-orig{font-size:.82rem;color:var(--muted);text-decoration:line-through}
+.price-new{font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--navy)}
+.price-tag{font-size:.72rem;color:var(--teal);font-weight:600;background:var(--teal-light);padding:3px 10px;border-radius:20px}
+.combined-arrow{display:flex;align-items:center;justify-content:center;padding-top:60px}
+.combined-arrow svg{stroke:var(--teal);opacity:0.4;width:32px;height:32px;fill:none;stroke-width:1.5}
+.combined-cta{background:var(--navy);padding:32px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.combined-cta p{font-size:.875rem;color:rgba(250,248,244,0.55);line-height:1.65;font-weight:300;max-width:480px}
+.combined-cta p strong{color:rgba(250,248,244,0.85);font-weight:500}
+.btn-yellow{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--navy);padding:14px 32px;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .2s;white-space:nowrap}
+.btn-yellow:hover{background:var(--yellow-dark);transform:translateY(-1px)}
+
+/* BLOKKADE SCAN */
+.scan-section{background:var(--teal-light)}
+.scan-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.scan-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.scan-left{background:var(--navy);padding:48px}
+.scan-left-tag{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.scan-left h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:300;color:var(--ivory);line-height:1.2;margin-bottom:16px}
+.scan-left h2 em{font-style:italic;color:var(--yellow-dark)}
+.scan-left p{font-size:.9rem;color:rgba(250,248,244,0.6);line-height:1.8;font-weight:300;margin-bottom:28px}
+.scan-badge{display:inline-block;background:rgba(76,157,176,0.15);border:1px solid rgba(76,157,176,0.3);color:var(--teal);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:24px}
+.btn-teal{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:var(--white);padding:14px 32px;border-radius:4px;font-size:.875rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:all .2s}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.scan-right{padding:48px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+.patroon-item{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid rgba(27,47,78,0.06)}
+.patroon-item:last-child{border-bottom:none}
+.patroon-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px}
+.patroon-name{font-size:.875rem;font-weight:600;color:var(--navy);margin-bottom:3px}
+.patroon-desc{font-size:.8rem;color:var(--muted);line-height:1.55;font-weight:300}
+
+/* FUNNEL UITLEG */
+.funnel-section{background:var(--navy)}
+.funnel-steps{display:flex;flex-direction:column;gap:0;max-width:680px;margin-top:48px}
+.funnel-step{display:flex;gap:24px;align-items:flex-start;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.funnel-step:last-child{border-bottom:none}
+.funnel-step-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--teal);line-height:1;flex-shrink:0;width:40px}
+.funnel-step-content h3{font-size:.9rem;font-weight:600;color:var(--ivory);margin-bottom:6px}
+.funnel-step-content p{font-size:.85rem;color:rgba(250,248,244,0.5);line-height:1.7;font-weight:300}
+.funnel-step-price{display:inline-block;font-size:.72rem;font-weight:600;color:var(--teal);background:rgba(76,157,176,0.12);padding:3px 10px;border-radius:20px;margin-top:8px}
+
+/* CTA */
+.cta-section{background:var(--yellow)}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.cta-inner p{font-size:1rem;color:rgba(27,47,78,0.65);line-height:1.8;margin-bottom:36px;font-weight:300}
+.btn-navy{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:var(--yellow);padding:16px 36px;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .2s}
+.btn-navy:hover{background:var(--navy-mid);transform:translateY(-1px)}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:48px 4rem;text-align:center}
+.footer-logo{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ivory);margin-bottom:12px}
+footer p{font-size:.8rem;color:rgba(250,248,244,0.35);line-height:1.7}
+footer a{color:var(--teal);text-decoration:none}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:rgba(250,248,244,0.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(250,248,244,0.8)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+.fade-up-1{animation-delay:.1s}.fade-up-2{animation-delay:.25s}.fade-up-3{animation-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .page-hero{padding:64px 1.5rem 56px}
+  .privacy-strip{padding:14px 1.5rem}
+  .section{padding:64px 1.5rem}
+  .combined-header{padding:32px 24px}
+  .combined-body{grid-template-columns:1fr;padding:24px}
+  .combined-tool{padding:24px}
+  .combined-arrow{display:none}
+  .combined-cta{padding:24px;flex-direction:column;align-items:flex-start}
+  .scan-inner{grid-template-columns:1fr}
+  .scan-left{padding:32px 24px}
+  .scan-right{padding:24px}
+  .patroon-item{padding:12px 0}
+  .funnel-step{gap:16px}
+  footer{padding:36px 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">B&amp;B Mind Coaching</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="tools.html" class="active">Tools</a></li>
+    <li><a href="aanpak.html">Aanpak</a></li>
+    <li><a href="trajecten.html">Trajecten</a></li>
+    <li><a href="over.html">Over</a></li>
+    <li><a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta">Gratis kennismakingsgesprek</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-overlay" id="navMobileOverlay">
+  <a href="tools.html" onclick="closeMobileNav()">Tools</a>
+  <a href="aanpak.html" onclick="closeMobileNav()">Aanpak</a>
+  <a href="trajecten.html" onclick="closeMobileNav()">Trajecten</a>
+  <a href="over.html" onclick="closeMobileNav()">Over</a>
+  <a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta" onclick="closeMobileNav()">Gratis kennismakingsgesprek</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-label fade-up fade-up-1">Tools</span>
+    <h1 class="fade-up fade-up-2">Twee vragen.<br><em>Één analyse.</em></h1>
+    <p class="fade-up fade-up-3">Wat wil je bereiken? En wat staat er in de weg? De Reflectietool laat zien wat je wilt. De Maslow Blueprint laat zien wat er structureel in de weg staat. Samen geven ze een analyse die alleen voor jou klopt.</p>
+  </div>
+</section>
+
+<!-- PRIVACY NOTE -->
+<div class="privacy-strip">
+  <div class="privacy-strip-inner">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <p><strong>Geen data opgeslagen.</strong> Doe de tools in één sessie voor de gecombineerde analyse. Jouw antwoorden zijn alleen voor jou zichtbaar en worden niet opgeslagen op onze servers.</p>
+  </div>
+</div>
+
+<!-- DE GECOMBINEERDE ANALYSE -->
+<section class="combined-section section">
+  <div class="section-inner">
+
+    <div class="combined-card">
+      <div class="combined-header">
+        <div class="combined-tag">Aanbevolen</div>
+        <h2>De Reflectietool<br><em>en de Maslow Blueprint</em></h2>
+        <p>De Reflectietool geeft je richting. De Maslow Blueprint laat zien wat er in de weg staat. Samen doen ze iets wat geen van beide apart kan: ze verbinden jouw doel met de blokkade die er het meest toe doet.</p>
+      </div>
+      <div class="combined-body">
+        <div class="combined-tool">
+          <div class="combined-tool-num">01</div>
+          <div class="combined-tool-title">Reflectietool</div>
+          <p class="combined-tool-desc">Vier vragen die verder gaan dan het voor de hand liggende antwoord. Wat wil je bereiken, waarom, hoe denk je er te komen, en wie moet je worden? Je krijgt een persoonlijke reflectie terug op basis van wat jij hebt ingevuld.</p>
+          <div class="combined-tool-price">
+            <span class="price-new">€9</span>
+          </div>
+          <a href="reflectie-tool.html" class="btn-teal">
+            Start hier
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="combined-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="combined-tool">
+          <div class="combined-tool-num">02</div>
+          <div class="combined-tool-title">Maslow Blueprint</div>
+          <p class="combined-tool-desc">30 vragen gebaseerd op het werk van Abraham Maslow. Zijn behoeftehiërarchie is een van de meest gebruikte modellen in de coachingswereld omdat het laat zien waarom mensen vastlopen op een manier die motivatie, wilskracht en planning niet oplossen: het fundament klopt niet. Deze tool brengt dat fundament in kaart.</p>
+          <div class="combined-tool-price">
+            <span class="price-orig">€19</span>
+            <span class="price-new">€14</span>
+            <span class="price-tag">Na de Reflectietool</span>
+          </div>
+          <a href="maslow-blueprint.html" class="btn-teal">
+            Bekijk de Blueprint
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="combined-cta">
+        <p>De gecombineerde analyse werkt alleen als je beide tools in één sessie doet. Begin met de Reflectietool. <strong>Na afloop krijg je een persoonlijke link naar de Maslow Blueprint.</strong></p>
+        <a href="reflectie-tool.html" class="btn-yellow">
+          Begin met de Reflectietool
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BLOKKADE SCAN -->
+<section class="scan-section section">
+  <div class="section-inner">
+    <div class="scan-card">
+      <div class="scan-inner">
+        <div class="scan-left">
+          <div class="scan-badge">Gratis</div>
+          <div class="scan-left-tag">Instaptool</div>
+          <h2>De Blokkade Scan.<br><em>Welk patroon houdt jou tegen?</em></h2>
+          <p>21 stellingen. Geen open vragen, alleen klikken. Je ontdekt welk van de zeven blokkadepatronen het meest dominant is in jouw situatie, met twee concrete actiepunten en een verwijzing naar de tool die het beste bij jouw patroon past.</p>
+          <a href="blokkade-scan.html" class="btn-teal">
+            Doe de gratis scan
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="scan-right">
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Uitsteller</div>
+              <p class="patroon-desc">Weet wat hij wil maar komt niet in beweging.</p>
+            </div>
+          </div>
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Perfectionist</div>
+              <p class="patroon-desc">Wacht op het juiste moment dat nooit komt.</p>
+            </div>
+          </div>
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Pleaser</div>
+              <p class="patroon-desc">Stelt eigen doelen uit voor anderen.</p>
+            </div>
+          </div>
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Twijfelaar</div>
+              <p class="patroon-desc">Analyseert eindeloos zonder beslissing.</p>
+            </div>
+          </div>
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Overlever</div>
+              <p class="patroon-desc">Reageert op wat er op hem afkomt in plaats van te sturen.</p>
+            </div>
+          </div>
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Doener</div>
+              <p class="patroon-desc">Handelt snel maar zonder richting.</p>
+            </div>
+          </div>
+          <div class="patroon-item">
+            <div class="patroon-dot"></div>
+            <div>
+              <div class="patroon-name">De Zelfsaboteur</div>
+              <p class="patroon-desc">Komt in beweging maar blokkeert zichzelf vlak voor de finish.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNNEL UITLEG -->
+<section class="funnel-section section">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--teal)">Hoe het werkt</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--ivory);line-height:1.2;margin-bottom:16px">Van tool naar traject.<br><em style="color:var(--yellow-dark);font-style:italic">Stap voor stap.</em></h2>
+    <p style="font-size:1rem;color:rgba(250,248,244,0.55);line-height:1.8;max-width:560px;font-weight:300;margin-bottom:0">De tools zijn geen vervanging voor coaching. Ze zijn de voorbereiding. Elke tool verwijst naar de volgende stap.</p>
+    <div class="funnel-steps">
+      <div class="funnel-step">
+        <div class="funnel-step-num">01</div>
+        <div class="funnel-step-content">
+          <h3>Blokkade Scan</h3>
+          <p>Ontdek welk patroon jou het meest tegenhoudt. Laagdrempelig instapmoment. Geen tekst schrijven, alleen klikken.</p>
+          <span class="funnel-step-price">Gratis</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-step-num">02</div>
+        <div class="funnel-step-content">
+          <h3>Reflectietool</h3>
+          <p>Vier open vragen over wat je wilt bereiken. Persoonlijke reflectie op basis van jouw antwoorden. Geeft je richting en een concrete doelzin mee naar de Blueprint.</p>
+          <span class="funnel-step-price">€9</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-step-num">03</div>
+        <div class="funnel-step-content">
+          <h3>Maslow Blueprint</h3>
+          <p>Structurele analyse van je fundament op vijf niveaus. Verbindt jouw doel aan de blokkade die er het meest toe doet. Persoonlijk trajectadvies aan het einde.</p>
+          <span class="funnel-step-price">€19 &middot; of €14 na de Reflectietool</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-step-num">04</div>
+        <div class="funnel-step-content">
+          <h3>Kennismakingsgesprek</h3>
+          <p>30 minuten. Geen pitch, geen druk. We bespreken wat de tools hebben laten zien en of een traject bij je past.</p>
+          <span class="funnel-step-price">Gratis</span>
+        </div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-step-num">05</div>
+        <div class="funnel-step-content">
+          <h3>Coachingstraject</h3>
+          <p>4, 8 of 12 sessies. Afhankelijk van waar je staat en wat je wilt bereiken. De tools zijn inbegrepen in alle trajecten.</p>
+          <span class="funnel-step-price">€500 / €897 / €1.297</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section">
+  <div class="section-inner">
+    <div class="cta-inner">
+      <h2>Wil je direct een gesprek?<br>Dat kan ook.</h2>
+      <p>De tools zijn een goede voorbereiding, maar niet verplicht. Je kunt ook direct een kennismakingsgesprek plannen.</p>
+      <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-navy">
+        Plan een gratis gesprek
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">B&amp;B Mind Coaching</div>
+  <p>Persoonlijke coaching voor ambitieuze mensen die de volgende stap willen zetten.</p>
+  <p style="margin-top:8px"><a href="mailto:hello@bbmindcoaching.nl">hello@bbmindcoaching.nl</a></p>
+  <div class="footer-links">
+    <a href="tools.html">Tools</a>
+    <a href="aanpak.html">Aanpak</a>
+    <a href="trajecten.html">Trajecten</a>
+    <a href="over.html">Over</a>
+    <a href="privacyverklaring.html">Privacyverklaring</a>
+    <a href="algemene-voorwaarden.html">Algemene voorwaarden</a>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('navHamburger');
+const overlay = document.getElementById('navMobileOverlay');
+hamburger.addEventListener('click', () => overlay.classList.toggle('open'));
+function closeMobileNav() { overlay.classList.remove('open'); }
+</script>
+</body>
+</html>

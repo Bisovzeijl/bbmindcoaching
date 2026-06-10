@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMART Plan — B&B Mind Coaching</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #4c9db0;
+      --navy: #1B2F4E;
+      --ivory: #FAF8F4;
+      --yellow: #ffebaf;
+      --navy-light: #2a4165;
+      --text: #1B2F4E;
+      --muted: #6b7f96;
+      --border: #d8e0e8;
+      --accent-bg: #eef6f9;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ivory);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--navy);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.02em;
+    }
+
+    .header-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 32px 80px;
+    }
+
+    /* PAGE INTRO */
+    .page-intro {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-intro h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .page-intro p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    /* CLIENT ROW */
+    .client-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* FORM ELEMENTS */
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.15s;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+      border-color: var(--teal);
+    }
+
+    textarea { min-height: 80px; }
+    textarea.tall { min-height: 110px; }
+
+    /* SMART GRID */
+    .smart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .smart-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .smart-item.full {
+      grid-column: 1 / -1;
+    }
+
+    .smart-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .smart-question {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .smart-item textarea {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-size: 14px;
+      min-height: 64px;
+    }
+
+    .smart-item textarea:focus {
+      border: none;
+      outline: none;
+    }
+
+    /* ACTIES */
+    .actie-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+
+    .actie-index {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--teal);
+      line-height: 1;
+      padding-top: 13px;
+    }
+
+    .actie-deadline {
+      width: 140px;
+    }
+
+    /* ANKER */
+    .anker-block {
+      background: var(--yellow);
+      border-radius: 4px;
+      padding: 20px 24px;
+    }
+
+    .anker-block label {
+      color: var(--navy);
+      opacity: 0.6;
+    }
+
+    .anker-block textarea {
+      background: transparent;
+      border-color: rgba(27,47,78,0.2);
+      min-height: 72px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* BUTTONS */
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    button {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 12px 24px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s, background 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: var(--ivory);
+    }
+
+    .btn-primary:hover { background: var(--navy-light); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover { background: var(--border); }
+
+    /* PRINT STYLES */
+    @media print {
+      header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .actions { display: none; }
+      body { background: white; }
+      .anker-block { background: var(--yellow) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { padding: 32px 24px; }
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 24px; }
+      main { padding: 32px 20px 60px; }
+      .client-row { grid-template-columns: 1fr; }
+      .smart-grid { grid-template-columns: 1fr; }
+      .smart-item.full { grid-column: 1; }
+      .actie-row { grid-template-columns: auto 1fr; }
+      .actie-deadline { grid-column: 2; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="logo">B&amp;B Mind Coaching</span>
+    <span class="header-label">SMART Plan</span>
+  </header>
+
+  <main>
+
+    <div class="page-intro">
+      <h1>Jouw SMART Plan</h1>
+      <p>Het traject is achter de rug. Dit plan vertaalt wat je hebt ontdekt naar wat je nu gaat doen. Concreet, haalbaar, van jou.</p>
+    </div>
+
+    <!-- Klantgegevens -->
+    <div class="client-row">
+      <div class="field">
+        <label>Naam</label>
+        <input type="text" id="naam" placeholder="Volledige naam" />
+      </div>
+      <div class="field">
+        <label>Traject</label>
+        <select id="traject" style="width:100%;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:white;border:1px solid var(--border);border-radius:4px;padding:12px 14px;outline:none;">
+          <option value="">Selecteer traject</option>
+          <option>Oriëntatie (4 sessies)</option>
+          <option>Standaard (8 sessies)</option>
+          <option>Intensief (12 sessies)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Datum</label>
+        <input type="date" id="datum" />
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Sectie 1: Het Doel -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <span class="section-title">Het doel</span>
+      </div>
+      <div class="field">
+        <label>Formuleer je hoofddoel in één zin</label>
+        <textarea id="hoofddoel" class="tall" placeholder="Wat wil je de komende periode bereiken? Wees concreet en schrijf het in de eerste persoon."></textarea>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Sectie 2: SMART uitwerking -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <span class="section-title">Uitwerking</span>
+      </div>
+
+      <div class="smart-grid">
+        <div class="smart-item full">
+          <div class="smart-label">Specifiek</div>
+          <div class="smart-question">Wat precies ga je bereiken? Wie is erbij betrokken? Waar speelt het zich af?</div>
+          <textarea placeholder="Schrijf zo concreet mogelijk. Geen ruimte voor meerdere interpretaties."></textarea>
+        </div>
+
+        <div class="smart-item">
+          <div class="smart-label">Meetbaar</div>
+          <div class="smart-question">Hoe weet je dat je het hebt bereikt?</div>
+          <textarea placeholder="Wat zie, voel of hoor je als het gelukt is?"></textarea>
+        </div>
+
+        <div class="smart-item">
+          <div class="smart-label">Acceptabel</div>
+          <div class="smart-question">Waarom is dit doel de moeite waard voor jou?</div>
+          <textarea placeholder="Wat maakt dat je dit wilt, ook als het moeilijk wordt?"></textarea>
+        </div>
+
+        <div class="smart-item">
+          <div class="smart-label">Realistisch</div>
+          <div class="smart-question">Wat heb je nodig om dit te halen?</div>
+          <textarea placeholder="Middelen, tijd, steun. Wat staat er al, wat ontbreekt nog?"></textarea>
+        </div>
+
+        <div class="smart-item">
+          <div class="smart-label">Tijdgebonden</div>
+          <div class="smart-question">Wanneer is het doel bereikt?</div>
+          <textarea placeholder="Geef een concrete datum of periode."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Sectie 3: Tijdslagen -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <span class="section-title">Van nu naar je doel</span>
+      </div>
+
+      <!-- Tijdslaag 1: Deze 2 weken -->
+      <div style="margin-bottom:32px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--teal);letter-spacing:0.06em;text-transform:uppercase;">Deze 2 weken</span>
+          <span style="font-size:12px;color:var(--muted);">Wat doe je nu direct om in beweging te komen?</span>
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">1</div>
+          <input type="text" placeholder="Wat ga je doen?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">2</div>
+          <input type="text" placeholder="Wat ga je doen?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">3</div>
+          <input type="text" placeholder="Wat ga je doen?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+      </div>
+
+      <!-- Tijdslaag 2: Zelf in te vullen -->
+      <div style="margin-bottom:32px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--teal);letter-spacing:0.06em;text-transform:uppercase;">Mijlpaal</span>
+          <input type="text" placeholder="Vul zelf een periode in, bijv. maand 2 of kwartaal 1" style="font-size:13px;padding:6px 10px;min-height:unset;flex:1;min-width:200px;" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">1</div>
+          <input type="text" placeholder="Wat heb je tegen die tijd bereikt?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">2</div>
+          <input type="text" placeholder="Wat heb je tegen die tijd bereikt?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">3</div>
+          <input type="text" placeholder="Wat heb je tegen die tijd bereikt?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+      </div>
+
+      <!-- Tijdslaag 3: Zelf in te vullen -->
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--teal);letter-spacing:0.06em;text-transform:uppercase;">Einddoel</span>
+          <input type="text" placeholder="Vul zelf een periode in, bijv. maand 5 of einde jaar" style="font-size:13px;padding:6px 10px;min-height:unset;flex:1;min-width:200px;" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">1</div>
+          <input type="text" placeholder="Wat heb je dan bereikt?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">2</div>
+          <input type="text" placeholder="Wat heb je dan bereikt?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+        <div class="actie-row">
+          <div class="actie-index">3</div>
+          <input type="text" placeholder="Wat heb je dan bereikt?" />
+          <input type="date" class="actie-deadline" title="Deadline" />
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Sectie 4: Belemmering -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <span class="section-title">Wat kan je tegenhouden</span>
+      </div>
+      <div class="field">
+        <label>Mogelijke belemmering</label>
+        <textarea placeholder="Wat is de meest waarschijnlijke reden dat je van koers raakt?"></textarea>
+      </div>
+      <div class="field">
+        <label>Wat doe je dan</label>
+        <textarea placeholder="Hoe reageer je als het zo ver is? Beschrijf je plan B in concrete termen."></textarea>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Sectie 5: Ankerpunt -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <span class="section-title">Ankerpunt</span>
+      </div>
+      <div class="anker-block">
+        <div class="field">
+          <label>Koppeling aan je identiteit</label>
+          <textarea placeholder="Waarom past dit doel bij wie je wilt zijn? Verwijs terug naar wat je hebt vastgesteld in je Koers en Karakter."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Acties -->
+    <div class="actions">
+      <button class="btn-primary" onclick="window.print()">Afdrukken als PDF</button>
+      <button class="btn-secondary" onclick="resetForm()">Nieuw plan</button>
+    </div>
+
+  </main>
+
+  <script>
+    // Datum standaard invullen op vandaag
+    document.getElementById('datum').valueAsDate = new Date();
+
+    function resetForm() {
+      if (confirm('Wil je het formulier leegmaken? Dit kan niet ongedaan worden gemaakt.')) {
+        document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+        document.getElementById('traject').value = '';
+        document.getElementById('datum').valueAsDate = new Date();
+      }
+    }
+  </script>
+
+</body>
+</html>

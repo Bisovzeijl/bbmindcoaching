@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>De Blokkade Scan | B&B Mind Coaching</title>
+<meta name="description" content="Ontdek welk patroon jou tegenhoudt en wat je er vandaag aan kunt doen."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E;
+  --teal:#4c9db0;
+  --teal-dark:#3a7f91;
+  --teal-light:#e8f4f7;
+  --yellow:#ffebaf;
+  --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4;
+  --muted:#5a7a86;
+  --white:#ffffff;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 12px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--yellow);letter-spacing:.04em;text-decoration:none}
+.nav-tagline{font-size:.75rem;color:rgba(255,255,255,0.45);font-weight:300}
+
+/* PROGRESS */
+.progress-wrap{background:var(--navy);padding:0 40px;position:sticky;top:57px;z-index:90;border-top:1px solid rgba(255,255,255,0.06)}
+.progress-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 0}
+.progress-track{flex:1;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.progress-step{font-size:.72rem;color:var(--teal);font-weight:600;white-space:nowrap}
+
+/* SCREENS */
+.screen{display:none;animation:fadeUp .4s ease both}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.start-hero{background:var(--navy);padding:80px 40px 72px;text-align:center;position:relative;overflow:hidden}
+.start-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(76,157,176,.12) 0%,transparent 70%)}
+.start-hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,235,175,.07) 0%,transparent 70%)}
+.tool-badge{display:inline-block;background:rgba(76,157,176,.15);border:1px solid rgba(76,157,176,.35);color:var(--teal);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:28px}
+.start-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:300;color:var(--white);line-height:1.1;margin-bottom:20px}
+.start-hero h1 em{color:var(--yellow-dark);font-style:italic}
+.start-hero .sub{font-size:1rem;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 48px;line-height:1.8;font-weight:300}
+
+/* START CARDS */
+.start-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:720px;margin:0 auto 48px}
+.start-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:24px 20px;text-align:left}
+.start-card-icon{font-size:1.6rem;margin-bottom:10px;line-height:1}
+.start-card h3{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:6px}
+.start-card p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;font-weight:300}
+.privacy-footer{text-align:center;margin-top:24px}
+.privacy-footer p{font-size:.75rem;color:rgba(255,255,255,.3);font-weight:300;font-style:italic}
+
+/* STELLING SCHERM */
+.stelling-screen{max-width:640px;margin:0 auto;padding:72px 40px}
+.s-number{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.s-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;color:var(--navy);line-height:1.3;margin-bottom:40px}
+.s-title em{font-style:italic;color:var(--teal)}
+
+/* SCHAAL */
+.scale-wrap{margin-bottom:40px}
+.scale-labels{display:flex;justify-content:space-between;margin-bottom:12px}
+.scale-label{font-size:.75rem;color:var(--muted);font-weight:300;max-width:100px;line-height:1.3}
+.scale-label:last-child{text-align:right}
+.scale-buttons{display:flex;gap:10px;justify-content:center}
+.scale-btn{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(27,47,78,.2);background:var(--white);font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.scale-btn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light)}
+.scale-btn.selected{background:var(--teal);border-color:var(--teal);color:var(--white)}
+
+.s-nav{display:flex;align-items:center;justify-content:space-between;margin-top:32px}
+.btn-back{background:transparent;border:1.5px solid rgba(27,47,78,.2);color:var(--muted);padding:12px 24px;border-radius:6px;font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:var(--navy);color:var(--navy)}
+.btn-primary{background:var(--teal);color:var(--white);border:none;padding:14px 36px;border-radius:6px;font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.error-msg{background:#fff0f0;border:1px solid #ffcccc;border-radius:8px;padding:14px 18px;margin-top:16px;font-size:.85rem;color:#c0392b;display:none}
+
+/* LOADING */
+.loading-screen{max-width:560px;margin:0 auto;padding:100px 40px;text-align:center}
+.loading-icon{width:64px;height:64px;border:3px solid rgba(76,157,176,.2);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-screen h2{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--navy);margin-bottom:12px}
+.loading-screen p{font-size:.9rem;color:var(--muted);line-height:1.7;font-weight:300}
+.loading-dots{display:inline-flex;gap:6px;margin-top:24px}
+.loading-dots span{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pulse 1.4s ease-in-out infinite}
+.loading-dots span:nth-child(2){animation-delay:.2s}
+.loading-dots span:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+
+/* RESULTATEN */
+.results-hero{background:var(--navy);padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.results-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(76,157,176,.12) 0%,transparent 60%)}
+.results-tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;position:relative}
+.results-hero h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:16px;position:relative}
+.results-hero h2 em{color:var(--yellow-dark);font-style:italic}
+.results-hero .results-sub{font-size:.9rem;color:rgba(255,255,255,.5);position:relative;font-weight:300}
+.results-body{max-width:720px;margin:0 auto;padding:64px 40px}
+
+/* PATROON CARD */
+.patroon-card{background:var(--white);border-radius:var(--radius);border:1px solid rgba(27,47,78,.08);box-shadow:var(--shadow-lg);overflow:hidden;margin-bottom:32px}
+.patroon-header{background:var(--navy);padding:28px 36px;display:flex;align-items:center;gap:16px}
+.patroon-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
+.patroon-naam{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ivory)}
+.patroon-body{padding:36px}
+.herkenning{font-family:var(--serif);font-size:1.15rem;font-weight:400;font-style:italic;color:var(--navy);line-height:1.6;margin-bottom:24px;padding-left:20px;border-left:3px solid var(--teal)}
+.uitleg{font-size:.95rem;color:var(--navy);line-height:1.9;font-weight:300;margin-bottom:32px}
+
+/* ACTIEPUNTEN */
+.acties-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.actie-item{display:flex;gap:16px;margin-bottom:16px;align-items:flex-start}
+.actie-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:7px}
+.actie-tekst{font-size:.92rem;color:var(--navy);line-height:1.75;font-weight:400}
+
+/* TOOL CTA */
+.tool-cta{background:var(--teal-light);border:1px solid rgba(76,157,176,.25);border-radius:var(--radius);padding:28px 32px;margin-bottom:24px}
+.tool-cta-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.tool-cta h4{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--navy);margin-bottom:8px}
+.tool-cta p{font-size:.88rem;color:var(--muted);line-height:1.65;font-weight:300;margin-bottom:20px}
+.btn-teal{background:var(--teal);color:var(--white);border:none;padding:12px 28px;border-radius:6px;font-family:var(--sans);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn-teal:hover{background:var(--teal-dark)}
+
+/* KENNISMAKING CTA */
+.next-step-card{background:linear-gradient(135deg,var(--navy) 0%,#243d63 100%);border-radius:var(--radius);padding:40px 36px;text-align:center;position:relative;overflow:hidden;margin-bottom:40px}
+.next-step-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(76,157,176,.1)}
+.nsc-tag{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;position:relative}
+.next-step-card h3{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--ivory);margin-bottom:12px;position:relative}
+.next-step-card h3 em{color:var(--yellow-dark);font-style:italic}
+.next-step-card p{font-size:.9rem;color:rgba(250,248,244,.6);line-height:1.75;max-width:480px;margin:0 auto 28px;font-weight:300;position:relative}
+.btn-navy{background:var(--yellow);color:var(--navy);border:none;padding:14px 36px;border-radius:6px;font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.btn-navy:hover{background:var(--yellow-dark)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  nav{padding:16px 20px}
+  .progress-wrap{padding:0 20px}
+  .start-hero{padding:60px 20px 56px}
+  .start-cards{grid-template-columns:1fr;gap:12px;max-width:100%}
+  .stelling-screen,.loading-screen,.results-body{padding:48px 20px}
+  .results-hero{padding:48px 20px}
+  .patroon-body{padding:24px 20px}
+  .patroon-header{padding:20px}
+  .scale-btn{width:44px;height:44px;font-size:1.1rem}
+  .next-step-card{padding:28px 20px}
+  .tool-cta{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://bbmindcoaching.nl" class="nav-brand">B&amp;B Mind Coaching</a>
+  <span class="nav-tagline">De Blokkade Scan</span>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <span class="progress-step" id="progressStep">Stelling 1 van 21</span>
+  </div>
+</div>
+
+<!-- SCREEN: START -->
+<div class="screen active" id="screen-start">
+  <div class="start-hero">
+    <div class="tool-badge">Gratis tool</div>
+    <h1>Wat houdt<br><em>jou tegen?</em></h1>
+    <p class="sub">21 stellingen. Geen goed of fout antwoord. Aan het einde zie je welk patroon jou het meest kost en wat je er vandaag aan kunt doen.</p>
+    <div class="start-cards">
+      <div class="start-card">
+        <div class="start-card-icon">🔍</div>
+        <h3>Herkenning</h3>
+        <p>Je krijgt een naam voor iets wat je al kende maar nog niet kon benoemen.</p>
+      </div>
+      <div class="start-card">
+        <div class="start-card-icon">💡</div>
+        <h3>Begrip</h3>
+        <p>Je begrijpt waar het vandaan komt en waarom het ooit nuttig was.</p>
+      </div>
+      <div class="start-card">
+        <div class="start-card-icon">🎯</div>
+        <h3>Actie</h3>
+        <p>Je verlaat deze scan met twee concrete stappen die je vandaag kunt zetten.</p>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="goTo('screen-s1')">
+      Start de scan
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <div class="privacy-footer">
+      <p>Jouw antwoorden worden nergens opgeslagen en zijn alleen voor jou zichtbaar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- STELLINGEN worden dynamisch gegenereerd via JS -->
+<div id="stelling-container"></div>
+
+<!-- SCREEN: LOADING -->
+<div class="screen" id="screen-loading">
+  <div class="loading-screen">
+    <div class="loading-icon"></div>
+    <h2>Jouw patroon wordt bepaald</h2>
+    <p>We analyseren jouw antwoorden en zoeken het patroon dat het meest op de voorgrond staat.</p>
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<!-- SCREEN: RESULTATEN -->
+<div class="screen" id="screen-results">
+  <div class="results-hero">
+    <div class="results-tag">Jouw blokkade</div>
+    <h2 id="results-titel">Dit is wat jou<br><em>tegenhoudt</em></h2>
+    <p class="results-sub">Op basis van jouw 21 antwoorden</p>
+  </div>
+  <div class="results-body">
+    <div class="patroon-card">
+      <div class="patroon-header">
+        <div>
+          <div class="patroon-label">Dominant patroon</div>
+          <div class="patroon-naam" id="patroon-naam"></div>
+        </div>
+      </div>
+      <div class="patroon-body">
+        <div class="herkenning" id="patroon-herkenning"></div>
+        <div class="uitleg" id="patroon-uitleg"></div>
+        <div class="acties-label">Wat je nu kunt doen</div>
+        <div id="patroon-acties"></div>
+      </div>
+    </div>
+
+    <div class="tool-cta" id="tool-cta-blok">
+      <div class="tool-cta-label">Passende vervolgstap</div>
+      <h4 id="tool-cta-titel"></h4>
+      <p id="tool-cta-tekst"></p>
+      <a id="tool-cta-link" href="#" class="btn-teal">
+        Bekijk de tool
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="next-step-card">
+      <div class="nsc-tag">Wil je verder?</div>
+      <h3>Een gesprek over<br><em>jouw patroon</em></h3>
+      <p id="kennismaking-tekst">In een gratis kennismakingsgesprek van 30 minuten kijken we samen wat jouw patroon in de praktijk betekent en welke stap daarna logisch is.</p>
+      <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-navy">
+        Plan een gratis gesprek
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <p style="font-size:.72rem;color:var(--muted);text-align:center;font-style:italic">Jouw antwoorden worden nergens opgeslagen en zijn alleen voor jou zichtbaar.</p>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const patronen = {
+  uitsteller: {
+    naam: 'De Uitsteller',
+    herkenning: 'Je weet wat je wilt. Dat is niet het probleem. Het probleem is dat beginnen altijd net iets later kan. Maar later bestaat niet, alleen nu.',
+    uitleg: 'Uitstelgedrag heeft weinig te maken met luiheid of gebrek aan motivatie. Het heeft bijna altijd te maken met iets wat je niet wilt voelen op het moment dat je begint. Onzekerheid, de angst dat het niet goed genoeg is, of gewoon het ongemak van een moeilijke eerste stap. Je brein kiest automatisch voor wat vertrouwd is, en dat is niet beginnen. Dat is geen zwakte, het is hoe mensen werken. Maar het kost je wel iets.',
+    acties: [
+      'Tussen nu en morgen zit een groot gat. Kies één actie en plan die vandaag nog in. Niet wanneer de tijd beter is of de omstandigheden perfect zijn, maar nu.',
+      'Schrijf op wat je tegenhoudt. Bedenk dan direct één argument waarom je het juist wel hoort te doen. Niet vaag, maar concreet. Wat win je als je het wel doet?'
+    ],
+    tool: {
+      titel: 'Het SMART Plan',
+      tekst: 'Het SMART Plan helpt je om te stoppen met plannen en te beginnen met doen. Je zet je doel om in concrete acties met een tijdlijn, zodat uitstel geen ruimte meer heeft.',
+      link: 'https://bbmindcoaching.nl/smart-plan',
+      cta: 'Bekijk het SMART Plan'
+    },
+    kennismaking: 'Als uitsteller weet je wat je wilt maar kom je niet in beweging. In een kennismakingsgesprek kijken we samen wat er precies in jou gebeurt op het moment dat je net niet begint.'
+  },
+  perfectionist: {
+    naam: 'De Perfectionist',
+    herkenning: 'Je lat ligt hoog, voor jezelf hoger dan voor wie dan ook. Dat is een kracht. Maar het houdt je ook tegen om te laten zien wat je al kunt.',
+    uitleg: 'Perfectionisme is zelden over kwaliteit. Het gaat bijna altijd over controle en de angst voor een oordeel van buitenaf. Zolang iets nog niet klaar is, kan het ook niet worden beoordeeld. Dat geeft tijdelijk rust, maar het kost je momentum. De dingen die je nog wilt doen stapelen zich op achter de lat die steeds een beetje hoger gaat.',
+    acties: [
+      'Lever iets in dat 80% af is en kijk wat er gebeurt. De reacties vallen vaker mee dan je verwacht, en wat je oplevert heeft meer waarde dan wat blijft liggen.',
+      'Stel een vaste deadline voor je volgende beslissing. Als de tijd om is beslis je met wat je hebt, en koppel daar direct je eerste vervolgstap aan. Ga er gewoon voor.'
+    ],
+    tool: {
+      titel: 'De Maslow Blueprint',
+      tekst: 'De Maslow Blueprint helpt je inzichtelijk te maken wat voor jou echt belangrijk is. Niet wat je denkt dat goed genoeg is, maar wat jij als basis nodig hebt om vanuit rust te presteren.',
+      link: 'https://bbmindcoaching.nl/maslow-blueprint',
+      cta: 'Bekijk de Maslow Blueprint'
+    },
+    kennismaking: 'Als perfectionist wacht je op het moment dat het goed genoeg is. In een kennismakingsgesprek kijken we samen waar die lat vandaan komt en wat het je kost.'
+  },
+  pleaser: {
+    naam: 'De Pleaser',
+    herkenning: 'Je bent goed in zorgen voor anderen. Zo goed dat je jezelf er soms bij vergeet. Wat jij nodig hebt telt net zo hard.',
+    uitleg: 'Voor anderen zorgen voelt vanzelfsprekend, bijna als een reflex. Maar ergens weet je ook dat je eigen doelen steeds naar achteren schuiven. Niet omdat je ze niet wilt, maar omdat de behoeften van anderen altijd net even urgenter lijken. Tot je op een dag merkt dat je hard hebt gewerkt voor iedereen behalve jezelf.',
+    acties: [
+      'Zeg deze week één keer nee op iets wat je normaal zou accepteren. Zonder uitleg. Bekijk daarna wat het gevolg was, voor jou en voor de ander. De reacties vallen meestal mee, maar wat het jou oplevert is groter dan je denkt.',
+      'Schrijf op wat jij deze week nodig hebt. Niet wat anderen van je nodig hebben.'
+    ],
+    tool: {
+      titel: 'De Maslow Blueprint',
+      tekst: 'De Maslow Blueprint helpt je inzichtelijk te maken wat jij zelf nodig hebt, op elk niveau. Dat is de basis om bewuste keuzes te maken in plaats van altijd te reageren op wat anderen van je vragen.',
+      link: 'https://bbmindcoaching.nl/maslow-blueprint',
+      cta: 'Bekijk de Maslow Blueprint'
+    },
+    kennismaking: 'Als pleaser stel je jezelf steeds uit voor anderen. In een kennismakingsgesprek kijken we samen wat jij nodig hebt en hoe je dat een plek kunt geven zonder iedereen teleur te stellen.'
+  },
+  twijfelaar: {
+    naam: 'De Twijfelaar',
+    herkenning: 'Je ziet alle kanten van een situatie. Dat maakt je zorgvuldig. Het maakt je ook langzaam. Op een gegeven moment is kiezen de enige manier om verder te komen.',
+    uitleg: 'Twijfelen is geen zwakte, het is vaak een teken dat je de situatie serieus neemt. Maar er is een punt waarop meer informatie verzamelen geen betere beslissing oplevert, alleen meer uitstel. Het echte probleem is niet dat je niet weet wat je moet kiezen. Het is dat je de gevolgen van een verkeerde keuze wilt vermijden. En zolang je niet kiest, kun je ook niet falen.',
+    acties: [
+      'Schrijf eerst op wat de echte prijs is van niet kiezen. Twijfel is ook een keuze, alleen geen bewuste. Geef jezelf daarna maximaal 24 uur. Dan kies je, ook zonder volledige zekerheid.'
+    ],
+    tool: {
+      titel: 'Het SMART Plan',
+      tekst: 'Het SMART Plan dwingt je om één keuze te maken en die te vertalen naar concrete stappen. Het doorbreekt de cyclus van afwegen zonder te beslissen.',
+      link: 'https://bbmindcoaching.nl/smart-plan',
+      cta: 'Bekijk het SMART Plan'
+    },
+    kennismaking: 'Als twijfelaar analyseer je eindeloos zonder te beslissen. In een kennismakingsgesprek kijken we samen wat er achter die twijfel zit en hoe je weer in beweging komt.'
+  },
+  overlever: {
+    naam: 'De Overlever',
+    herkenning: 'Je past je aan, altijd. Dat heeft je ver gebracht. Maar aanpassen en sturen zijn twee verschillende dingen. Jij kunt meer sturen dan je nu doet.',
+    uitleg: 'Reageren op wat er op je afkomt is een vaardigheid. Je bent flexibel, betrouwbaar en altijd aanwezig voor wat er nodig is. Maar ergens in die stroom van verplichtingen en verwachtingen ben je jezelf kwijtgeraakt als degene die keuzes maakt. Jij bepaalt niet meer hoe jouw dag eruitziet, de dag bepaalt dat voor jou.',
+    acties: [
+      'Blokkeer morgen één uur in je agenda dat alleen van jou is. Geen reacties, geen verzoeken.',
+      'Schrijf op wat jij deze week bewust hebt gekozen, los van wat er op je afkwam. Is de lijst leeg? Kies dan nu één ding voor morgen dat alleen voor jou is en zet het vast. Dat is het begin van sturen in plaats van reageren.'
+    ],
+    tool: {
+      titel: 'De Reflectietool',
+      tekst: 'De Reflectietool helpt je terug te komen bij wat jij echt wilt, los van alles wat er op je afkomt. Vier vragen die je helpen ontdekken waar jij naartoe wilt.',
+      link: 'https://bbmindcoaching.nl/reflectie-tool',
+      cta: 'Bekijk de Reflectietool'
+    },
+    kennismaking: 'Als overlever reageer je op alles maar stuur je op weinig. In een kennismakingsgesprek kijken we samen hoe je meer richting kunt aanbrengen in wat je doet en voor wie je het doet.'
+  },
+  doener: {
+    naam: 'De Doener',
+    herkenning: 'Je energie is een kracht. Je pakt dingen op, je zet dingen in gang. De vraag is niet of je genoeg doet. De vraag is of je aan de juiste dingen werkt.',
+    uitleg: 'Actie voelt goed. Bezig zijn geeft het gevoel dat je vooruitkomt. Maar aan het einde van een drukke week kun je je soms afvragen wat je nu eigenlijk hebt opgeschoten. Niet omdat je te weinig hebt gedaan, maar omdat veel van wat je hebt gedaan niet direct bijdraagt aan waar je wilt zijn. Meer doen is niet het antwoord. Gerichter doen wel.',
+    acties: [
+      'Schrijf op wat je deze week hebt gedaan. Zet er dan naast waarom je dat hebt gedaan. Klopt dat antwoord met waar je naartoe wilt?',
+      'Kies één project of doel dat je de komende twee weken afmaakt voordat je iets nieuws begint.'
+    ],
+    tool: {
+      titel: 'Het SMART Plan',
+      tekst: 'Het SMART Plan helpt je om al die energie te richten op één hoofddoel. Niet minder doen, maar slimmer doen. Zodat wat je doet ook brengt waar je wilt zijn.',
+      link: 'https://bbmindcoaching.nl/smart-plan',
+      cta: 'Bekijk het SMART Plan'
+    },
+    kennismaking: 'Als doener ben je altijd bezig maar niet altijd gericht. In een kennismakingsgesprek kijken we samen hoe je jouw energie laat werken voor de dingen die er echt toe doen.'
+  },
+  zelfsaboteur: {
+    naam: 'De Zelfsaboteur',
+    herkenning: 'Je komt verder dan de meesten. En dan stop je, net voor de finish. Dat is geen toeval en het is ook geen tekortkoming. Er is een reden waarom je dat doet, en die is de moeite waard om te begrijpen.',
+    uitleg: 'Zelfsabotage heeft bijna nooit te maken met motivatie of doorzettingsvermogen. Het heeft te maken met wat er gebeurt als succes dichtbij komt. Verwachtingen die omhooggaan. De angst om te falen op het moment dat het er echt toe doet. Of simpelweg een onbewuste overtuiging dat jij niet degene bent die dit mag hebben. Je stopt jezelf omdat dat veiliger voelt dan doorlopen en zien wat er dan gebeurt.',
+    acties: [
+      'Denk aan de laatste keer dat je net voor de finish stopte. Schrijf op wat er op dat moment in je hoofd gebeurde. Niet wat er buiten je gebeurde, maar wat er in jou gebeurde.',
+      'Vertel iemand die je vertrouwt wat je van plan bent. Hardop uitspreken maakt het moeilijker om stil weg te glippen.'
+    ],
+    tool: {
+      titel: 'De Reflectietool',
+      tekst: 'De Reflectietool helpt je dieper te kijken naar wie je wilt worden en wat je tegenhoudt. Precies de laag waar zelfsabotage zich afspeelt.',
+      link: 'https://bbmindcoaching.nl/reflectie-tool',
+      cta: 'Bekijk de Reflectietool'
+    },
+    kennismaking: 'Als zelfsaboteur kom je ver maar blokkeer je jezelf vlak voor het doel. In een kennismakingsgesprek kijken we samen wat er op dat moment in jou gebeurt en hoe je dat patroon doorbreekt.'
+  }
+};
+
+// 21 stellingen: 3 per patroon, volgorde gemixt
+const stellingen = [
+  { id:1,  patroon:'uitsteller',    tekst:'Ik weet wat ik wil bereiken maar begin er steeds niet aan.' },
+  { id:2,  patroon:'perfectionist', tekst:'Ik doe iets liever niet dan het half te doen.' },
+  { id:3,  patroon:'pleaser',       tekst:'Ik vind het moeilijk om nee te zeggen, ook als het ten koste gaat van mijn eigen plannen.' },
+  { id:4,  patroon:'twijfelaar',    tekst:'Ik verzamel liever meer informatie voordat ik een keuze maak.' },
+  { id:5,  patroon:'overlever',     tekst:'Ik ga van dag tot dag en reageer op wat er op mijn pad komt.' },
+  { id:6,  patroon:'doener',        tekst:'Ik ben veel bezig maar heb soms het gevoel dat het me niet brengt waar ik wil zijn.' },
+  { id:7,  patroon:'zelfsaboteur',  tekst:'Als iets goed gaat, wacht ik soms op het moment dat het misgaat.' },
+  { id:8,  patroon:'uitsteller',    tekst:'Ik heb goede plannen die ik uitvoer zodra de omstandigheden beter zijn.' },
+  { id:9,  patroon:'perfectionist', tekst:'Ik stel dingen uit omdat ik wil dat het goed is als ik begin.' },
+  { id:10, patroon:'pleaser',       tekst:'Ik merk dat de behoeften van anderen vaak zwaarder wegen dan die van mijzelf.' },
+  { id:11, patroon:'twijfelaar',    tekst:'Ik twijfel regelmatig aan beslissingen die ik al heb genomen.' },
+  { id:12, patroon:'overlever',     tekst:'Ik heb het gevoel dat anderen of omstandigheden bepalen hoe mijn dag eruitziet.' },
+  { id:13, patroon:'doener',        tekst:'Ik begin snel aan nieuwe dingen maar maak ze niet altijd af.' },
+  { id:14, patroon:'zelfsaboteur',  tekst:'Ik heb mezelf al meerdere keren bijna bereikt wat ik wilde, maar het lukte toch niet helemaal.' },
+  { id:15, patroon:'uitsteller',    tekst:'Aan het einde van de dag vraag ik me af waar de tijd gebleven is.' },
+  { id:16, patroon:'perfectionist', tekst:'Ik ben zelf mijn strengste beoordelaar.' },
+  { id:17, patroon:'pleaser',       tekst:'Als ik voor mezelf kies, voel ik me schuldig.' },
+  { id:18, patroon:'twijfelaar',    tekst:'Ik vind het moeilijk om te kiezen als beide opties goede kanten hebben.' },
+  { id:19, patroon:'overlever',     tekst:'Aan het einde van de week vraag ik me af wat ik nu eigenlijk heb gedaan voor mezelf.' },
+  { id:20, patroon:'doener',        tekst:'Ik werk hard maar vraag me soms af of ik aan de juiste dingen werk.' },
+  { id:21, patroon:'zelfsaboteur',  tekst:'Ik merk dat ik soms zelf obstakels creëer zonder dat ik precies weet waarom.' }
+];
+
+const TOTAAL = stellingen.length;
+let scores = {}; // { uitsteller: 0, perfectionist: 0, ... }
+let huidig = 0;
+let antwoorden = new Array(TOTAAL).fill(null);
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+function init() {
+  Object.keys(patronen).forEach(k => scores[k] = 0);
+  bouwStellingen();
+}
+
+function bouwStellingen() {
+  const container = document.getElementById('stelling-container');
+  container.innerHTML = '';
+  stellingen.forEach((s, idx) => {
+    const screen = document.createElement('div');
+    screen.className = 'screen';
+    screen.id = 'screen-s' + (idx + 1);
+    screen.innerHTML = `
+      <div class="stelling-screen">
+        <div class="s-number">Stelling ${idx + 1} van ${TOTAAL}</div>
+        <h2 class="s-title">${s.tekst}</h2>
+        <div class="scale-wrap">
+          <div class="scale-labels">
+            <span class="scale-label">Helemaal niet van toepassing</span>
+            <span class="scale-label">Helemaal van toepassing</span>
+          </div>
+          <div class="scale-buttons" id="scale-${idx + 1}">
+            ${[1,2,3,4,5].map(v => `<button class="scale-btn" data-idx="${idx}" data-val="${v}" onclick="selectScore(${idx}, ${v})">${v}</button>`).join('')}
+          </div>
+        </div>
+        <div class="s-nav">
+          <button class="btn-back" onclick="vorigeStelling(${idx})">Terug</button>
+          <button class="btn-primary" id="btn-volgende-${idx + 1}" onclick="volgendeStelling(${idx})" disabled>
+            ${idx < TOTAAL - 1 ? 'Volgende' : 'Bekijk mijn patroon'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="error-msg" id="err-${idx + 1}">Kies een score voordat je verdergaat.</div>
+      </div>`;
+    container.appendChild(screen);
+  });
+}
+
+// ─── NAVIGATIE ───────────────────────────────────────────────────────────────
+
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const wrap = document.getElementById('progressWrap');
+  const match = screenId.match(/screen-s(\d+)/);
+  if (match) {
+    const idx = parseInt(match[1]);
+    wrap.style.display = 'block';
+    document.getElementById('progressFill').style.width = ((idx - 1) / TOTAAL * 100) + '%';
+    document.getElementById('progressStep').textContent = 'Stelling ' + idx + ' van ' + TOTAAL;
+  } else {
+    wrap.style.display = 'none';
+  }
+}
+
+function selectScore(idx, val) {
+  antwoorden[idx] = val;
+  // Visueel updaten
+  document.querySelectorAll(`#scale-${idx + 1} .scale-btn`).forEach(btn => {
+    btn.classList.toggle('selected', parseInt(btn.dataset.val) === val);
+  });
+  // Knop activeren
+  const btn = document.getElementById('btn-volgende-' + (idx + 1));
+  if (btn) btn.disabled = false;
+  document.getElementById('err-' + (idx + 1)).style.display = 'none';
+}
+
+function volgendeStelling(idx) {
+  if (antwoorden[idx] === null) {
+    document.getElementById('err-' + (idx + 1)).style.display = 'block';
+    return;
+  }
+  if (idx < TOTAAL - 1) {
+    goTo('screen-s' + (idx + 2));
+  } else {
+    berekenResultaat();
+  }
+}
+
+function vorigeStelling(idx) {
+  if (idx === 0) {
+    goTo('screen-start');
+  } else {
+    goTo('screen-s' + idx);
+  }
+}
+
+// ─── BEREKENING ──────────────────────────────────────────────────────────────
+
+function berekenResultaat() {
+  goTo('screen-loading');
+
+  // Scores optellen per patroon
+  Object.keys(scores).forEach(k => scores[k] = 0);
+  stellingen.forEach((s, idx) => {
+    if (antwoorden[idx] !== null) {
+      scores[s.patroon] += antwoorden[idx];
+    }
+  });
+
+  // Dominant patroon bepalen
+  const dominant = Object.entries(scores).reduce((a, b) => b[1] > a[1] ? b : a)[0];
+
+  setTimeout(() => toonResultaat(dominant), 1200);
+}
+
+function toonResultaat(key) {
+  const p = patronen[key];
+
+  document.getElementById('patroon-naam').textContent = p.naam;
+  document.getElementById('patroon-herkenning').textContent = p.herkenning;
+  document.getElementById('patroon-uitleg').textContent = p.uitleg;
+
+  // Actiepunten
+  document.getElementById('patroon-acties').innerHTML = p.acties.map(a => `
+    <div class="actie-item">
+      <div class="actie-dot"></div>
+      <div class="actie-tekst">${a}</div>
+    </div>`).join('');
+
+  // Tool CTA
+  document.getElementById('tool-cta-titel').textContent = p.tool.titel;
+  document.getElementById('tool-cta-tekst').textContent = p.tool.tekst;
+  const toolLink = document.getElementById('tool-cta-link');
+  toolLink.href = p.tool.link;
+  toolLink.innerHTML = p.tool.cta + ' <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
+  // Kennismaking tekst
+  document.getElementById('kennismaking-tekst').textContent = p.kennismaking;
+
+  goTo('screen-results');
+}
+
+// Start
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Trajecten | B&B Mind Coaching</title>
+<meta name="description" content="Vier, acht of twaalf sessies. Afhankelijk van waar je nu staat en wat je wilt bereiken. Bekijk de trajecten van B&B Mind Coaching."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E; --navy-mid:#2a4060;
+  --teal:#4c9db0; --teal-dark:#3a7f91; --teal-light:#e8f5f8;
+  --yellow:#ffebaf; --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4; --muted:#5a7a86; --white:#ffffff;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 8px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;background:rgba(27,47,78,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:#ffebaf;letter-spacing:.03em;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+.nav-links a:hover{color:rgba(255,255,255,0.95)}
+.nav-links a.active{color:rgba(255,255,255,0.95)}
+.nav-cta{background:var(--teal) !important;color:#fff !important;padding:9px 22px;border-radius:6px;font-weight:600 !important;font-size:.8rem !important;letter-spacing:.04em;transition:background .2s !important}
+.nav-cta:hover{background:var(--teal-dark) !important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px}
+.nav-mobile-overlay{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(27,47,78,0.98);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:99}
+.nav-mobile-overlay.open{display:flex}
+.nav-mobile-overlay a{font-size:1.1rem;color:rgba(255,255,255,0.7);text-decoration:none;letter-spacing:.04em}
+.nav-mobile-overlay .nav-cta{background:var(--teal);color:#fff !important;padding:12px 28px;border-radius:6px}
+
+/* PAGE HERO */
+.page-hero{margin-top:68px;background:var(--navy);padding:80px 4rem 72px;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;background:var(--teal);border-radius:50%;opacity:.06;pointer-events:none}
+.page-hero::after{content:'';position:absolute;bottom:-40px;left:10%;width:200px;height:200px;background:var(--yellow);border-radius:50%;opacity:.04;pointer-events:none}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.page-hero-label{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:24px}
+.page-hero h1 em{font-style:italic;color:var(--yellow-dark)}
+.page-hero p{font-size:1.05rem;color:rgba(250,248,244,0.65);max-width:560px;line-height:1.85;font-weight:300}
+
+/* SECTION BASE */
+.section{padding:96px 4rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+
+/* TRAJECTORY CARDS */
+.trajecten-section{background:var(--navy)}
+.traject-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:48px}
+.traject-card{background:rgba(250,248,244,0.04);border:1px solid rgba(250,248,244,0.1);border-radius:var(--radius);padding:40px 36px;transition:border-color .2s;position:relative}
+.traject-card:hover{border-color:rgba(76,157,176,0.4)}
+.traject-card.featured{background:var(--teal);border-color:var(--teal)}
+.traject-badge{position:absolute;top:-12px;left:36px;background:var(--yellow);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:20px}
+.traject-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,244,0.45);margin-bottom:14px}
+.traject-card.featured .traject-label{color:rgba(250,248,244,0.75)}
+.traject-name{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--ivory);margin-bottom:6px}
+.traject-sub{font-size:.875rem;color:rgba(250,248,244,0.55);margin-bottom:28px;line-height:1.6;font-weight:300}
+.traject-card.featured .traject-sub{color:rgba(250,248,244,0.8)}
+.traject-price{font-family:var(--serif);font-size:2.8rem;font-weight:300;color:var(--ivory);margin-bottom:4px;line-height:1}
+.traject-price-note{font-size:.775rem;color:rgba(250,248,244,0.4);margin-bottom:32px}
+.traject-card.featured .traject-price-note{color:rgba(250,248,244,0.65)}
+.traject-items{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:8px}
+.traject-items li{font-size:.875rem;color:rgba(250,248,244,0.6);padding:8px 0;border-bottom:1px solid rgba(250,248,244,0.07);display:flex;align-items:center;gap:10px;line-height:1.5}
+.traject-card.featured .traject-items li{color:rgba(250,248,244,0.9);border-bottom-color:rgba(250,248,244,0.15)}
+.traject-items li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.traject-card.featured .traject-items li::before{background:var(--yellow)}
+.btn-traject{display:block;background:var(--navy);color:var(--ivory);padding:14px 28px;border-radius:4px;font-size:.875rem;font-weight:600;letter-spacing:.04em;text-decoration:none;text-align:center;transition:all .2s;width:100%}
+.btn-traject:hover{background:var(--navy-mid);transform:translateY(-1px)}
+.traject-card.featured .btn-traject{background:var(--yellow);color:var(--navy)}
+.traject-card.featured .btn-traject:hover{background:var(--yellow-dark)}
+.traject-note{text-align:center;font-size:.85rem;color:rgba(250,248,244,0.4);line-height:1.7}
+.traject-note strong{color:rgba(250,248,244,0.65);font-weight:500}
+
+/* VERVOLG OPTIES */
+.vervolg-section{background:var(--ivory)}
+.vervolg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.vervolg-card{background:var(--white);border-radius:var(--radius);padding:32px;border:1px solid rgba(27,47,78,0.07);box-shadow:var(--shadow)}
+.vervolg-icon{width:44px;height:44px;background:var(--teal-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.vervolg-icon svg{width:20px;height:20px;stroke:var(--teal);fill:none;stroke-width:1.5}
+.vervolg-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--navy);margin-bottom:10px}
+.vervolg-desc{font-size:.875rem;color:var(--muted);line-height:1.75;font-weight:300}
+
+/* BELEID */
+
+
+/* KENNISMAKING */
+.kennismaking-section{background:var(--navy)}
+.kennismaking-card{max-width:720px;margin:0 auto;background:rgba(250,248,244,0.04);border:1px solid rgba(250,248,244,0.1);border-radius:var(--radius);padding:56px;text-align:center}
+.kennismaking-card h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:var(--ivory);line-height:1.2;margin-bottom:16px}
+.kennismaking-card h2 em{font-style:italic;color:var(--yellow-dark)}
+.kennismaking-card p{font-size:.975rem;color:rgba(250,248,244,0.6);line-height:1.8;margin-bottom:36px;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto}
+.btn-yellow{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--navy);padding:16px 36px;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .2s}
+.btn-yellow:hover{background:var(--yellow-dark);transform:translateY(-1px)}
+.kennismaking-details{display:flex;gap:32px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.k-detail{text-align:center}
+.k-detail-num{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--teal);margin-bottom:4px}
+.k-detail-label{font-size:.72rem;color:rgba(250,248,244,0.35);letter-spacing:.08em;text-transform:uppercase}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:48px 4rem;text-align:center}
+.footer-logo{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ivory);margin-bottom:12px}
+footer p{font-size:.8rem;color:rgba(250,248,244,0.35);line-height:1.7}
+footer a{color:var(--teal);text-decoration:none}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:rgba(250,248,244,0.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(250,248,244,0.8)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+.fade-up-1{animation-delay:.1s}.fade-up-2{animation-delay:.25s}.fade-up-3{animation-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .page-hero{padding:64px 1.5rem 56px}
+  .section{padding:64px 1.5rem}
+  .traject-grid{grid-template-columns:1fr}
+  .vervolg-grid{grid-template-columns:1fr}
+  .kennismaking-card{padding:36px 24px}
+  .kennismaking-details{gap:20px}
+  .k-detail-num{font-size:1.2rem}
+  footer{padding:36px 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">B&amp;B Mind Coaching</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="aanpak.html">Aanpak</a></li>
+    <li><a href="trajecten.html" class="active">Trajecten</a></li>
+    <li><a href="over.html">Over</a></li>
+    <li><a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta">Gratis kennismakingsgesprek</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-overlay" id="navMobileOverlay">
+  <a href="tools.html" onclick="closeMobileNav()">Tools</a>
+  <a href="aanpak.html" onclick="closeMobileNav()">Aanpak</a>
+  <a href="trajecten.html" onclick="closeMobileNav()">Trajecten</a>
+  <a href="over.html" onclick="closeMobileNav()">Over</a>
+  <a href="https://calendly.com/hello-bbmindcoaching/30min" class="nav-cta" onclick="closeMobileNav()">Gratis kennismakingsgesprek</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-label fade-up fade-up-1">Trajecten</span>
+    <h1 class="fade-up fade-up-2">Vier, acht of twaalf sessies.<br><em>Afhankelijk van waar je staat.</em></h1>
+    <p class="fade-up fade-up-3">Elk traject volgt dezelfde logica: eerst richting, dan identiteit, dan plan. De intensiteit past zich aan op wat jouw situatie vraagt.</p>
+  </div>
+</section>
+
+<!-- TRAJECTEN -->
+<section class="trajecten-section section">
+  <div class="section-inner">
+    <div class="traject-grid">
+
+      <div class="traject-card">
+        <div class="traject-label">Oriëntatietraject</div>
+        <div class="traject-name">4 Sessies</div>
+        <div class="traject-sub">Voor wie eerst wil ontdekken waar ze staan en wat een langer traject voor hen kan betekenen.</div>
+        <div class="traject-price">€500</div>
+        <div class="traject-price-note">Eenmalig. Inclusief alle sessies en materialen.</div>
+        <ul class="traject-items">
+          <li>4 persoonlijke sessies van 60 minuten</li>
+          <li>Fysieke sessies, locatie in overleg</li>
+          <li>Helder beeld van waar je staat en wat je wilt</li>
+          <li>Eerste versie van je richting en identiteit</li>
+          <li>Frequentie: 1 per week</li>
+          <li>Toegang tot alle digitale tools</li>
+        </ul>
+        <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-traject">Plan een kennismakingsgesprek</a>
+      </div>
+
+      <div class="traject-card">
+        <div class="traject-label">Standaard traject</div>
+        <div class="traject-name">8 Sessies</div>
+        <div class="traject-sub">Voor wie al verder is en de volgende stap wil zetten. Één sessie per week of om de twee weken.</div>
+        <div class="traject-price">€897</div>
+        <div class="traject-price-note">Eenmalig. Inclusief alle sessies en materialen.</div>
+        <ul class="traject-items">
+          <li>8 persoonlijke sessies van 60 minuten</li>
+          <li>Fysieke sessies, locatie in overleg</li>
+          <li>Helder doel en meetbaar plan van aanpak</li>
+          <li>Persoonlijk identiteitsprofiel</li>
+          <li>Tussentijdse opdrachten en reflecties</li>
+          <li>Frequentie: 1 per week of om de 2 weken</li>
+          <li>Toegang tot alle digitale tools</li>
+        </ul>
+        <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-traject">Plan een kennismakingsgesprek</a>
+      </div>
+
+      <div class="traject-card featured">
+        <div class="traject-badge">Meest gekozen</div>
+        <div class="traject-label">Intensief traject</div>
+        <div class="traject-name">12 Sessies</div>
+        <div class="traject-sub">Voor wie dieper wil gaan of meer begeleiding nodig heeft. Tot twee sessies per week.</div>
+        <div class="traject-price">€1.297</div>
+        <div class="traject-price-note">Eenmalig. Inclusief alle sessies en materialen.</div>
+        <ul class="traject-items">
+          <li>12 persoonlijke sessies van 60 minuten</li>
+          <li>Fysieke sessies, locatie in overleg</li>
+          <li>Helder doel en meetbaar plan van aanpak</li>
+          <li>Persoonlijk identiteitsprofiel</li>
+          <li>Tussentijdse opdrachten en reflecties</li>
+          <li>Frequentie: 1 à 2 per week</li>
+          <li>Extra aandacht voor patronen en terugval</li>
+          <li>Toegang tot alle digitale tools</li>
+        </ul>
+        <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-traject">Plan een kennismakingsgesprek</a>
+      </div>
+
+    </div>
+    <p class="traject-note">Niet zeker welk traject past? <strong>Het kennismakingsgesprek is gratis en vrijblijvend.</strong> Samen kijken we wat het beste bij je situatie past.</p>
+  </div>
+</section>
+
+<!-- NA HET TRAJECT -->
+<section class="vervolg-section section">
+  <div class="section-inner">
+    <div class="section-tag">Na het traject</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px">Wat er mogelijk is<br><em style="color:var(--teal);font-style:italic">als het traject klaar is.</em></h2>
+    <p style="font-size:1rem;color:var(--muted);line-height:1.8;max-width:560px;font-weight:300">Een traject eindigt, maar de groei niet. Er zijn drie opties voor wie na afloop verder wil gaan op zijn eigen tempo.</p>
+    <div class="vervolg-grid">
+
+      <div class="vervolg-card">
+        <div class="vervolg-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.85 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        </div>
+        <div class="vervolg-title">Nieuw traject</div>
+        <p class="vervolg-desc">Als er na afloop nog iets ligt dat een langer traject vraagt, bouwen we verder. Niet als herhaling, maar als volgende laag. Op basis van wat er nog ligt.</p>
+      </div>
+
+      <div class="vervolg-card">
+        <div class="vervolg-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="vervolg-title">Losse sessies</div>
+        <p class="vervolg-desc">Voor wie zelfstandig verder gaat maar een terugvalmechanisme wil. Een losse sessie als dat nodig is, zonder verplichting en zonder agenda vooraf.</p>
+      </div>
+
+      <div class="vervolg-card">
+        <div class="vervolg-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="vervolg-title">Check-in na 3 maanden</div>
+        <p class="vervolg-desc">Eén sessie als evaluatie voor wie klaar is maar een veiligheidsnet wil. We kijken wat er is geworden van de richting die je hebt gekozen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- KENNISMAKING CTA -->
+<section class="kennismaking-section section">
+  <div class="section-inner">
+    <div class="kennismaking-card">
+      <div class="section-tag" style="color:var(--teal)">Gratis kennismakingsgesprek</div>
+      <h2>30 minuten.<br><em>Geen verplichtingen.</em></h2>
+      <p>We verkennen samen waar je staat, wat je wilt bereiken, en welk traject daarbij past. Geen pitch, geen druk.</p>
+      <a href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-yellow">
+        Plan een gratis gesprek
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="kennismaking-details">
+        <div class="k-detail">
+          <div class="k-detail-num">30</div>
+          <div class="k-detail-label">Minuten</div>
+        </div>
+        <div class="k-detail">
+          <div class="k-detail-num">Gratis</div>
+          <div class="k-detail-label">Geen kosten</div>
+        </div>
+        <div class="k-detail">
+          <div class="k-detail-num">Vrijblijvend</div>
+          <div class="k-detail-label">Geen verplichtingen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">B&amp;B Mind Coaching</div>
+  <p>Persoonlijke coaching voor ambitieuze mensen die de volgende stap willen zetten.</p>
+  <p style="margin-top:8px"><a href="mailto:hello@bbmindcoaching.nl">hello@bbmindcoaching.nl</a></p>
+  <div class="footer-links">
+    <a href="tools.html">Tools</a>
+    <a href="aanpak.html">Aanpak</a>
+    <a href="trajecten.html">Trajecten</a>
+    <a href="over.html">Over</a>
+    <a href="privacyverklaring.html">Privacyverklaring</a>
+    <a href="algemene-voorwaarden.html">Algemene voorwaarden</a>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('navHamburger');
+const overlay = document.getElementById('navMobileOverlay');
+hamburger.addEventListener('click', () => overlay.classList.toggle('open'));
+function closeMobileNav() { overlay.classList.remove('open'); }
+</script>
+</body>
+</html>

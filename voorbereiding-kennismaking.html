@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Voorbereiding Kennismakingsgesprek | B&B Mind Coaching</title>
+<meta name="description" content="Bereid je voor op je kennismakingsgesprek met Thabiso van Zeijl. Vijf vragen die je helpen het gesprek zo goed mogelijk te benutten."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1B2F4E; --navy-mid:#2a4060;
+  --teal:#4c9db0; --teal-dark:#3a7f91; --teal-light:#e8f5f8;
+  --yellow:#ffebaf; --yellow-dark:#f5d87a;
+  --ivory:#FAF8F4; --muted:#5a7a86; --white:#ffffff;
+  --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+  --shadow:0 4px 24px rgba(27,47,78,0.10);
+  --shadow-lg:0 8px 48px rgba(27,47,78,0.18);
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--navy);background:var(--ivory);min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-brand{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--yellow);letter-spacing:.04em;text-decoration:none}
+.nav-tag{font-size:.7rem;color:rgba(255,255,255,0.35);font-weight:300;letter-spacing:.08em;text-transform:uppercase}
+
+/* SCREENS */
+.screen{display:none}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp .5s ease both}
+
+/* PROGRESS */
+.progress-bar{background:var(--navy);padding:0 40px;border-top:1px solid rgba(255,255,255,0.06);position:sticky;top:57px;z-index:90}
+.progress-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 0}
+.progress-track{flex:1;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.progress-label{font-size:.7rem;color:rgba(255,255,255,0.4);white-space:nowrap;font-weight:500}
+
+/* HERO */
+.start-hero{background:var(--navy);padding:80px 40px 72px;text-align:center;position:relative;overflow:hidden}
+.start-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(76,157,176,.12) 0%,transparent 70%)}
+.start-hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,235,175,.07) 0%,transparent 70%)}
+.tool-badge{display:inline-block;background:rgba(76,157,176,.15);border:1px solid rgba(76,157,176,.35);color:var(--teal);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:28px}
+.start-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.4rem);font-weight:300;color:var(--white);line-height:1.1;margin-bottom:20px}
+.start-hero h1 em{color:var(--yellow-dark);font-style:italic}
+.start-hero .sub{font-size:1rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 48px;line-height:1.8;font-weight:300}
+
+/* START CARDS */
+.start-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:680px;margin:0 auto 40px}
+.start-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:24px 20px;text-align:left}
+.start-card-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--teal);line-height:1;margin-bottom:10px}
+.start-card h3{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:6px}
+.start-card p{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.6;font-weight:300}
+
+.privacy-note{text-align:center;margin-top:8px}
+.privacy-note p{font-size:.75rem;color:rgba(255,255,255,.3);font-weight:300;font-style:italic}
+
+/* VRAAG SCHERM */
+.question-screen{max-width:640px;margin:0 auto;padding:72px 40px}
+.q-number{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.q-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--navy);line-height:1.25;margin-bottom:12px}
+.q-title em{font-style:italic;color:var(--teal)}
+.q-hint{font-size:.875rem;color:var(--muted);line-height:1.7;margin-bottom:32px;font-weight:300;padding-left:16px;border-left:2px solid rgba(76,157,176,.3)}
+.q-textarea{width:100%;min-height:160px;padding:18px 20px;border:1.5px solid rgba(27,47,78,.15);border-radius:10px;font-family:var(--sans);font-size:.95rem;color:var(--navy);background:var(--white);outline:none;resize:vertical;line-height:1.7;transition:border-color .2s}
+.q-textarea:focus{border-color:var(--teal)}
+.q-textarea::placeholder{color:rgba(90,122,134,.45);font-weight:300}
+.q-nav{display:flex;align-items:center;justify-content:space-between;margin-top:32px}
+
+/* BUTTONS */
+.btn-primary{background:var(--teal);color:var(--white);border:none;padding:14px 36px;border-radius:6px;font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.btn-back{background:transparent;border:1.5px solid rgba(27,47,78,.2);color:var(--muted);padding:12px 24px;border-radius:6px;font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:var(--navy);color:var(--navy)}
+.btn-yellow{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--navy);padding:14px 32px;border-radius:4px;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-yellow:hover{background:var(--yellow-dark);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(250,248,244,0.6);padding:13px 24px;border-radius:4px;font-size:.875rem;font-weight:500;text-decoration:none;border:1.5px solid rgba(250,248,244,0.2);transition:all .2s;cursor:pointer;font-family:var(--sans)}
+.btn-ghost:hover{border-color:rgba(250,248,244,0.5);color:var(--ivory)}
+
+/* RESULTATEN */
+.results-hero{background:var(--navy);padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.results-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(76,157,176,.1) 0%,transparent 60%)}
+.results-tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;position:relative}
+.results-hero h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:12px;position:relative}
+.results-hero h2 em{color:var(--yellow-dark);font-style:italic}
+.results-sub{font-size:.9rem;color:rgba(255,255,255,.45);position:relative;font-weight:300;max-width:480px;margin:0 auto}
+
+.results-body{max-width:720px;margin:0 auto;padding:56px 40px}
+
+/* ANTWOORDEN */
+.antwoorden-block{margin-bottom:40px}
+.antwoorden-title{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.antwoord-item{background:var(--white);border-radius:10px;border:1px solid rgba(27,47,78,.07);padding:24px 28px;margin-bottom:12px;box-shadow:var(--shadow)}
+.antwoord-num{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--teal);margin-bottom:6px}
+.antwoord-q{font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:8px;letter-spacing:.02em}
+.antwoord-a{font-size:.9rem;color:var(--navy);line-height:1.75;font-weight:300}
+.antwoord-a.leeg{color:var(--muted);font-style:italic}
+
+/* MEENEMEN KAART */
+.meenemen-card{background:linear-gradient(135deg,var(--navy) 0%,#243d63 100%);border-radius:var(--radius);padding:40px 36px;margin-bottom:32px;position:relative;overflow:hidden}
+.meenemen-card::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(76,157,176,.08)}
+.mc-tag{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;position:relative}
+.meenemen-card h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--ivory);margin-bottom:12px;position:relative}
+.meenemen-card h3 em{color:var(--yellow-dark);font-style:italic}
+.meenemen-card p{font-size:.9rem;color:rgba(250,248,244,.55);line-height:1.75;max-width:480px;font-weight:300;position:relative;margin-bottom:28px}
+.meenemen-buttons{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+
+/* PRIVACY */
+.privacy-footer-block{text-align:center;margin-top:32px;padding-top:28px;border-top:1px solid rgba(27,47,78,.08)}
+.privacy-footer-block p{font-size:.75rem;color:var(--muted);font-weight:300;font-style:italic;line-height:1.7}
+
+@media(max-width:680px){
+  nav{padding:16px 20px}
+  .progress-bar{padding:0 20px}
+  .start-hero{padding:56px 20px 48px}
+  .start-cards{grid-template-columns:1fr}
+  .question-screen{padding:48px 20px}
+  .results-hero{padding:48px 20px}
+  .results-body{padding:36px 20px}
+  .meenemen-card{padding:32px 24px}
+  .antwoord-item{padding:20px}
+}
+@media print{
+  nav,.progress-bar,.meenemen-buttons,.privacy-footer-block{display:none!important}
+  body{background:white}
+  .results-hero{background:var(--navy);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .meenemen-card{background:var(--navy);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .antwoord-item{box-shadow:none;border:1px solid #ddd}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">B&amp;B Mind Coaching</a>
+  <span class="nav-tag">Voorbereiding kennismakingsgesprek</span>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-bar" id="progressBar">
+  <div class="progress-inner">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:20%"></div>
+    </div>
+    <span class="progress-label" id="progressLabel">Vraag 1 van 5</span>
+  </div>
+</div>
+
+<!-- START SCHERM -->
+<div class="screen active" id="screen-start">
+  <div class="start-hero">
+    <div class="tool-badge">Voorbereiding kennismakingsgesprek</div>
+    <h1>Vijf vragen.<br><em>Tien minuten.</em></h1>
+    <p class="sub">Je hebt een kennismakingsgesprek ingepland met Thabiso. Deze vragen helpen je om helder te krijgen wat je uit dat gesprek wilt halen. Je antwoorden zijn alleen voor jouzelf.</p>
+    <div class="start-cards">
+      <div class="start-card">
+        <div class="start-card-num">5</div>
+        <h3>Vragen</h3>
+        <p>Geen lange vragenlijst. Vijf vragen die ertoe doen.</p>
+      </div>
+      <div class="start-card">
+        <div class="start-card-num">10</div>
+        <h3>Minuten</h3>
+        <p>Neem de tijd. Eerlijke antwoorden zijn beter dan snelle.</p>
+      </div>
+      <div class="start-card">
+        <div class="start-card-num">0</div>
+        <h3>Verplichtingen</h3>
+        <p>Je antwoorden zijn van jou. Niemand anders leest ze.</p>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="startVragen()">
+      Begin
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <div class="privacy-note">
+      <p>Jouw antwoorden worden nergens opgeslagen, zijn alleen voor jou zichtbaar en worden niet gekoppeld aan jouw naam.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VRAGEN -->
+<div class="screen" id="screen-vragen">
+  <div class="question-screen fade-in">
+    <div class="q-number" id="q-number">Vraag 1 van 5</div>
+    <h2 class="q-title" id="q-title"></h2>
+    <p class="q-hint" id="q-hint"></p>
+    <textarea class="q-textarea" id="q-input" rows="6"></textarea>
+    <div class="q-nav">
+      <button class="btn-back" id="btn-back" onclick="vorigeVraag()">Terug</button>
+      <button class="btn-primary" id="btn-next" onclick="volgendeVraag()">
+        <span id="btn-next-label">Volgende</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTATEN -->
+<div class="screen" id="screen-results">
+  <div class="results-hero">
+    <div class="results-tag">Jouw voorbereiding</div>
+    <h2>Je bent <em>klaar</em> voor<br>het gesprek.</h2>
+    <p class="results-sub">Print dit uit of schrijf je antwoorden over. Neem het mee naar het gesprek.</p>
+  </div>
+
+  <div class="results-body">
+
+    <div class="meenemen-card">
+      <div class="mc-tag">Wat je meeneemt naar het gesprek</div>
+      <h3>Dit is <em>jouw uitgangspunt.</em></h3>
+      <p>Thabiso begint het gesprek zonder dit document. Wat jij hebt opgeschreven is voor jou. Gebruik het om het gesprek te sturen naar wat voor jou het meest belangrijk is.</p>
+      <div class="meenemen-buttons">
+        <button class="btn-yellow" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Afdrukken
+        </button>
+        <a href="https://calendly.com/hello-bbmindcoaching/30min" target="_blank" class="btn-ghost">
+          Gesprek inplannen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="antwoorden-block">
+      <div class="antwoorden-title">Jouw antwoorden</div>
+      <div id="antwoorden-container"></div>
+    </div>
+
+    <div class="privacy-footer-block">
+      <p>Jouw antwoorden worden nergens opgeslagen, zijn alleen voor jou zichtbaar en worden niet gekoppeld aan jouw naam.<br>Sluit je dit venster, dan zijn ze weg.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const vragen = [
+  {
+    titel: 'Wat brengt je naar dit gesprek?',
+    titelEm: null,
+    hint: 'Wat is er aan de hand, of wat wil je veranderen? Beschrijf het zo concreet mogelijk. Niet wat je denkt dat je moet zeggen, maar wat er echt speelt.'
+  },
+  {
+    titel: 'Wat heb je al geprobeerd?',
+    titelEm: null,
+    hint: 'Welke stappen heb je al gezet om dit op te lossen of te bereiken? Wat werkte, wat niet? Wees eerlijk, ook over dingen die je halverwege hebt opgegeven.'
+  },
+  {
+    titel: 'Als je over zes maanden terugkijkt op dit gesprek, wat heeft het je opgeleverd?',
+    titelEm: null,
+    hint: 'Wat is er dan anders in je leven, je werk, of hoe je je voelt? Probeer dit zo concreet mogelijk te beschrijven. Niet wat je hoopt, maar wat je echt nodig hebt.'
+  },
+  {
+    titel: 'Wat houdt je tot nu toe tegen?',
+    titelEm: null,
+    hint: 'Waarom is de situatie nog niet veranderd? Wat staat er tussen jou en de stap die je wilt zetten? Dit is de eerlijkste vraag van de vijf.'
+  },
+  {
+    titel: 'Wat wil je dat Thabiso weet voordat jullie beginnen?',
+    titelEm: null,
+    hint: 'Is er iets wat belangrijk is om te begrijpen over jouw situatie, achtergrond of wat je wel of niet wilt in een coachingtraject? Dit is jouw ruimte.'
+  }
+];
+
+let huidigVraag = 0;
+const antwoorden = new Array(5).fill('');
+
+function startVragen() {
+  showScreen('screen-vragen');
+  document.getElementById('progressBar').style.display = 'block';
+  laadVraag(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function laadVraag(index) {
+  huidigVraag = index;
+  const v = vragen[index];
+
+  document.getElementById('q-number').textContent = `Vraag ${index + 1} van 5`;
+  document.getElementById('q-title').textContent = v.titel;
+  document.getElementById('q-hint').textContent = v.hint;
+  document.getElementById('q-input').value = antwoorden[index];
+  document.getElementById('q-input').placeholder = '';
+
+  const pct = ((index + 1) / 5) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Vraag ${index + 1} van 5`;
+
+  document.getElementById('btn-back').style.visibility = index === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next-label').textContent = index === 4 ? 'Bekijk mijn voorbereiding' : 'Volgende';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function volgendeVraag() {
+  antwoorden[huidigVraag] = document.getElementById('q-input').value.trim();
+
+  if (huidigVraag < 4) {
+    laadVraag(huidigVraag + 1);
+  } else {
+    toonResultaten();
+  }
+}
+
+function vorigeVraag() {
+  antwoorden[huidigVraag] = document.getElementById('q-input').value.trim();
+  if (huidigVraag > 0) laadVraag(huidigVraag - 1);
+}
+
+function toonResultaten() {
+  const vraagTeksten = vragen.map(v => v.titel);
+
+  document.getElementById('antwoorden-container').innerHTML = antwoorden.map((a, i) => `
+    <div class="antwoord-item">
+      <div class="antwoord-num">${i + 1}</div>
+      <div class="antwoord-q">${vraagTeksten[i]}</div>
+      <div class="antwoord-a ${!a ? 'leeg' : ''}">${a || 'Niet ingevuld'}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('progressBar').style.display = 'none';
+  showScreen('screen-results');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
