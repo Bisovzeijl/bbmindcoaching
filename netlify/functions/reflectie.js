@@ -47,13 +47,23 @@ exports.handler = async function (event) {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1500,
         messages: [{ role: 'user', content: prompt }]
       })
     });
 
     const data = await response.json();
+
+    if (!response.ok) {
+      // Echte Anthropic-fout doorgeven en loggen, niet verstoppen achter status 200
+      console.error('Anthropic API fout:', response.status, JSON.stringify(data));
+      return {
+        statusCode: response.status,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      };
+    }
 
     return {
       statusCode: 200,
