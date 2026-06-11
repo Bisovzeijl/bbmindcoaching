@@ -872,6 +872,142 @@
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* ADVICE TAB */
+  .advice-loading {
+    text-align: center;
+    padding: 80px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .advice-spinner {
+    width: 56px; height: 56px;
+    border: 3px solid rgba(76,157,176,0.2);
+    border-top-color: var(--teal);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 28px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .advice-loading h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .advice-loading p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .advice-dots { display: inline-flex; gap: 6px; margin-top: 20px; }
+  .advice-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); animation: pulse 1.4s ease-in-out infinite; }
+  .advice-dots span:nth-child(2) { animation-delay: .2s; }
+  .advice-dots span:nth-child(3) { animation-delay: .4s; }
+  @keyframes pulse { 0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:scale(1)} }
+
+  .advice-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid rgba(27,47,78,0.08);
+    box-shadow: 0 8px 40px rgba(27,47,78,0.12);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .advice-card-header {
+    background: var(--navy);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .advice-card-header svg { stroke: var(--teal); flex-shrink: 0; }
+  .ach-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 3px; }
+  .ach-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--ivory); }
+  .advice-card-body { padding: 32px; }
+  .advice-text { font-size: 0.95rem; color: var(--navy); line-height: 1.9; font-weight: 300; }
+  .advice-text p { margin-bottom: 16px; }
+  .advice-text p:last-child { margin-bottom: 0; }
+
+  .traject-card {
+    background: linear-gradient(135deg, #1B2F4E 0%, #243d63 100%);
+    border-radius: 14px;
+    padding: 36px 32px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .traject-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(76,157,176,0.1);
+  }
+  .traject-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; position: relative; }
+  .traject-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--ivory); margin-bottom: 12px; position: relative; }
+  .traject-card h3 em { color: var(--yellow-dark); font-style: italic; }
+  .traject-body { font-size: 0.9rem; color: rgba(250,248,244,0.65); line-height: 1.75; max-width: 540px; margin-bottom: 24px; position: relative; font-weight: 300; }
+  .traject-question {
+    background: rgba(76,157,176,0.12);
+    border: 1px solid rgba(76,157,176,0.25);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .traject-question p { font-size: 0.95rem; color: var(--ivory); line-height: 1.7; font-style: italic; font-weight: 300; }
+  .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; position: relative; }
+  .btn-yellow {
+    background: var(--yellow-dark);
+    color: var(--navy);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .btn-yellow:hover { background: #f0cc5a; transform: translateY(-1px); }
+  .btn-teal-outline {
+    background: transparent;
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
+    padding: 13px 28px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .btn-teal-outline:hover { background: rgba(76,157,176,0.08); }
+
+  .goal-context-bar {
+    background: rgba(76,157,176,0.08);
+    border: 1px solid rgba(76,157,176,0.2);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .goal-context-bar .gcb-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); flex-shrink: 0; }
+  .goal-context-bar .gcb-goal { font-size: 0.9rem; color: var(--navy); font-weight: 400; }
+
 </style>
 </head>
 <body>
@@ -916,7 +1052,7 @@
       <div class="framework-card">
         <div class="fc-number">1</div>
         <h3>Patroonwaarschuwing</h3>
-        <p>The tool detects the "false peak" pattern: upper levels appearing strong while lower levels are quietly failing. No other tool surfaces this.</p>
+        <p>De tool detecteert het "valse top" patroon: hogere niveaus lijken sterk terwijl lagere niveaus stilletjes falen. Geen andere tool maakt dit zichtbaar.</p>
       </div>
     </div>
 
@@ -1502,6 +1638,7 @@
     <button class="tab-btn active" onclick="showTab('profile')">Blueprint Profiel</button>
     <button class="tab-btn" onclick="showTab('action')">Actieplan</button>
     <button class="tab-btn" onclick="showTab('framework')">Volledig Raamwerk</button>
+    <button class="tab-btn" onclick="showTab('advice')" id="adviceTabBtn" style="display:none">Jouw Advies</button>
   </div>
 
   <!-- TAB: PROFILE -->
@@ -1527,7 +1664,7 @@
       <div class="divider"></div>
 
       <div class="btn-center" style="margin-top: 0;">
-        <button class="btn-primary" onclick="showTab('action')">See My Actieplan</button>
+        <button class="btn-primary" onclick="showTab('action')">Bekijk mijn Actieplan</button>
       </div>
     </div>
   </div>
@@ -1535,12 +1672,12 @@
   <!-- TAB: ACTION PLAN -->
   <div id="tab-action" style="display:none;">
     <div class="content-container">
-      <h2 class="section-title">Your Actieplan</h2>
+      <h2 class="section-title">Jouw Actieplan</h2>
       <p class="section-subtitle">Elk niveau krijgt een prioriteitslabel op basis van jouw score. De acties hieronder zijn afgestemd op jouw exacte scoreband. Begin met de niveaus met Prioriteit Nu. Sla niet over naar de interessantere niveaus.</p>
       <div id="actionPlanCards"></div>
       <div class="divider"></div>
       <div class="btn-center" style="margin-top: 0;">
-        <button class="btn-primary" onclick="showTab('framework')">Read the Volledig Raamwerk</button>
+        <button class="btn-primary" onclick="showTab('framework')">Lees het Volledig Raamwerk</button>
       </div>
     </div>
   </div>
@@ -1548,7 +1685,7 @@
   <!-- TAB: FULL FRAMEWORK -->
   <div id="tab-framework" style="display:none;">
     <div class="content-container wide">
-      <h2 class="section-title">The Volledig Raamwerk</h2>
+      <h2 class="section-title">Het Volledig Raamwerk</h2>
       <p class="section-subtitle" style="margin-bottom: 48px;">De theorie achter de tool begrijpen zorgt ervoor dat de acties anders landen. Dit is geen achtergrondinformatie. Het is onderdeel van de tool.</p>
 
       <!-- LEVEL 1 -->
@@ -1564,7 +1701,7 @@
             <div class="flb-unmet-title">Hoe onvervulde fysiologische behoeften eruitzien in het dagelijks leven</div>
             <p style="color: var(--muted);">Elke ochtend moe wakker worden en dat accepteren als normaal. Sporten als straf gebruiken in plaats van verzorging. Maaltijden als iets om doorheen te komen in plaats van iets om bij aanwezig te zijn. Een basisniveau van lichamelijke spanning die er al zo lang is dat het niet meer als ongewoon registreert.</p>
           </div>
-          <p><strong>The key insight:</strong> physiological needs are not the "easy" level. They are the level most systematically ignored by high-achieving people who have learned to override physical signals in service of productivity. The body keeps score. The question is when you choose to read it.</p>
+          <p><strong>Het kernpunt:</strong> fysiologische behoeften zijn niet het "makkelijke" niveau. Het is het niveau dat het meest systematisch wordt genegeerd door hoog presterende mensen die hebben geleerd fysieke signalen te overschrijven ten dienste van productiviteit. Het lichaam houdt de score bij. De vraag is wanneer jij ervoor kiest die te lezen.</p>
         </div>
       </div>
 
@@ -1576,7 +1713,7 @@
         </div>
         <div class="flb-body">
           <p>Veiligheidsbehoeften gaan over voorspelbaarheid, niet over de afwezigheid van risico. Het brein zoekt geen leven zonder uitdagingen. Het zoekt een leven waar de regels stabiel genoeg zijn om binnen te plannen. Chronische onvoorspelbaarheid, of die nu financieel, relationeel of omgevingsgericht is, houdt het zenuwstelsel in een laaggradige waakzaamheidsstaat die voortdurend cognitieve middelen verbruikt.</p>
-          <p>Financial insecurity is the most common safety need failure in the adults this tool is designed for. Not poverty, but the specific anxiety of insufficient margin: the background hum of "what if" that makes it hard to think beyond the next crisis. Structural instability in relationships or living situations creates a similar effect through different mechanisms.</p>
+          <p>Financiële onzekerheid is de meest voorkomende veiligheidsbehoeftefout bij de volwassenen waarvoor deze tool is ontworpen. Niet armoede, maar de specifieke angst van onvoldoende marge: het achtergrondgebrom van "wat als" dat het moeilijk maakt om verder te denken dan de volgende crisis. Structurele instabiliteit in relaties of leefomstandigheden creëert een vergelijkbaar effect via andere mechanismen.</p>
           <div class="flb-unmet">
             <div class="flb-unmet-title">Hoe onvervulde veiligheidsbehoeften eruitzien in het dagelijks leven</div>
             <p style="color: var(--muted);">Moeite met langetermijndenken omdat de korte termijn onzeker aanvoelt. Overwerken als reactie op financiële angst in plaats van echte ambitie. Moeite met ontspannen ook wanneer de omstandigheden het toelaten. Een aanhoudend laag gevoel dat er op elk moment iets mis kan gaan.</p>
@@ -1668,9 +1805,60 @@
 
 </div>
 
+
+  <!-- TAB: ADVICE -->
+  <div id="tab-advice" style="display:none;">
+    <div id="advice-loading" class="advice-loading">
+      <div class="advice-spinner"></div>
+      <h3>Jouw persoonlijke analyse wordt samengesteld</h3>
+      <p>Op basis van jouw scores en doel wordt een analyse gemaakt die alleen voor jou klopt.</p>
+      <div class="advice-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div id="advice-content" style="display:none;">
+      <div class="content-container">
+        <div id="goalContextBar" class="goal-context-bar" style="display:none;">
+          <span class="gcb-label">Jouw doel</span>
+          <span class="gcb-goal" id="goalContextText"></span>
+        </div>
+        <div class="advice-card">
+          <div class="advice-card-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <div>
+              <div class="ach-label">Persoonlijke analyse</div>
+              <div class="ach-title">Wat jouw scores en doel samen zeggen</div>
+            </div>
+          </div>
+          <div class="advice-card-body">
+            <div class="advice-text" id="adviceAnalysisText"></div>
+          </div>
+        </div>
+
+        <div class="traject-card">
+          <div class="traject-tag">Trajectadvies</div>
+          <h3 id="trajectTitle">Op basis van jouw analyse</h3>
+          <div class="traject-body" id="trajectBody"></div>
+          <div class="traject-question" id="trajectQuestionBlock" style="display:none;">
+            <p id="trajectQuestion"></p>
+          </div>
+          <div class="cta-buttons">
+            <a id="calendlyBtn" href="https://calendly.com/hello-bbmindcoaching/30min" class="btn-yellow">
+              Plan een gratis gesprek
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button class="btn-teal-outline" onclick="window.print()">
+              Opslaan als PDF
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted);text-align:center;font-style:italic;margin-top:8px;">Jouw antwoorden worden nergens opgeslagen en zijn alleen voor jou zichtbaar.</p>
+      </div>
+    </div>
+  </div>
+
 <div class="tool-footer">
-  <p><strong>B&B Mind Coaching</strong> | De Blueprint geeft je de kaart. De Bloom is wat er gebeurt als je die volgt.</p>
-  <p style="margin-top: 6px;">Gebaseerd op Abraham Maslow, "A Theory of Human Motivation" (1943)</p>
+  <p><strong>B&B Mind Coaching</strong> | bbmindcoaching.nl &middot; hello@bbmindcoaching.nl</p>
+  <p style="margin-top: 6px;">Wil je verder? Plan een gratis kennismakingsgesprek via bbmindcoaching.nl</p>
 </div>
 
 <script>
@@ -1693,12 +1881,13 @@ function showSection(name) {
 }
 
 function showTab(name) {
-  document.querySelectorAll('.tab-btn').forEach((b,i) => {
-    const tabs = ['profile','action','framework'];
+  const tabs = ['profile','action','framework','advice'];
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
     b.classList.toggle('active', tabs[i] === name);
   });
-  ['profile','action','framework'].forEach(t => {
-    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+  tabs.forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === name ? 'block' : 'none';
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1754,7 +1943,7 @@ function getBlueprintType(s) {
   }
   if (s[1] <= 14 || s[2] <= 14) {
     return {
-      name: 'The Foundation Builder',
+      name: 'De Fundament Bouwer',
       desc: 'Jouw hogere niveaus tonen echte ontwikkeling, maar de basis van je hiërarchie draagt meer stress dan zou moeten. Je bouwt op grond die nog niet volledig is gestabiliseerd. Het werk dat er nu het meest toe doet is niet het spannende werk. Het is het onooglijke, structurele werk van het verstevigen van fysiologische en veiligheidsgronden. Dit is het type dat het vaakst rapporteert het gevoel te hebben hard te werken maar geen grip te krijgen. Het grip-probleem is structureel, niet motivationeel.'
     };
   }
@@ -1767,13 +1956,13 @@ function getBlueprintType(s) {
   if (falsePeak) {
     return {
       name: 'De Twijfelende Presteerder',
-      desc: 'Your esteem and self-actualisation scores show real development, but your physiological and safety foundations are weaker than your upper levels suggest they should be. This is the false peak pattern: external indicators of success and internal functioning are not aligned. You are performing above your structural base. This is sustainable for a period, but it is not indefinitely sustainable. The most important work for you is not at the top of the hierarchy. It is reinforcing what is quietly failing below.'
+      desc: 'Jouw scores op Zelfwaardering en Zelfontplooiing tonen echte ontwikkeling, maar jouw fysiologische en veiligheidsfundamenten zijn zwakker dan jouw hogere niveaus suggereren dat ze zouden moeten zijn. Dit is het valse-top-patroon: externe indicatoren van succes en intern functioneren zijn niet in lijn. Je presteert boven jouw structurele basis. Dit is een tijdlang houdbaar. Het is niet onbeperkt houdbaar. Het meest urgente werk ligt niet aan de top van de hiërarchie. Het ligt in het versterken van wat stilletjes faalt aan de basis.'
     };
   }
   if (s[4] <= 16 && s[5] >= 20) {
     return {
-      name: 'The Purposeful Striver',
-      desc: 'You have a clear sense of direction and genuine growth orientation, but your esteem foundation is not fully matching your ambition. You can see clearly where you want to go and often feel unsure whether you are the person capable of getting there. The Purposeful Striver pattern is characterised by high aspiration and inconsistent self-trust. The work is not about finding more motivation. It is about building a more honest and stable relationship with your own competence.'
+      name: 'De Doelgerichte Strijder',
+      desc: 'Je hebt een helder gevoel van richting en een echte groeioriëntatie, maar je zelfwaarderingsfundament houdt nog geen gelijke tred met je ambitie. Je kunt duidelijk zien waar je naartoe wilt en voelt je er regelmatig onzeker over of jij de persoon bent die dat kan waarmaken. Dit patroon wordt gekenmerkt door hoge aspiratie en inconsistent zelfvertrouwen. Het werk gaat niet over meer motivatie vinden. Het gaat over het opbouwen van een eerlijkere en stabielere relatie met je eigen competentie.'
     };
   }
   return {
@@ -1788,19 +1977,19 @@ function getBlueprintType(s) {
 function getLevelInsight(level, score) {
   const insights = {
     1: {
-      low: 'Your physiological foundation is significantly strained. This level scores your body\'s most basic needs, and a low score here explains more than it might seem. Chronic tiredness, energy crashes, and a sense of running on empty are not character flaws. They are structural signals.',
+      low: 'Jouw fysiologische fundament staat aanzienlijk onder druk. Dit niveau scoort de meest basale behoeften van je lichaam, en een lage score hier verklaart meer dan het lijkt. Chronische vermoeidheid, energie-crashes en het gevoel op leeg te rijden zijn geen karakterfouten. Het zijn structurele signalen.',
       mid: 'Jouw fysiologische behoeften zijn gedeeltelijk maar inconsistent vervuld. Er zijn waarschijnlijk specifieke dimensies (slaapkwaliteit, fysiek herstel of voeding) waar de gaten groter zijn dan andere. Het actieplan identificeert welke.',
-      high: 'Your physiological foundation is well-maintained. This is not a small thing. Consistently attending to your body\'s baseline needs provides the energy base everything else runs on.'
+      high: 'Jouw fysiologische fundament is goed onderhouden. Dit is geen kleine prestatie. Consistent aandacht besteden aan de basisbehoeften van je lichaam levert de energiebasis waarop alles else draait.'
     },
     2: {
       low: 'Jouw veiligheidsbehoeften zijn aanzienlijk onvervuld. Chronische onzekerheid, financiële stress of omgevingsinstabiliteit verbruiken cognitieve middelen die beschikbaar zouden moeten zijn voor groei. Dit niveau is bijna altijd belangrijker dan het krediet dat het krijgt.',
       mid: 'Jouw veiligheidsbehoeften zijn gedeeltelijk stabiel maar met significante gaten. De gebieden die lager scoren, creëren waarschijnlijk een achtergrondgebrom van angst dat focus en besluitvorming meer beïnvloedt dan je je misschien realiseert.',
-      high: 'Your safety foundation is solid. The sense of predictability and stability you have built creates the conditions for higher-level work. This level is often the most undervalued achievement in a person\'s life.'
+      high: 'Jouw veiligheidsfundament is solide. Het gevoel van voorspelbaarheid en stabiliteit dat je hebt opgebouwd, creëert de voorwaarden voor werk op hogere niveaus. Dit niveau is vaak de meest ondergewaardeerde prestatie in iemands leven.'
     },
     3: {
       low: 'Jouw verbondenheidsbehoeften zijn aanzienlijk onvervuld. Dit is een van de meest ingrijpende gaten die iemand kan dragen, deels omdat het gemakkelijk weg te verklaren is en deels omdat de externe bewijzen het vaak tegenspreken. Bij mensen zijn is niet hetzelfde als gekend worden.',
       mid: 'Jouw verbondenheidsbehoeften zijn gedeeltelijk vervuld. Je hebt waarschijnlijk enkele relaties die diep gaan, maar het algehele niveau van echte verbinding in je leven is nog niet wat het zou kunnen zijn. De kwaliteit van begrepen worden is ongelijkmatig verdeeld.',
-      high: 'Your belonging needs are well met. The experience of being known and of knowing others at depth is one of the most protective things in a person\'s psychological life. This is a genuine strength.'
+      high: 'Jouw verbondenheidsbehoeften zijn goed vervuld. De ervaring van gekend worden en anderen op diepgaand niveau te kennen is een van de meest beschermende dingen in iemands psychologisch leven. Dit is een echte kracht.'
     },
     4: {
       low: 'Jouw zelfwaarderingsfundament staat aanzienlijk onder druk. Dit manifesteert zich vaak als imposterssyndroom, moeite met het ontvangen van erkenning, of een private overtuiging dat je succes minder verdiend is dan het lijkt. Het gat tussen interne en externe zelfevaluatie is het kernprobleem van zelfwaardering.',
@@ -1829,59 +2018,59 @@ function getActions(level, score) {
   const actions = {
     1: {
       now: [
-        'Set a non-negotiable sleep window. Not a target. A boundary. Decide when the day ends and do not negotiate with yourself about it for the next 14 days.',
-        'Identify the one daily habit that most depletes your physical energy (typically: late screens, skipped meals, or no movement). Address that one thing before adding anything else.',
-        'Schedule one complete rest period per week with no obligations, no screens, and no productivity pressure. This is recovery, not reward. It precedes performance, not follows it.'
+        'Stel een niet-onderhandelbaar slaapvenster in. Geen doel. Een grens. Beslis wanneer de dag eindigt en onderhandel de komende 14 dagen niet met jezelf daarover.',
+        'Identificeer de ene dagelijkse gewoonte die jouw fysieke energie het meest uitput (typisch: late schermen, overgeslagen maaltijden, of geen beweging). Pak dat ene ding aan voordat je iets anders toevoegt.',
+        'Plan één complete rustperiode per week zonder verplichtingen, schermen of productiviteitsdruk. Dit is herstel, geen beloning. Het gaat aan prestatie vooraf, niet erachteraan.'
       ],
       worth: [
-        'Audit your energy across the week. Note when you feel genuinely resourced and when you are running on reserves. Look for the structural pattern, not the individual bad day.',
-        'Add one form of intentional physical movement that you would choose without obligation. The goal is not fitness. It is a reliable energy signal.',
-        'Examine your nutrition for the most common deprivation pattern (skipped meals, reliance on stimulants, or late-night compensation eating) and address that specific pattern only.'
+        'Analyseer je energie door de week. Noteer wanneer je je echt gevoed voelt en wanneer je op reserves draait. Zoek het structurele patroon, niet de individuele slechte dag.',
+        'Voeg één vorm van intentionele fysieke beweging toe die je zonder verplichting zou kiezen. Het doel is niet fitness. Het is een betrouwbaar energiesignaal.',
+        'Onderzoek je voeding op het meest voorkomende ontberingpatroon (overgeslagen maaltijden, afhankelijkheid van stimulanten of laat compensatie-eten) en pak alleen dat specifieke patroon aan.'
       ],
       maintain: [
-        'Document what is working at this level so you do not accidentally dismantle it when life gets busy. Awareness of what maintains the foundation is as important as building it.',
-        'Gradually raise the standard in one physiological dimension that you know could be stronger, without disrupting the rest.',
-        'Use this level as a resource for the levels below 22. The energy you have built here is an asset for doing harder work elsewhere.'
+        'Documenteer wat op dit niveau werkt zodat je het niet per ongeluk afbreekt wanneer het leven druk wordt. Bewustzijn van wat het fundament in stand houdt is even belangrijk als het bouwen ervan.',
+        'Verhoog geleidelijk de standaard op één fysiologische dimensie waarvan je weet dat die sterker kan, zonder de rest te verstoren.',
+        'Gebruik dit niveau als hulpbron voor de niveaus die aandacht nodig hebben. De energie die je hier hebt opgebouwd is een troef voor zwaarder werk elders.'
       ]
     },
     2: {
       now: [
-        'Identify the single most active source of safety threat in your life right now (financial, relational, or environmental). Name it specifically. Vague anxiety is harder to address than a named problem.',
-        'Create one small financial buffer if none exists. Even a modest emergency fund creates a measurable shift in background anxiety. Start with one month of essential expenses as the target.',
-        'Build one reliable daily structure anchor: a time you wake up, a time you begin work, and a time you end it. Predictability is manufactured, not found.'
+        'Identificeer de ene meest actieve bron van veiligheidsdreiging in jouw leven op dit moment (financieel, relationeel of omgevingsgericht). Benoem het specifiek. Vage angst is moeilijker aan te pakken dan een benoemd probleem.',
+        'Creëer één kleine financiële buffer als die er niet is. Zelfs een bescheiden noodfonds creëert een meetbare verschuiving in achtergrondangst. Begin met één maand aan essentiële uitgaven als doel.',
+        'Bouw één betrouwbaar dagelijks structuuranker: een tijd om op te staan, een tijd om te beginnen en een tijd om te stoppen. Voorspelbaarheid wordt gemaakt, niet gevonden.'
       ],
       worth: [
-        'Review your financial situation honestly and identify the specific gap (income, debt, margin, or spending pattern) that creates the most anxiety. Address that one gap with a concrete plan.',
-        'Identify where in your environment the most unpredictability lives and add one structural element (a decision rule, a scheduled review, or a contingency plan) to that specific area.',
-        'Build a 90-day forward view of your life that accounts for what you know is coming. The goal is not certainty. It is reducing the number of things that can surprise you.'
+        'Bekijk je financiële situatie eerlijk en identificeer het specifieke gat (inkomen, schuld, marge of uitgavenpatroon) dat de meeste angst creëert. Pak dat ene gat aan met een concreet plan.',
+        'Identificeer waar in jouw omgeving de meeste onvoorspelbaarheid zit en voeg één structureel element toe (een beslissingsregel, een geplande evaluatie of een noodplan) aan dat specifieke gebied.',
+        'Bouw een 90-dagen vooruitblik op je leven die rekening houdt met wat je weet dat eraan komt. Het doel is geen zekerheid. Het is het verminderen van het aantal dingen dat je kan verrassen.'
       ],
       maintain: [
-        'Review your safety structures quarterly to ensure they are still fit for your current circumstances. Solid foundations erode gradually if not maintained.',
-        'Identify one area of safety that could be made more robust without significant effort and address it proactively rather than reactively.',
-        'Use the stability you have built to take one deliberate risk you have been avoiding. Solid safety foundations exist to enable risk, not prevent it.'
+        'Evalueer je veiligheidsstructuren elk kwartaal om te zorgen dat ze nog passend zijn voor je huidige omstandigheden. Solide fundamenten eroderen geleidelijk als ze niet worden onderhouden.',
+        'Identificeer één gebied van veiligheid dat robuuster gemaakt kan worden zonder veel inspanning en pak het proactief aan in plaats van reactief.',
+        'Gebruik de stabiliteit die je hebt opgebouwd om één bewust risico te nemen dat je hebt vermeden. Solide veiligheidsfundamenten bestaan om risico mogelijk te maken, niet te voorkomen.'
       ]
     },
     3: {
       now: [
-        'Identify one person in your life who could become a deeper connection and initiate one honest conversation with them. Not a catch-up. A conversation where you share something real about where you actually are.',
-        'Examine the gap between the version of yourself you present and the version you actually are. Notice the cost of that gap. Name it to yourself clearly.',
-        'Reduce one obligation that keeps you busy around people but does not actually produce connection. Replace the time with one interaction that could go deeper.'
+        'Identificeer één persoon in je leven die een diepere verbinding kan worden en initieer één eerlijk gesprek met hem of haar. Geen bijpraat. Een gesprek waarbij je iets echts deelt over waar je nu werkelijk staat.',
+        'Onderzoek het gat tussen de versie van jezelf die je presenteert en de versie die je werkelijk bent. Benoem de kosten van dat gat. Noem het jezelf duidelijk.',
+        'Verklein één verplichting die je druk houdt rondom mensen maar geen echte verbinding oplevert. Vervang de tijd met één interactie die dieper kan gaan.'
       ],
       worth: [
-        'Tell one person something true about a current struggle that you would normally manage privately. Notice what happens. The willingness to be seen is the mechanism of connection.',
-        'Identify whether your current social life is wide and shallow or narrow and deep, and decide which direction you want to move in deliberately.',
-        'Join or create one context where genuine connection is structurally possible: a small group, a shared endeavour, or a regular one-to-one commitment.'
+        'Vertel één persoon iets waars over een huidige strijd die je normaal privé zou afhandelen. Merk op wat er gebeurt. De bereidheid gezien te worden is het mechanisme van verbinding.',
+        'Identificeer of je huidige sociale leven breed en oppervlakkig of smal en diep is, en beslis bewust in welke richting je wilt bewegen.',
+        'Sluit aan bij of creëer één context waar echte verbinding structureel mogelijk is: een kleine groep, een gedeelde onderneming of een regelmatige één-op-één afspraak.'
       ],
       maintain: [
-        'Actively invest in the relationships that already give you the experience of being known. Connection does not maintain itself. It requires regular, honest contact.',
-        'Increase the depth of one relationship that has the potential for more but has stayed at a comfortable surface level.',
-        'Notice if you are beginning to trade connection for productivity or convenience and correct that trade before it becomes a pattern.'
+        'Investeer actief in de relaties die je al het gevoel geven gekend te worden. Verbinding onderhoudt zichzelf niet. Het vereist regelmatig, eerlijk contact.',
+        'Vergroot de diepte van één relatie die het potentieel voor meer heeft maar op een comfortabel oppervlakteniveau is gebleven.',
+        'Merk op of je verbinding begint in te ruilen voor productiviteit of gemak en corrigeer die ruil voordat het een patroon wordt.'
       ]
     },
     4: {
       now: [
-        'Write down three things you have genuinely done well in the last 30 days without attributing them to luck, circumstance, or other people. This is not affirmation. It is accurate accounting.',
-        'Identify the primary way you dismiss or minimise your own competence (imposter syndrome, comparison, or attribution to luck) and name that specific pattern so you can see it when it operates.',
+        'Schrijf drie dingen op die je de afgelopen 30 dagen oprecht goed hebt gedaan, zonder ze toe te schrijven aan geluk, omstandigheid of andere mensen. Dit is geen affirmatie. Het is nauwkeurige boekhouding.',
+        'Identificeer de primaire manier waarop je je eigen competentie afwijst of minimaliseert (imposterssyndroom, vergelijking of toewijzing aan geluk) en benoem dat specifieke patroon zodat je het kunt zien wanneer het actief is.',
         'Doe deze week één ding dat je competentie uitrekt voorbij wat je comfortabel publiekelijk kunt demonstreren. Het gat tussen privébekwaamheid en publiek vertrouwen sluit zich door actie, niet door oefeningen voor het opbouwen van zelfvertrouwen.'
       ],
       worth: [
@@ -2020,6 +2209,9 @@ function generateResults() {
 
   showSection('results');
   showTab('profile');
+
+  // Start AI advice generation in background
+  genereerAdvies();
 }
 
 // ============================================================
@@ -2113,6 +2305,137 @@ function drawRadar() {
 // INIT
 // ============================================================
 updateProgress();
+
+
+// ============================================================
+// URL PARAM: DOELZIN VAN REFLECTIETOOL
+// ============================================================
+let doelzin = '';
+
+function getDoelzinFromURL() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('doel');
+    if (raw) {
+      doelzin = decodeURIComponent(raw).slice(0, 220);
+    }
+  } catch(e) {}
+}
+
+// ============================================================
+// AI ANALYSE GENEREREN
+// ============================================================
+async function genereerAdvies() {
+  // Show and activate advice tab
+  const adviceTabBtn = document.getElementById('adviceTabBtn');
+  adviceTabBtn.style.display = 'inline-block';
+  showTab('advice');
+
+  // Show goal context if available
+  if (doelzin) {
+    document.getElementById('goalContextBar').style.display = 'flex';
+    document.getElementById('goalContextText').textContent = doelzin;
+  }
+
+  const totalScore = Object.values(scores).reduce((a,b) => a+b, 0);
+  const isHoogScore = totalScore >= 125;
+
+  const scoreOmschrijving = [
+    'Fysiologisch: ' + scores[1] + '/30',
+    'Veiligheid: ' + scores[2] + '/30',
+    'Verbondenheid: ' + scores[3] + '/30',
+    'Zelfwaardering: ' + scores[4] + '/30',
+    'Zelfontplooiing: ' + scores[5] + '/30'
+  ].join(', ');
+
+  const laagsteNiveau = Object.entries(scores).sort((a,b) => a[1]-b[1])[0];
+  const niveauNamen = { '1': 'Fysiologisch', '2': 'Veiligheid', '3': 'Verbondenheid', '4': 'Zelfwaardering', '5': 'Zelfontplooiing' };
+  const laagsteNaam = niveauNamen[laagsteNiveau[0]];
+
+  const doelContext = doelzin
+    ? `De persoon heeft via de Reflectietool aangegeven dat zijn of haar doel is: "${doelzin}". Gebruik dit doel als rode draad door de hele analyse.`
+    : 'Er is geen specifiek doel opgegeven via de Reflectietool.';
+
+  const hoogScoreInstructie = isHoogScore
+    ? `LET OP: De totaalscore is ${totalScore}/150, wat uitzonderlijk hoog is. Dit betekent één van twee dingen: de persoon heeft sociaal wenselijk ingevuld, of de persoon heeft werkelijk een sterk fundament. In beide gevallen geldt: deze persoon is hier. Hij of zij heeft dit ingevuld. Er is een doel dat nog niet bereikt is. Verschuif de analyse niet naar "goed bezig", maar naar de vraag: als het fundament zo sterk is, wat houdt deze persoon dan nog tegen? Benoem de discrepantie tussen de hoge scores en het feit dat het doel nog niet bereikt is. Dat is het gesprek waard.`
+    : '';
+
+  const prompt = `Je bent Thabiso van Zeijl, mentaal coach bij B&B Mind Coaching.
+
+Iemand heeft zojuist de Maslow Blueprint assessment ingevuld. Dit zijn de scores:
+${scoreOmschrijving}
+Totaalscore: ${totalScore}/150
+
+${doelContext}
+
+${hoogScoreInstructie}
+
+Schrijf een analyse in drie onderdelen. Geef je antwoord in dit exacte formaat met de scheidingsmarkers:
+
+---ANALYSE---
+[Schrijf hier 2-3 alinea's lopende tekst. Verbind het doel aan de scores. Benoem welke blokkade het meest relevant is voor dit specifieke doel. Wees concreet en direct. Geen lege aanmoediging. Geen therapeutisch jargon. Geen opsommingen. Spreek de persoon aan met je en jij. Geen em dashes.]
+
+---TRAJECT---
+[Schrijf hier het trajectadvies. Begin met een duidelijke aanbeveling: oriëntatietraject (4 sessies, €500), standaard traject (8 sessies, €897) of intensief traject (12 sessies, €1.297). Leg in 2-3 zinnen uit waarom dit traject past bij de combinatie van dit doel en deze scores. Schrijf vanuit de coach, niet als pitch. Geen em dashes.]
+
+---VRAAG---
+[Schrijf hier één afsluitende vraag. Die vraag: sluit direct aan op iets wat de scores of het doel laten zien, is in gewone dagelijkse taal zonder jargon, nodigt uit tot eerlijke reflectie, is maximaal twee zinnen. Geen em dashes.]
+
+Strikte regels:
+- Altijd Nederlands
+- Geen em dashes (—)
+- Geen bullets of opsommingen
+- Geen lege aanmoediging
+- Directe aanspreking: je en jij
+- Trek geen conclusies die niet uit de scores of het doel komen`;
+
+  try {
+    const response = await fetch('/.netlify/functions/reflectie', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await response.json();
+    const tekst = data.content?.[0]?.text || '';
+    if (!tekst) throw new Error('Geen analyse ontvangen');
+
+    const analyseMatch = tekst.match(/---ANALYSE---\s*([\s\S]*?)\s*---TRAJECT---/);
+    const trajectMatch = tekst.match(/---TRAJECT---\s*([\s\S]*?)\s*---VRAAG---/);
+    const vraagMatch = tekst.match(/---VRAAG---\s*([\s\S]*)$/);
+
+    const analyseTekst = analyseMatch ? analyseMatch[1].trim() : '';
+    const trajectTekst = trajectMatch ? trajectMatch[1].trim() : '';
+    const vraagTekst = vraagMatch ? vraagMatch[1].trim() : '';
+
+    toonAdvies(analyseTekst, trajectTekst, vraagTekst);
+
+  } catch(err) {
+    console.error(err);
+    document.getElementById('advice-loading').innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px;">Er is iets misgegaan. Probeer de pagina te herladen.</p>';
+  }
+}
+
+function toonAdvies(analyse, traject, vraag) {
+  // Hide loading, show content
+  document.getElementById('advice-loading').style.display = 'none';
+  document.getElementById('advice-content').style.display = 'block';
+
+  // Analyse tekst
+  const alineas = analyse.split('\n').filter(p => p.trim().length > 0);
+  document.getElementById('adviceAnalysisText').innerHTML = alineas.map(p => `<p>${p}</p>`).join('');
+
+  // Traject
+  document.getElementById('trajectBody').textContent = traject;
+
+  // Afsluitvraag
+  if (vraag) {
+    document.getElementById('trajectQuestionBlock').style.display = 'block';
+    document.getElementById('trajectQuestion').textContent = vraag;
+  }
+}
+
+
 </script>
 </body>
 </html>
