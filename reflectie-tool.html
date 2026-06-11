@@ -289,6 +289,17 @@ nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;jus
 </div>
 
 <!-- SCREEN: LOADING -->
+<!-- SCREEN: BETALEN -->
+<div class="screen" id="screen-betalen">
+  <div class="loading-screen">
+    <h2>Jouw antwoorden staan klaar</h2>
+    <p>De persoonlijke reflectie kost eenmalig &euro;9. Na de betaling wordt jouw reflectie direct gegenereerd. Jouw antwoorden blijven op dit apparaat en worden nergens opgeslagen.</p>
+    <p id="betaalFout" style="display:none;color:#b3261e;font-size:.85rem;margin-bottom:16px"></p>
+    <button class="btn-primary" id="betaalKnop" onclick="betaalReflectie()">Betaal &euro;9 en genereer mijn reflectie</button>
+    <p style="font-size:.72rem;color:var(--muted);font-style:italic;margin-top:18px;max-width:480px;margin-left:auto;margin-right:auto">Je betaalt veilig via Mollie, onder andere met iDEAL. Met je betaling ga je akkoord met directe levering en zie je af van het herroepingsrecht, zoals beschreven in de <a href="/algemene-voorwaarden.html" style="color:var(--teal)">algemene voorwaarden</a>.</p>
+  </div>
+</div>
+
 <div class="screen" id="screen-loading">
   <div class="loading-screen">
     <div class="loading-icon"></div>
@@ -373,6 +384,50 @@ nav{background:var(--navy);padding:18px 40px;display:flex;align-items:center;jus
 let antwoorden = { 1: '', 2: '', 3: '', 4: '' };
 let reflectieTekst = '';
 
+// ============================================================
+// BETAALMUUR: toegangsbewijzen en opslag
+// ============================================================
+const TOEGANG_KEYS = { reflectie: 'bb_toegang_reflectie', blueprint: 'bb_toegang_blueprint' };
+
+function geldigeToegang(product) {
+  try {
+    const t = localStorage.getItem(TOEGANG_KEYS[product]);
+    if (!t) return null;
+    const delen = t.split('.');
+    if (delen.length !== 3 || delen[0] !== product || Date.now() > Number(delen[1])) return null;
+    return t;
+  } catch (e) { return null; }
+}
+
+function bewaarAntwoorden() {
+  try { localStorage.setItem('bb_reflectie_antwoorden', JSON.stringify(antwoorden)); } catch (e) {}
+}
+
+async function betaalReflectie() {
+  const knop = document.getElementById('betaalKnop');
+  knop.disabled = true;
+  knop.textContent = 'Een moment...';
+  try {
+    bewaarAntwoorden();
+    const res = await fetch('/.netlify/functions/betaling-start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product: 'reflectie' })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.checkoutUrl) throw new Error(data.error || 'Betaling starten mislukt');
+    localStorage.setItem('bb_payment_reflectie', data.paymentId);
+    window.location.href = data.checkoutUrl;
+  } catch (err) {
+    console.error(err);
+    const fout = document.getElementById('betaalFout');
+    fout.textContent = 'De betaling kon niet worden gestart. Probeer het opnieuw.';
+    fout.style.display = 'block';
+    knop.disabled = false;
+    knop.textContent = 'Betaal \u20AC9 en genereer mijn reflectie';
+  }
+}
+
 function goTo(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
@@ -412,8 +467,17 @@ async function genereerReflectie() {
   antwoorden[4] = val;
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('progressStep').textContent = 'Klaar';
-  goTo('screen-loading');
 
+  bewaarAntwoorden();
+  if (geldigeToegang('reflectie')) {
+    goTo('screen-loading');
+    doeGeneratie();
+  } else {
+    goTo('screen-betalen');
+  }
+}
+
+async function doeGeneratie() {
   try {
     const prompt = `Je bent Thabiso van Zeijl, mentaal coach bij B&B Mind Coaching. Je schrijft een persoonlijke reflectie op basis van vier antwoorden die iemand heeft ingevuld.
 
@@ -469,7 +533,7 @@ Vraag 4 - Stel dat je over een jaar alles hebt bereikt, hoe ziet die persoon eru
     const response = await fetch('/.netlify/functions/reflectie', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ prompt, toegang: geldigeToegang('reflectie') })
     });
 
     const data = await response.json();
@@ -576,6 +640,56 @@ h1{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color
 </body></html>`);
   win.document.close();
 }
+
+// ============================================================
+// TERUGKOMST NA BETALING (Mollie redirect: ?betaald=1)
+// ============================================================
+(async function () {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('betaald') !== '1') return;
+  history.replaceState(null, '', window.location.pathname);
+
+  try {
+    const opgeslagen = JSON.parse(localStorage.getItem('bb_reflectie_antwoorden') || 'null');
+    if (opgeslagen) antwoorden = opgeslagen;
+  } catch (e) {}
+
+  if (!antwoorden[1] || !antwoorden[4]) return; // niets te herstellen, gewoon startscherm
+
+  if (geldigeToegang('reflectie')) {
+    goTo('screen-loading');
+    doeGeneratie();
+    return;
+  }
+
+  const pid = localStorage.getItem('bb_payment_reflectie');
+  if (!pid) { goTo('screen-betalen'); return; }
+
+  goTo('screen-loading');
+  try {
+    const res = await fetch('/.netlify/functions/betaling-check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paymentId: pid })
+    });
+    const data = await res.json();
+    if (data.toegang && data.token) {
+      localStorage.setItem('bb_toegang_reflectie', data.token);
+      localStorage.removeItem('bb_payment_reflectie');
+      doeGeneratie();
+    } else {
+      const fout = document.getElementById('betaalFout');
+      fout.textContent = 'De betaling is niet afgerond. Je kunt het hieronder opnieuw proberen.';
+      fout.style.display = 'block';
+      goTo('screen-betalen');
+    }
+  } catch (e) {
+    const fout = document.getElementById('betaalFout');
+    fout.textContent = 'De betaling kon niet worden gecontroleerd. Probeer het opnieuw.';
+    fout.style.display = 'block';
+    goTo('screen-betalen');
+  }
+})();
 </script>
 </body>
 </html>

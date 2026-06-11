@@ -1808,6 +1808,14 @@
 
   <!-- TAB: ADVICE -->
   <div id="tab-advice" style="display:none;">
+    <div id="advice-paywall" style="display:none;text-align:center;padding:60px 24px;">
+      <h3 style="font-family:var(--serif);font-size:1.6rem;color:var(--navy);margin-bottom:12px;font-weight:400">Jouw persoonlijke analyse staat klaar</h3>
+      <p style="color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7;font-size:.92rem">Op basis van jouw vijf scores en jouw doel wordt een analyse gemaakt die alleen voor jou klopt, inclusief een persoonlijk trajectadvies en een vraag om mee verder te gaan.</p>
+      <p id="blueprintPrijs" style="font-family:var(--serif);font-size:1.8rem;color:var(--navy);margin:20px 0">&euro;19</p>
+      <p id="blueprintBetaalFout" style="display:none;color:#b3261e;font-size:.85rem;margin-bottom:14px"></p>
+      <button class="btn-navy" id="blueprintBetaalKnop" onclick="betaalBlueprint()" style="font-size:1rem;padding:16px 42px">Betaal en ontvang jouw advies</button>
+      <p style="font-size:.72rem;color:var(--muted);font-style:italic;margin-top:18px;max-width:480px;margin-left:auto;margin-right:auto">Je betaalt veilig via Mollie, onder andere met iDEAL. Met je betaling ga je akkoord met directe levering en zie je af van het herroepingsrecht, zoals beschreven in de <a href="/algemene-voorwaarden.html" style="color:var(--teal)">algemene voorwaarden</a>. Jouw scores blijven op dit apparaat en worden nergens opgeslagen.</p>
+    </div>
     <div id="advice-loading" class="advice-loading">
       <div class="advice-spinner"></div>
       <h3>Jouw persoonlijke analyse wordt samengesteld</h3>
@@ -2109,8 +2117,8 @@ function getActions(level, score) {
 // ============================================================
 // GENERATE RESULTS
 // ============================================================
-function generateResults() {
-  computeScores();
+function generateResults(herstel) {
+  if (!herstel) computeScores();
   const totalScore = Object.values(scores).reduce((a,b) => a+b, 0);
   const type = getBlueprintType(scores);
 
@@ -2210,8 +2218,8 @@ function generateResults() {
   showSection('results');
   showTab('profile');
 
-  // Start AI advice generation in background
-  genereerAdvies();
+  // Start AI advice flow (betaalmuur of direct genereren)
+  startAdviesFlow();
 }
 
 // ============================================================
@@ -2323,6 +2331,70 @@ function getDoelzinFromURL() {
 }
 
 // ============================================================
+// BETAALMUUR: toegangsbewijzen, betaalflow en korting
+// ============================================================
+const TOEGANG_KEYS = { reflectie: 'bb_toegang_reflectie', blueprint: 'bb_toegang_blueprint' };
+
+function geldigeToegang(product) {
+  try {
+    const t = localStorage.getItem(TOEGANG_KEYS[product]);
+    if (!t) return null;
+    const delen = t.split('.');
+    if (delen.length !== 3 || delen[0] !== product || Date.now() > Number(delen[1])) return null;
+    return t;
+  } catch (e) { return null; }
+}
+
+function startAdviesFlow() {
+  const adviceTabBtn = document.getElementById('adviceTabBtn');
+  adviceTabBtn.style.display = 'inline-block';
+
+  if (geldigeToegang('blueprint')) {
+    document.getElementById('advice-paywall').style.display = 'none';
+    document.getElementById('advice-loading').style.display = 'block';
+    genereerAdvies();
+    return;
+  }
+
+  // Nog niet betaald: betaalblok tonen in de adviestab
+  document.getElementById('advice-loading').style.display = 'none';
+  document.getElementById('advice-content').style.display = 'none';
+  document.getElementById('advice-paywall').style.display = 'block';
+
+  // Korting na de Reflectietool: 19 wordt 14
+  if (geldigeToegang('reflectie')) {
+    document.getElementById('blueprintPrijs').innerHTML =
+      '<span style="text-decoration:line-through;font-size:1.1rem;color:var(--muted);margin-right:10px">\u20AC19</span>\u20AC14 ' +
+      '<span style="font-size:.72rem;color:var(--teal);font-weight:600;vertical-align:middle">omdat je de Reflectietool hebt gedaan</span>';
+  }
+}
+
+async function betaalBlueprint() {
+  const knop = document.getElementById('blueprintBetaalKnop');
+  knop.disabled = true;
+  knop.textContent = 'Een moment...';
+  try {
+    localStorage.setItem('bb_blueprint_state', JSON.stringify({ scores: scores, doelzin: doelzin }));
+    const res = await fetch('/.netlify/functions/betaling-start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product: 'blueprint', kortingToken: geldigeToegang('reflectie') })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.checkoutUrl) throw new Error(data.error || 'Betaling starten mislukt');
+    localStorage.setItem('bb_payment_blueprint', data.paymentId);
+    window.location.href = data.checkoutUrl;
+  } catch (err) {
+    console.error(err);
+    const fout = document.getElementById('blueprintBetaalFout');
+    fout.textContent = 'De betaling kon niet worden gestart. Probeer het opnieuw.';
+    fout.style.display = 'block';
+    knop.disabled = false;
+    knop.textContent = 'Betaal en ontvang jouw advies';
+  }
+}
+
+// ============================================================
 // AI ANALYSE GENEREREN
 // ============================================================
 async function genereerAdvies() {
@@ -2330,6 +2402,8 @@ async function genereerAdvies() {
   const adviceTabBtn = document.getElementById('adviceTabBtn');
   adviceTabBtn.style.display = 'inline-block';
   showTab('advice');
+  document.getElementById('advice-paywall').style.display = 'none';
+  document.getElementById('advice-loading').style.display = 'block';
 
   // Show goal context if available
   if (doelzin) {
@@ -2393,7 +2467,7 @@ Strikte regels:
     const response = await fetch('/.netlify/functions/reflectie', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ prompt, toegang: geldigeToegang('blueprint') })
     });
 
     const data = await response.json();
@@ -2434,6 +2508,55 @@ function toonAdvies(analyse, traject, vraag) {
     document.getElementById('trajectQuestion').textContent = vraag;
   }
 }
+
+// ============================================================
+// INIT DOELZIN + TERUGKOMST NA BETALING (Mollie: ?betaald=1)
+// ============================================================
+getDoelzinFromURL();
+
+(async function () {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('betaald') !== '1') return;
+  history.replaceState(null, '', window.location.pathname);
+
+  let state = null;
+  try { state = JSON.parse(localStorage.getItem('bb_blueprint_state') || 'null'); } catch (e) {}
+  if (!state || !state.scores) return; // niets te herstellen
+
+  Object.assign(scores, state.scores);
+  if (state.doelzin) doelzin = state.doelzin;
+
+  // Resultaten opnieuw opbouwen vanuit de bewaarde scores
+  generateResults(true);
+
+  if (geldigeToegang('blueprint')) return; // startAdviesFlow heeft het advies al gestart
+
+  const pid = localStorage.getItem('bb_payment_blueprint');
+  if (!pid) return; // betaalblok staat al zichtbaar
+
+  try {
+    const res = await fetch('/.netlify/functions/betaling-check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paymentId: pid })
+    });
+    const data = await res.json();
+    if (data.toegang && data.token) {
+      localStorage.setItem('bb_toegang_blueprint', data.token);
+      localStorage.removeItem('bb_payment_blueprint');
+      localStorage.removeItem('bb_blueprint_state');
+      startAdviesFlow();
+    } else {
+      const fout = document.getElementById('blueprintBetaalFout');
+      fout.textContent = 'De betaling is niet afgerond. Je kunt het hieronder opnieuw proberen.';
+      fout.style.display = 'block';
+    }
+  } catch (e) {
+    const fout = document.getElementById('blueprintBetaalFout');
+    fout.textContent = 'De betaling kon niet worden gecontroleerd. Probeer het opnieuw.';
+    fout.style.display = 'block';
+  }
+})();
 
 
 </script>
